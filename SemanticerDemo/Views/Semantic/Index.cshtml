@@ -1,0 +1,85 @@
+﻿@using SemanticerDemo.Controllers
+@model dynamic
+
+@{
+    ViewBag.Title = "title";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <title>Semanticer Demo App</title>
+
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet">
+    <link href="../../Content/starter-template.css" rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Semanticer</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container fill">
+    <h1>Semanticer</h1>
+    <p class="lead">Enter text in box below to calculate Semantics.<br> Document will be proccesed an result would be seen below.
+    </p>
+    @using (Html.BeginForm())
+    {
+        <fieldset >
+            <textarea rows="4" class="lead col-md-12" name="toEvaluate">
+Enter text, to evaluate semantic :)
+                    </textarea>
+            <br/>
+            <button type="submit" class="lead col-md-5 col-md-offset-3">Evaluate</button>
+        </fieldset>
+    }
+    @if (ViewData.ContainsKey("result"))
+    {
+        <p class="lead">Result: <br/>
+            @{ var result = (SemanticResult) ViewData["result"]; }
+            @result.Text is
+        <span class="@result.Result">@result.Result</span>
+       (propability: @result.Propability)</p>
+    }
+</div>
+<p id="about" class="lead container fill">
+    Master's thesis application by Wojceich Krol<br/><br/>
+    Biblography: <br/>
+    &bull;<a href="https://cs.stanford.edu/~quocle/paragraph_vector.pdf">
+“Distributed Representations of Sentences and Documents”</a> - Quoc Le, Tomas Mikolov <br />
+    &bull;<a href="https://www.cs.cornell.edu/people/tj/publications/joachims_97b.pdf"> “Text Categorization with Support Vector Machines Learning with Many Relevant Features”</a> - Thorsten Joachims<br/>
+    &bull;<a href="http://arxiv.org/pdf/1310.4546.pdf"> “Distributed Representations of Words and Phrases and their Compositionality”</a> - Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, Jeffrey Dean <br/>
+</p>
+<p id="contact" class="lead container fill">
+    Wojceich Krol<br/>
+    <a href="mailto:wjch.krl@gmail.com">wjch.krl@gmail.com</a><br/>
+    Politechnika Krakowska<br/>
+</p>
+<script src="../../scripts/jquery-3.1.0.min.js"></script>
+<script src="../../scripts/main.js"></script>
+<script>window.jQuery || document.write('<script src="../../scripts/jquery-3.1.0.min.js"><\/script>')</script>
+<script src="../../scripts/bootstrap.min.js"></script>
+</body>
+

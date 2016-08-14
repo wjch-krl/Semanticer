@@ -1,0 +1,17 @@
+﻿.fill {
+    min-height: 100%;
+    height: 100%;
+    padding: 85px 15px;
+}
+
+.Positive {
+    color: #009900
+}
+
+.Negative {
+    color: #FF3300
+}
+
+.Neutral {
+    color: #0000FF
+}

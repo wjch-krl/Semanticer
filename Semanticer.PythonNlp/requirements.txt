@@ -1,0 +1,5 @@
+cassandra-driver==2.7.2
+futures==3.0.3
+gensim==0.12.3
+numpy==1.10.4
+scipy==0.11.0

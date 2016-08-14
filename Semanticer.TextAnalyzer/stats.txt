@@ -1,0 +1,4 @@
+usedStats = c(1,4,5,6,10,11)
+tmpp = c("markType", "nrow", "mean", "sd", "median", "gm_mean", "harmonic.mean", "quant[2]", "quant[4]", "quant[2] - quant[2]", "kurtosis", "skewness", "max", "min", "range", "sum", "var")
+tmpp[usedStats[-1]]
+[1] "sd"  "median"  "gm_mean"  "quant[2] - quant[2]"  "kurtosis"           
