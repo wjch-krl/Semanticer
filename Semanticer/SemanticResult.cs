@@ -1,8 +1,9 @@
+using Semanticer.Common.Enums;
 namespace Semanticer
 {
     public class SemanticResult
     {
-        public SemanticType Result { get; set; }
+		public PostMarkType Result { get; set; }
         public double Propability { get; set; }
         public string Text { get; set; }
 

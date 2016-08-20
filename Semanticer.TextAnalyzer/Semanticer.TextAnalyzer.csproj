@@ -177,6 +177,10 @@
     </Compile>
     <Compile Include="SpellChekers\NHunspellChecker.cs" />
     <Compile Include="SimplePostSemanticEvaluator.cs" />
+    <Compile Include="BigramTokenizerNormalizerFactory.cs" />
+    <Compile Include="BigramTokenizerNormalizer.cs" />
+    <Compile Include="ImdbFileTrainData.cs" />
+    <Compile Include="ImdbFileEventReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Semanticer.Classifier\Semanticer.Classifier.csproj">

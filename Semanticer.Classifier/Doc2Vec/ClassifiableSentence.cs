@@ -10,8 +10,8 @@ namespace Semanticer.Classifier.Doc2Vec
             SourceId = sourceId;
         }
 
-        public string OrgId { get; private set; }
-        public int SourceId { get; private set; }
+        public string OrgId { get; }
+        public int SourceId { get; }
         public int SentenceNumber { get; private set; }
         public double[] Features { get;  private set; }
         public string FullId => string.Join("_", OrgId, SourceId);

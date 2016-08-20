@@ -53,5 +53,7 @@ namespace Semanticer.Classifier
 		/// will be classified as a match.
 		/// </summary>
 		public static double DefaultCutoff = .9d;
+
+		public const string ImdbDatasetPath = @"C:\Users\wk\Documents\mgr\Semanticer\aclImdb\";
 	}
 }

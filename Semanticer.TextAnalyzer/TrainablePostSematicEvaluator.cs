@@ -16,7 +16,8 @@ namespace Semanticer.TextAnalyzer
 {
     public class TrainablePostSematicEvaluator : IPostSematicEvaluator
     {
-        private readonly ITextAnalizerDataProvider provider;
+		private readonly string lang;
+		private readonly ITextAnalizerDataProvider provider;
         private readonly LoggProvider loggProvider;
         private readonly LearnigAlghoritm alghoritm;
         private readonly IPivotWordProviderFactory pivotFactory;
@@ -41,11 +42,33 @@ namespace Semanticer.TextAnalyzer
             classifiers = new Dictionary<string, IClassifier>();
         }
 
-        public TrainablePostSematicEvaluator()
+
+		public TrainablePostSematicEvaluator(LearnigAlghoritm alghoritm, string lang)
         {
+			this.lang = lang;
+			this.alghoritm = alghoritm;
+			pivotFactory = new SimplePivotWordProviderFactory ();
+			tokenizerFactory = new BigramTokenizerNormalizerFactory (lang);
+			classifiers = new Dictionary<string, IClassifier> ();
+			var toTrain = TrainNewClassifier ();
+			classifiers.Add (lang,toTrain);
+
         }
 
-        public void Evaluate(IEnumerable<Post> posts)
+		IClassifier TrainNewClassifier ()
+		{
+			var clasifier = CreateClassifier ();
+			return TrainClassifier (clasifier);
+		}
+
+		IClassifier TrainClassifier (IClassifier clasifier)
+		{
+			var traingData = new ImdbFileTrainData (tokenizerFactory.Create (), ClassifierConstants.ImdbDatasetPath);
+			((ITrainable)clasifier).ReTrain (traingData);
+			return clasifier;
+		}
+
+		public void Evaluate(IEnumerable<Post> posts)
         {
             var eventStart = loggProvider.LoggStart(LoggerEventType.PostSematicCalcutationStart, alghoritm.ToString());
             var postsPerLang = posts.GroupBy(p => string.Format(LangIdFormat, p.Lang, p.TradeId));
@@ -107,13 +130,14 @@ namespace Semanticer.TextAnalyzer
         }
 
 
-        public double Evaluate(string msg, string lang)
+        public IDictionary<PostMarkType, double> Evaluate (string msg, string lang = null)
         {
+			lang = lang ?? this.lang;
             if (!classifiers.ContainsKey(lang))
             {
                 throw new InvalidOperationException("Classifier is not train for specified language");
             }
-            return classifiers[lang].TransformPredicion(classifiers[lang].Classify(msg));
+            return classifiers[lang].Classify(msg);
         }
 
         public void LoadClassifier(string lang, int trade)
@@ -139,6 +163,29 @@ namespace Semanticer.TextAnalyzer
             });
         }
 
+		private IClassifier CreateClassifier (bool forceLoad = false)
+		{
+			var tokenizer = tokenizerFactory.Create ();
+			IClassifier classifer;
+			switch (alghoritm) {
+			case LearnigAlghoritm.MaxEnt:
+				classifer = new MaxEntClassifier (tokenizer, pivotFactory.Resolve (lang), lang, 1,
+					forceLoad);
+				break;
+			case LearnigAlghoritm.Vector:
+				classifer = new VectorClassifier (tokenizer, pivotFactory.Resolve (lang));
+				break;
+			case LearnigAlghoritm.Svm:
+				classifer = new SvmClassifier (tokenizer, lang);
+				break;
+			default:
+				classifer = new InMemoryBayes (pivotFactory.Resolve (lang),tokenizerFactory.Create (), 1, lang, forceLoad);
+				break;
+			}
+			classifer.MatchCutoff = CutOff;
+			classifer.PolarityMargin = PolarityMargin;
+			return classifer;
+		}
 
         private IClassifier CreateClassifier(ITextAnalizerDataProvider connection, string lang, int trdId,
             bool forceLoad = false)
@@ -167,7 +214,7 @@ namespace Semanticer.TextAnalyzer
 //                        new PgsqlWordsDataSource(new PgsqlConncetionManager(connection.ConnectionString), langTradeId);
 //                    classifer = new BayesianClassifier(wordsDataSource, tokenizer, new PostStopWordsProvider(),
 //                        pivotFactory.Resolve(langTradeId), false, false);
-                    classifer = new InMemoryBayes(new PolishPivotWordProvider(), trdId,provider.LangId(lang),forceLoad);
+				classifer = new InMemoryBayes(new PolishPivotWordProvider(), tokenizerFactory.Create (), trdId, lang, forceLoad);
                     break;
             }
             classifer.MatchCutoff = CutOff;

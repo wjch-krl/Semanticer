@@ -47,5 +47,10 @@ namespace Semanticer.TextAnalyzer
             sum = sum < -6.0 ? -6.0 : sum;
             return sum;
         }
-    }
+
+		IDictionary<PostMarkType, double> IPostSematicEvaluator.Evaluate (string msg, string lang)
+		{
+			throw new NotImplementedException ();
+		}
+	}
 }

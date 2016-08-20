@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Semanticer.Common.DataModel;
+using Semanticer.Common.Enums;
 
 namespace Semanticer.TextAnalyzer
 {
@@ -11,10 +12,7 @@ namespace Semanticer.TextAnalyzer
         ///<summary>Przypisuje ocenê do danej wiadomoœci</summary>
         void Evaluate(Post p);
 
-        /// <summary>Zwraca ocêne wiadomoœci w danym jêzyku i o danej bran¿y</summary>
-        ///  <param name="msg">Treœæ wiadomoœci</param>
-        /// <param name="lang">Jêzyk wiadomoœci</param>
-        /// <param name="trade">Id bran¿y</param>
-        double Evaluate(string msg, string lang);
-    }
+		IDictionary<PostMarkType, double> Evaluate (string msg, string lang = null);
+
+	}
 }

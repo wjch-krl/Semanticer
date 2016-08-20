@@ -15,13 +15,15 @@ namespace Semanticer.Classifier.Bayesian
         private IDictionary<string, WordOccurance> wordsOccurances;
         private readonly IPivotWordProvider pivotWordProvider;
         private readonly int tradeId;
-        private readonly int langId;
+		private readonly string lang;
+		readonly ITokenizer tokenizer;
 
-        public InMemoryBayes(IPivotWordProvider pivotWordProvider, int tradeId, int langId, bool forceLoad)
+		public InMemoryBayes(IPivotWordProvider pivotWordProvider, ITokenizer tokenizer, int tradeId, string rename, bool forceLoad)
         {
-            this.pivotWordProvider = pivotWordProvider;
+			this.tokenizer = tokenizer;
+			this.pivotWordProvider = pivotWordProvider;
             this.tradeId = tradeId;
-            this.langId = langId;
+            this.lang = rename;
             if (!LoadFromFile() && forceLoad)
             {
                 throw new FileNotFoundException("Cant find model file");
@@ -36,7 +38,7 @@ namespace Semanticer.Classifier.Bayesian
 
         private string SerializationPath()
         {
-            return string.Format("InMemoryBayes-{0}-{1}.xml", langId, tradeId);
+            return string.Format("InMemoryBayes-{0}-{1}.xml", lang, tradeId);
         }
 
         public bool LoadFromFile()
@@ -55,7 +57,7 @@ namespace Semanticer.Classifier.Bayesian
             var dict = CreatePropabilityDict();
             var pivorRange = 0;
             double multiper = 1.0;
-            foreach (var word in input.SplitByWhitespaces().
+			foreach (var word in tokenizer.Tokenize (input).
                 Where(x => wordsOccurances.ContainsKey(x)))
             {
                 if (pivotWordProvider.IsPivot(word))
@@ -195,7 +197,7 @@ namespace Semanticer.Classifier.Bayesian
 
         private void LoadWords(ITrainingData trainingData)
         {
-            var words = trainingData.DatabaseProvider.AllWords(langId,tradeId).Where(x=> Math.Abs(x.WordMark) > 1.5 );
+			var words = trainingData.DatabaseProvider.AllWords(trainingData.DatabaseProvider.LangId (lang),tradeId).Where(x=> Math.Abs(x.WordMark) > 1.5 );
             foreach (var lexiconWord in words)
             {
                 TeachWord(lexiconWord.Word,1,lexiconWord.MarkType);

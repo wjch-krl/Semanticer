@@ -12,8 +12,8 @@ namespace Semanticer.TextAnalyzer.SpellChekers
         }
 
         public bool IsWord { get; set; }
-        public Dictionary<char, DictionaryNode> ChildNodes { get; private set; }
-        public char Letter { get; private set; }
+        public Dictionary<char, DictionaryNode> ChildNodes { get; }
+        public char Letter { get; }
 
         public int Level
         {

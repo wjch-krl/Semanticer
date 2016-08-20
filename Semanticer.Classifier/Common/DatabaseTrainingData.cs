@@ -29,7 +29,7 @@ namespace Semanticer.Classifier.Common
 
         public ITrainingEventReader Reader => new DatabaseTrainReader(DatabaseProvider, tokenizer, langId, tradeId, trainProportion);
 
-        public ITextAnalizerDataProvider DatabaseProvider { get; private set; }
+        public ITextAnalizerDataProvider DatabaseProvider { get; }
 
         public bool LoadWords { get; set; }
     }

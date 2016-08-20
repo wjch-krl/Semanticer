@@ -18,9 +18,9 @@ namespace Semanticer.TextAnalyzer
             NeutralSeeds = new List<string>();
         }
 
-        public IList<string> PositiveSeeds { get; private set; }
-        public IList<string> NegativeSeeds { get; private set; }
-        public IList<string> NeutralSeeds { get; private set; }
+        public IList<string> PositiveSeeds { get; }
+        public IList<string> NegativeSeeds { get; }
+        public IList<string> NeutralSeeds { get; }
         public IPostDataProvider SourceDataProvider { get; set; }
         public ITextAnalizerDataProvider DestinationDataProvider { get; set; }
 

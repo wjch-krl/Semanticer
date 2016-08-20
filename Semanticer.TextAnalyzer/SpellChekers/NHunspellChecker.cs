@@ -63,7 +63,7 @@ namespace Semanticer.TextAnalyzer.SpellChekers
         private static string FindLanguageFile(string containString, string fileExtension)
         {
             string pattern = string.Format("*{0}*.{1}", containString, fileExtension);
-            string directoryPath = string.Format(AppDomain.CurrentDomain.BaseDirectory + @"\Language Pack\");
+			string directoryPath = Path.Combine (AppDomain.CurrentDomain.BaseDirectory + "Language Pack");
             string[] results = Directory.GetFiles(directoryPath, pattern, SearchOption.TopDirectoryOnly);
 
             if (results.Count() > 1)

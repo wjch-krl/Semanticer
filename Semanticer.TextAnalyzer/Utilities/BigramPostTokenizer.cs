@@ -5,14 +5,14 @@ namespace Semanticer.TextAnalyzer.Utilities
 {
     public class BigramPostTokenizer : ITokenizer
     {
-        public string[] Tokenize(string input)
+        public virtual string[] Tokenize(string input)
         {
             var splitted = input.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
             return CreateBigram(splitted);
         }
 
         //Funkcja tworzy bigramy na podstawie zadanych slow
-        private static string[] CreateBigram(string[] splitted)
+		protected static string[] CreateBigram(string[] splitted)
         {
             if (splitted.Length == 0)
             {

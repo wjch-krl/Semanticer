@@ -42,9 +42,9 @@ namespace Semanticer.Classifier.Bayesian
         private readonly IPivotWordProvider pivotWordProvider;
         private readonly bool categorized;
         public bool IsCaseSensitive { get; set; }
-        public IWordsDataSource WordsDataSource { get; private set; }
-        public ITokenizer Tokenizer { get; private set; }
-        public IStopWordProvider StopWordProvider { get; private set; }
+        public IWordsDataSource WordsDataSource { get; }
+        public ITokenizer Tokenizer { get; }
+        public IStopWordProvider StopWordProvider { get; }
 
         public BayesianClassifier(IWordsDataSource wd, ITokenizer tokenizer, IPivotWordProvider pwProvider)
             : this(wd, tokenizer, new DefaultStopWordProvider(), pwProvider)
