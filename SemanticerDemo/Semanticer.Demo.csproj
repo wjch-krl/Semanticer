@@ -151,7 +151,7 @@
       <Name>Semanticer.WcfClient</Name>
     </ProjectReference>
     <ProjectReference Include="..\Semanticer\Semanticer.csproj">
-      <Project>{576d7043-ac99-4aca-83c5-acbcb34c5f1a}</Project>
+      <Project>{576D7043-AC99-4ACA-83C5-ACBCB34C5F1A}</Project>
       <Name>Semanticer</Name>
     </ProjectReference>
   </ItemGroup>
