@@ -1,6 +1,8 @@
+using System;
 using Semanticer.Common.Enums;
 namespace Semanticer
 {
+    [Serializable]
     public class SemanticResult
     {
 		public PostMarkType Result { get; set; }

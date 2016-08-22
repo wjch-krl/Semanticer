@@ -141,7 +141,6 @@
     <Compile Include="LanguageIdentifier.cs" />
     <Compile Include="EmptyPivotWordProvider.cs" />
     <Compile Include="EnglishPivotWordProvider.cs" />
-    <Compile Include="EvaluatorHelper.cs" />
     <Compile Include="ITokenizerFactory.cs" />
     <Compile Include="SimplePivotWordProviderFactory.cs" />
     <Compile Include="SpellChekers\AbstractDictionary.cs" />

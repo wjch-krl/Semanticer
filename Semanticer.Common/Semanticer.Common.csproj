@@ -101,6 +101,7 @@
     <Compile Include="AuthorCredential.cs" />
     <Compile Include="AuthorEqualityComparer.cs" />
     <Compile Include="BlockedAuthorEqualityComparer.cs" />
+    <Compile Include="Counter.cs" />
     <Compile Include="DataModel\BulletinBoardTopic.cs" />
     <Compile Include="DataModel\AnalysisProfile.cs" />
     <Compile Include="DataModel\NormalizedMessage.cs" />

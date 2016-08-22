@@ -68,67 +68,6 @@ namespace Semanticer.TextAnalyzer
 			return clasifier;
 		}
 
-		public void Evaluate(IEnumerable<Post> posts)
-        {
-            var eventStart = loggProvider.LoggStart(LoggerEventType.PostSematicCalcutationStart, alghoritm.ToString());
-            var postsPerLang = posts.GroupBy(p => string.Format(LangIdFormat, p.Lang, p.TradeId));
-            int postsCount = 0;
-            foreach (var element in postsPerLang)
-            {
-                if (!classifiers.ContainsKey(element.Key))
-                {
-                    foreach (var post in element)
-                    {
-                        post.MarkType = PostMarkType.NonSupportedLanguage;
-                    }
-                    continue;
-                }
-                var results = classifiers[element.Key].Evaluate(element.Select(x => x.NormalizeMessage).ToArray());
-                int index = 0;
-                foreach (var post in element)
-                {
-                    post.MarkType = results[index++];
-                    post.Mark = -((int) post.MarkType - 2);
-                    post.MarkValue = post.Mark*post.Strong;
-                    postsCount++;
-                }
-            }
-            loggProvider.LoggStop(new DiagnosticLogElement
-            {
-                CompletitionTime = DateTime.UtcNow - eventStart,
-                Date = DateTime.Now,
-                Processed = postsCount,
-                JobType = LoggerEventType.PostSematicCalcutationStop,
-                LogDetails = alghoritm.ToString(),
-            });
-        }
-
-        public void Evaluate(Post p)
-        {
-            //Wybór jeżyka na podstawie postu
-            string langId = string.Format(LangIdFormat, p.Lang, p.TradeId);
-            if (!classifiers.ContainsKey(langId))
-            {
-                p.MarkType = PostMarkType.NonSupportedLanguage;
-                return;
-            }
-            var tmp = p.NormalizeMessage.SplitByWhitespaces();
-            List<PostMarkType> marks = new List<PostMarkType>();
-            for (int i = 0; i < tmp.Length/10; i++)
-            {
-                string msg = string.Join(" ", tmp.Skip(i*10).Take(10));
-                marks.Add(classifiers[langId].Evaluate(msg));
-            }
-            var positive = marks.Count(x => x == PostMarkType.Positive);
-            var negative = marks.Count(x => x == PostMarkType.Negative);
-            p.MarkType = positive > negative ? PostMarkType.Positive : PostMarkType.Negative;
-            p.MarkType = positive == negative ? PostMarkType.Neutral : p.MarkType;
-            //Klasyfikacja postu wybranym klasyfikatorem
-//            p.MarkType = classifiers[langId].Evaluate(p.NormalizeMessage);
-            p.Mark = -((int) p.MarkType - 2);
-            p.MarkValue = p.Mark*(p.Strong + 1);
-        }
-
 
         public IDictionary<PostMarkType, double> Evaluate (string msg, string lang = null)
         {

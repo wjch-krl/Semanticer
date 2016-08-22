@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Semanticer.Common.Enums" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Semanticer.Common.Enums" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:simpleType name="PostMarkType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NonCaluculated" />
+      <xs:enumeration value="Positive" />
+      <xs:enumeration value="Neutral" />
+      <xs:enumeration value="Negative" />
+      <xs:enumeration value="NonSupportedLanguage">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PostMarkType" nillable="true" type="tns:PostMarkType" />
+</xs:schema>

@@ -1,5 +1,6 @@
 ﻿@using Semanticer
 @using SemanticerDemo.Controllers
+@using SemanticerDemo.Semanticer.Wcf
 @model dynamic
 
 @{
@@ -60,9 +61,9 @@ Enter text, to evaluate semantic :)
     {
         <p class="lead">Result: <br/>
             @{ var result = (SemanticResult) ViewData["result"]; }
-            @result.Text is
-        <span class="@result.Result">@result.Result</span>
-       (propability: @result.Propability)</p>
+            @result.Textk__BackingField is
+        <span class="@result.Resultk__BackingField">@result.Resultk__BackingField</span>
+       (propability: @result.Propabilityk__BackingField)</p>
     }
 </div>
 <p id="about" class="lead container fill">

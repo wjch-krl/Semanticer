@@ -10,26 +10,18 @@ namespace Semanticer.TextAnalyzer
 		private readonly ITokenizer tokenizer;
 		private readonly string path;
 
-		public ITrainingEventReader Reader {
-			get {
-				return new ImdbFileEventReader (path,tokenizer);
-			}
-		}
+		public ITrainingEventReader Reader => new ImdbFileEventReader (path,tokenizer);
 
-		public ITextAnalizerDataProvider DatabaseProvider {
+	    public ITextAnalizerDataProvider DatabaseProvider {
 			get {
 				throw new NotImplementedException ();
 			}
 		}
 
-		public bool LoadWords {
-			get {
-				return false;
-			}
-		}
+		public bool LoadWords => false;
 
 
-		public ImdbFileTrainData (ITokenizer tokenizer, string path)
+	    public ImdbFileTrainData (ITokenizer tokenizer, string path)
 		{
 			this.path = path;
 			this.tokenizer = tokenizer;

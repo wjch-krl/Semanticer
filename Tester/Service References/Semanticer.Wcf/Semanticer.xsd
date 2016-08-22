@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Semanticer" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Semanticer" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Semanticer.Common.Enums" />
+  <xs:complexType name="SemanticResult">
+    <xs:sequence>
+      <xs:element name="_x003C_Propability_x003E_k__BackingField" type="xs:double" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Semanticer.Common.Enums" name="_x003C_Result_x003E_k__BackingField" type="q1:PostMarkType" />
+      <xs:element name="_x003C_Text_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SemanticResult" nillable="true" type="tns:SemanticResult" />
+</xs:schema>

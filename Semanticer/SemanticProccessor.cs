@@ -6,15 +6,15 @@ using System;
 
 namespace Semanticer
 {
-	public static class SemanticProccessor
+	public class SemanticProccessor
 	{
-		private static IPostSematicEvaluator evaluator;
-		public static void Init ()
+		private readonly IPostSematicEvaluator evaluator;
+		public SemanticProccessor()
 		{
 			evaluator = new TrainablePostSematicEvaluator (LearnigAlghoritm.NaiveBayes, "en-US");
 		}
 
-		public static SemanticResult Process (string toEvaluate)
+		public SemanticResult Process (string toEvaluate)
 		{
 			var evaluated = evaluator.Evaluate (toEvaluate, "en-US");
 			var mark = SelectBestMark (evaluated);

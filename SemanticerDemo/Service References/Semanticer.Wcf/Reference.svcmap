@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="82f6dcdc-6686-4d6c-8c68-e79cc87ed5fa" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/Semanticer.Wcf/SemanticProccessorService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="378bb09c-2b5e-40db-ac54-eac901e30c21" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Semanticer.Wcf/SemanticProccessorService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="4adc20ab-361c-491f-9362-7b926d2cf972" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Semanticer.Wcf/SemanticProccessorService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="068aaba1-8898-469f-b090-510e0182533f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Semanticer.Wcf/SemanticProccessorService/mex" />
+    <MetadataFile FileName="Semanticer.xsd" MetadataType="Schema" ID="da72f90c-99f9-4349-a444-a6ae7ae5363a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Semanticer.Wcf/SemanticProccessorService/mex" />
+    <MetadataFile FileName="Semanticer.Common.Enums.xsd" MetadataType="Schema" ID="7f210398-dad4-4a85-af08-9552dfc6b7eb" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Semanticer.Wcf/SemanticProccessorService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,36 @@
+[33mcommit e2bf6f8c34316de4d05f87f48abae7b7b50a7291[m
+Merge: 1223883 3135df4
+Author: wk <wk@LUMPY>
+Date:   Sat Aug 20 05:23:15 2016 +0200
+
+    Merger
+
+[33mcommit 12238833a6c50b4da3bccc23f522f62be3c6f724[m
+Author: wk <wk@LUMPY>
+Date:   Sat Aug 20 04:51:22 2016 +0200
+
+    Removed unused file
+
+[33mcommit ead05442e9dc71e112b9118af7163aa784d0b209[m
+Author: wk <wk@LUMPY>
+Date:   Sat Aug 20 04:50:51 2016 +0200
+
+    Imdb dataset working
+
+[33mcommit aa0447531141cd06674cb9d0ef86e43841e418f3[m
+Author: wk <wk@LUMPY>
+Date:   Sun Aug 14 13:35:51 2016 +0200
+
+    Add project files.
+
+[33mcommit 8bdaa7fc08f87b23fe25d283d8ef3a5e28f25bc9[m
+Author: wk <wk@LUMPY>
+Date:   Sun Aug 14 13:35:19 2016 +0200
+
+    Add .gitignore and .gitattributes.
+
+[33mcommit 3135df43a3ccd063b9e23ed5f657abf19b6ccaab[m
+Author: wjch-krl <wjch.krl@gmail.com>
+Date:   Sun Aug 14 13:34:50 2016 +0200
+
+    Initial commit
