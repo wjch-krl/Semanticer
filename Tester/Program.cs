@@ -1,19 +1,28 @@
 ﻿using System;
-using Tester.Semanticer.Wcf;
+using Semanticer;
+using Semanticer.WcfClient;
 
 namespace Tester
 {
-    class MainClass
+    static class Program
     {
         public static void Main(string[] args)
         {
-            var semanticProccessor = new SemanticProccessorServiceClient();
+            var semanticProccessor = ServiceResolver.GetSemanticProcessor();
+            var processorHelper = new SemanticerServiceHelper(semanticProccessor);
             Console.WriteLine("Enter text to calculate Semantics:");
             do
             {
                 var text = Console.ReadLine();
-                var result = semanticProccessor.Process(text);
-                Console.WriteLine(result);
+                try
+                {
+                    var result = processorHelper.Proccessor.Process(text);
+                    Console.WriteLine(result);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             } while (true);
         }
     }

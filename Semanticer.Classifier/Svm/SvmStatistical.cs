@@ -27,7 +27,7 @@ namespace Semanticer.Classifier.Svm
         private NoteProvider noteProvider;
         private const double Eps = 0.00000001;
 
-        public SvmStatisticalClassifier(ITokenizer tokenizer, string lang, int tradeId, ITextAnalizerDataProvider dbProvider,
+        public SvmStatisticalClassifier(ITokenizer tokenizer, string lang, int tradeId,
             IPivotWordProviderFactory pivotFactory, bool useRegresion = false, bool forceLoad = false)
             : base(tokenizer, string.Format("{0}_{1}", lang, tradeId), useRegresion)
         {
@@ -36,7 +36,7 @@ namespace Semanticer.Classifier.Svm
 
             this.lang = lang;
             this.tradeId = tradeId;
-            noteProvider = new NoteProvider(dbProvider, pivotFactory);
+            noteProvider = new NoteProvider(pivotFactory);
             CreateHelperData(forceLoad);
             MatchCutoff = 0.6;
         }
@@ -81,58 +81,6 @@ namespace Semanticer.Classifier.Svm
             };
         }
 
-        /// <summary>
-        /// Tworzy plik reprezentujący dane treningowe
-        /// </summary>
-        /// <param name="trainMessages"></param>
-        /// <param name="path"></param>
-        /// <param name="loadWords"></param>
-        /// <param name="databaseProvider"></param>
-        protected void CreateTrainFile(List<KeyValuePair<string, double>> trainMessages, string path,
-            bool loadWords, ITextAnalizerDataProvider databaseProvider)
-        {
-            SVMProblemHelper.Save(CreateTrainProblem(trainMessages, loadWords, databaseProvider), path);
-        }
-
-        public DiagnosticLogElement LoadFromR(IDictionary<int, UsedStats> stats)
-        {
-            DateTime starTime = DateTime.Now;
-            Classifier = SVM.LoadModel(ModelPath);
-            var problem = SVMProblemHelper.Load(TrainFilePath);
-            usedStats = stats;
-            Scale = ReadScaleData();
-            XmlSerializer serializer = new XmlSerializer(typeof (UsedStatDictItem[]));
-            var statArray = stats.Select(x => new UsedStatDictItem {Id = x.Key, MinMax = x.Value}).ToArray();
-            using (var stream = new FileStream(usedStatsPath, FileMode.Create))
-            {
-                serializer.Serialize(stream, statArray);
-            }
-            tuneMinMax = false;
-            var trainTime = DateTime.Now - starTime;
-//            int[,] confusionMatrix;
-//            ScaleProblem(problem);
-//            double[] testResults = problem.Predict(Classifier);
-//
-//            double testAccuracy = problem.EvaluateClassificationProblem(testResults, Classifier.Labels, out confusionMatrix);         
-//            foreach (int t in Classifier.Labels)
-//                Console.Write(@"{0,5}", string.Format("({0})", t));
-//            Console.WriteLine();
-//            for (int i = 0; i < confusionMatrix.GetLength(0); i++)
-//            {
-//                Console.Write(@"{0,5}", string.Format("({0})", Classifier.Labels[i]));
-//                for (int j = 0; j < confusionMatrix.GetLength(1); j++)
-//                    Console.Write(@"{0,5}", confusionMatrix[j, i]);
-//                Console.WriteLine();
-//            }
-            return new DiagnosticLogElement
-            {
-                Processed = problem.Length,
-                CompletitionTime = trainTime,
-                JobType = LoggerEventType.ClassifierTrainingStop,
-                Date = DateTime.UtcNow,
-            };
-        }
-
         private double[,] ReadScaleData()
         {
             double[,] data = null;
@@ -152,7 +100,7 @@ namespace Semanticer.Classifier.Svm
             return data;
         }
 
-        protected override SVMProblem CreateTrainProblem(List<KeyValuePair<string, double>> trainMessages, bool loadWords, ITextAnalizerDataProvider databaseProvider)
+        protected override SVMProblem CreateTrainProblem(List<KeyValuePair<string, double>> trainMessages)
         {
             var wordsMartrix = trainMessages.Select(x => x.Key)
                     .ToArray();
@@ -177,7 +125,7 @@ namespace Semanticer.Classifier.Svm
             var problem = new List<List<double>>(wordsMartrix.Length);
             foreach (var message in wordsMartrix)
             {
-                var dbNotes = noteProvider.PrepereNotesInMemory(message, lang, tradeId); //dbProvider.ExecuteFNote(message, lang); //
+                var dbNotes = noteProvider.PrepereNotesInMemory(message,lang); //dbProvider.ExecuteFNote(message, lang); //
                 var emtNotes = noteProvider.RateEmoticons(message);
                 var exclamitonsCount = message.Count(x => x == '!');
                 var questionsCount = message.Count(x => x == '?');

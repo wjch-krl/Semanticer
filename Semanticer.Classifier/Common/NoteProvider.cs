@@ -8,20 +8,17 @@ namespace Semanticer.Classifier.Common
 {
     public class NoteProvider
     {
-        private ITextAnalizerDataProvider provider;
         private IPivotWordProviderFactory pivotsFactory;
         private Dictionary<string, IDictionary<string, double>> langWordDictionary;
         private Dictionary<string, IDictionary<string, double>> langPhrasesDictionary;
         private Dictionary<string, double> emoticons;
         private const int DefaultTrade = 1;
 
-        public NoteProvider(ITextAnalizerDataProvider provider, IPivotWordProviderFactory pivotsFactory)
+        public NoteProvider(IPivotWordProviderFactory pivotsFactory)
         {
-            this.provider = provider;
             this.pivotsFactory = pivotsFactory;
             langPhrasesDictionary = new Dictionary<string, IDictionary<string, double>>();
             langWordDictionary = new Dictionary<string, IDictionary<string, double>>();
-            emoticons = PrepereDict(provider.Emoticons());
         }
 
         private IEnumerable<Tuple<string, double>> IncludePivots(string lang, IList<Tuple<string, double>> bdNotes)
@@ -54,17 +51,16 @@ namespace Semanticer.Classifier.Common
                    .Select(emt => new Tuple<string, double>(emt, emoticons[emt]));
         }
 
-        public IEnumerable<Tuple<string, double>> PrepereNotesInMemory(string msg, string lang,int tradeId)
+        public IEnumerable<Tuple<string, double>> PrepereNotesInMemory(string msg, string lang)
         {
-            string langTrade = string.Format("{0}_{1}", lang, tradeId);
-            if (!langPhrasesDictionary.ContainsKey(langTrade))
+            if (!langPhrasesDictionary.ContainsKey(lang))
             {
-                if (!PrepereLanguage(lang, tradeId))
+                if (!PrepereLanguage(lang))
                 {
                     return Enumerable.Empty<Tuple<string, double>>();
                 }
             }
-            var bdNotes = Notes(msg, langTrade);
+            var bdNotes = Notes(msg,lang);
             //return bdNotes;
             return IncludePivots(lang, bdNotes);
         }
@@ -87,22 +83,9 @@ namespace Semanticer.Classifier.Common
             return result;
         }
 
-        public bool PrepereLanguage(string langName, int tradeId, bool useDefault = false)
+        public bool PrepereLanguage(string langName)
         {
-            int lang = provider.LangId(langName);
-            int tmpTrade = useDefault ? DefaultTrade : tradeId;
-            var words = provider.AllWords(lang, tmpTrade);
-            var phrases = provider.Phrases(lang, tmpTrade);
-            var phrasesDict = PrepereDict(phrases);
-            var wordDict = PrepereDict(words);
-            if (wordDict.Count == 0 || phrasesDict.Count == 0)
-            {
-                return (!useDefault) && PrepereLanguage(langName, tradeId, true);
-            }
-            string langTradeId = string.Format("{0}_{1}", langName, tradeId);
-            langPhrasesDictionary.Add(langTradeId, phrasesDict);
-            langWordDictionary.Add(langTradeId, wordDict);
-            return true;
+            return false;
         }
 
         private static Dictionary<string, double> PrepereDict(IEnumerable<LexiconWord> phrases)
@@ -122,17 +105,16 @@ namespace Semanticer.Classifier.Common
             return phrasesDict;
         }
 
-        public IEnumerable<Tuple<string, double>> PrepereNotesInMemory(NormalizedMessage normalizeMessage, string lang, int tradeId)
+        public IEnumerable<Tuple<string, double>> PrepereNotesInMemory(NormalizedMessage normalizeMessage, string lang)
         {
-            string langTrade = string.Format("{0}_{1}", lang, tradeId);
-            if (!langPhrasesDictionary.ContainsKey(langTrade))
+            if (!langPhrasesDictionary.ContainsKey(lang))
             {
-                if (!PrepereLanguage(lang, tradeId))
+                if (!PrepereLanguage(lang))
                 {
                     return Enumerable.Empty<Tuple<string, double>>();
                 }
             }
-            var bdNotes = Notes(normalizeMessage, langTrade);
+            var bdNotes = Notes(normalizeMessage, lang);
             //return bdNotes;
             return IncludePivots(lang, bdNotes);
         }

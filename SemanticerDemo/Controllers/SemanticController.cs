@@ -1,12 +1,20 @@
 ﻿using System.Web.Mvc;
 using Semanticer;
-using SemanticerDemo.Semanticer.Wcf;
+using Semanticer.WcfClient;
 
 namespace SemanticerDemo.Controllers
 {
     public class SemanticController : Controller
     {
-        private SemanticProccessorServiceClient serviceClient = new SemanticProccessorServiceClient();
+        private ISemanticProccessor serviceClient;
+
+        public SemanticController()
+        {
+            var processor = ServiceResolver.GetSemanticProcessor();
+            var processorHelper = new SemanticerServiceHelper(processor);
+            serviceClient = processorHelper.Proccessor;
+        }
+
         // GET: Semantic
         public ActionResult Index()
         {

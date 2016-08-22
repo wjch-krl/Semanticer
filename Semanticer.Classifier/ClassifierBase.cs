@@ -33,7 +33,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Semanticer.Classifier.Doc2Vec;
 using Semanticer.Common.DataModel;
 using Semanticer.Common.Enums;
 
@@ -86,34 +85,6 @@ namespace Semanticer.Classifier
                 return 0.0;
             }
             return negativeProp > positiveProp ? -1.0 : 1.0;
-//            var polarity = positiveProp - negativeProp;
-//            if (!(Math.Abs(polarity) > PolarityMargin))
-//            {
-//                return 0.0;
-//            }
-//            if (Math.Abs(neutralProp - positiveProp) < MatchCutoff &&
-//                Math.Abs(neutralProp - negativeProp) < MatchCutoff)
-//            {
-//                return 0.0;
-//            }
-//            return polarity*10;
-        }
-
-        public PostMarkType[] Evaluate(NormalizedMessage[] toEvaluate)
-        {
-            var eval = Evaluate(toEvaluate.SelectMany(x => x.Sentences).Select(x=>x.ToString()).ToArray());
-            var evaluatedArray = new PostMarkType[toEvaluate.Length];
-            int index = 0;
-            int sentenceNumber = 0;
-            foreach (var normalizedMessage in toEvaluate)
-            {
-                int count = normalizedMessage.Sentences.Length;
-                var sentences = eval.Skip(index).Take(count);
-                var mark = sentences.WeightedAvg1();
-                evaluatedArray[sentenceNumber++] = mark;
-                index += count;
-            }
-            return evaluatedArray;
         }
     }
 }

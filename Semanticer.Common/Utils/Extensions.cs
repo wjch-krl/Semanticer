@@ -7,30 +7,13 @@ namespace Semanticer.Common.Utils
 {
     public static class Extensions
     {
-        public static void CombineWith(this IDictionary<Author, IList<Post>> first,
-            IDictionary<Author, IList<Post>> second)
-        {
-            IList<Post> posts;
-            foreach (var element in second)
-            {
-                if (first.TryGetValue(element.Key, out posts))
-                {
-                    posts = posts.Concat(element.Value).ToList();
-                }
-                else
-                {
-                    first.Add(element.Key, element.Value);
-                }
-            }
-        }
-
         public static bool CompareCollections<T>(ICollection<T> first, ICollection<T> second)
         {
-            if (Extensions.IsNullOrEmpty(first) && Extensions.IsNullOrEmpty(second))
+            if (IsNullOrEmpty(first) && IsNullOrEmpty(second))
             {
                 return true;
             }
-            if (Extensions.IsNullOrEmpty(first) || Extensions.IsNullOrEmpty(second))
+            if (IsNullOrEmpty(first) || IsNullOrEmpty(second))
             {
                 return false;
             }
@@ -39,23 +22,6 @@ namespace Semanticer.Common.Utils
                 return true;
             }
             return false;
-        }
-
-        public static void CombineWith(this IDictionary<Author, List<Post>> first,
-            IDictionary<Author, List<Post>> second)
-        {
-            List<Post> posts;
-            foreach (var element in second)
-            {
-                if (first.TryGetValue(element.Key, out posts))
-                {
-                    posts = posts.Concat(element.Value).ToList();
-                }
-                else
-                {
-                    first.Add(element.Key, element.Value);
-                }
-            }
         }
 
         public static bool ScrambledEquals<T>(this IEnumerable<T> list1, IEnumerable<T> list2, IEqualityComparer<T> comparer)
@@ -97,22 +63,6 @@ namespace Semanticer.Common.Utils
             return cnt.Values.All(c => c == 0);
         }
 
-//        private static bool ContainsAllItems<T>(this IEnumerable<T> list1, IEnumerable<T> list2, Dictionary<T, int> cnt)
-//        {
-//            var cnt = new Dictionary<T, int>();
-//            foreach (T s in list1)
-//            {
-//                if (cnt.ContainsKey(s))
-//                {
-//                    cnt[s]++;
-//                }
-//                else
-//                {
-//                    cnt.Add(s, 1);
-//                }
-//            }
-//        }
-
         /// <summary>
         /// Determines whether the collection is null or contains no elements.
         /// </summary>
@@ -135,30 +85,6 @@ namespace Semanticer.Common.Utils
                 return collection.Count < 1;
             }
             return !enumerable.Any();
-        }
-
-        public static int PostsCount(this IDictionary<Author, List<Post>> first)
-        {
-            return first.Sum(element => element.Value.Count);
-        }
-
-        public static int PostsCount(this IDictionary<Author, IList<Post>> first)
-        {
-            return first.Sum(element => element.Value.Count);
-        }
-
-        public static List<Post> ToPostList(this IDictionary<Author, IList<Post>> first)
-        {
-            IEnumerable<Post> posts = new List<Post>();
-            posts = first.Aggregate(posts, (current, element) => current.Concat(element.Value));
-            return posts.ToList();
-        }
-
-        public static List<Post> ToPostList(this IDictionary<Author, List<Post>> first)
-        {
-            IEnumerable<Post> posts = new List<Post>();
-            posts = first.Aggregate(posts, (current, element) => current.Concat(element.Value));
-            return posts.ToList();
         }
 
         private static readonly string[] SizeSuffixes = {"bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"};

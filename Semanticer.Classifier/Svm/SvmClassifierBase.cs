@@ -11,9 +11,8 @@ namespace Semanticer.Classifier.Svm
 {
     public abstract class SvmClassifierBase : ClassifierBase, ITrainable
     {
-        protected readonly ITokenizer Tokenizer;
         protected readonly string TradeLang;
-        protected readonly bool UseRegresion;
+        private readonly bool useRegresion;
         protected SVMModel Classifier;
         protected Dictionary<string, int> WordDict;
         protected string ModelPath;
@@ -28,9 +27,11 @@ namespace Semanticer.Classifier.Svm
             DictPath = string.Format("Svm_{0}.dict", langCode);
             Tokenizer = tokenizer;
             TradeLang = langCode;
-            UseRegresion = useRegresion;
+            this.useRegresion = useRegresion;
             MatchCutoff = 0.6;
         }
+
+        protected ITokenizer Tokenizer;
 
 
         public Dictionary<PostMarkType, double>[] Classify(ICollection<string> input)
@@ -55,7 +56,7 @@ namespace Semanticer.Classifier.Svm
 
         private Dictionary<PostMarkType, double> PredicionDictionary(double prediction)
         {
-            if (UseRegresion)
+            if (useRegresion)
             {
                 return new Dictionary<PostMarkType, double>
                 {
@@ -107,7 +108,7 @@ namespace Semanticer.Classifier.Svm
             //double[] prob;
            // var prediction = Classifier.PredictProbability(x, out prob);
            // var d = prob[Classifier.Labels[2]];
-            if (!UseRegresion)
+            if (!useRegresion)
             {
                 return (PostMarkType) prediction;
             }
@@ -141,7 +142,7 @@ namespace Semanticer.Classifier.Svm
                 var key = string.Join(" ", input.GetContext());
                 msgs.Add(new KeyValuePair<string, double>(key, (int) Enum.Parse(typeof (PostMarkType), input.Outcome)));
             }
-            var problem = CreateTrainProblem(msgs, data.LoadWords, data.DatabaseProvider);
+            var problem = CreateTrainProblem(msgs);
             ScaleNewProblem(problem);
             
             Classifier = problem.Train(parameter);
@@ -150,7 +151,7 @@ namespace Semanticer.Classifier.Svm
             return DateTime.Now - starTime;
         }
 
-        protected abstract SVMProblem CreateTrainProblem(List<KeyValuePair<string, double>> trainMessages, bool loadWords, ITextAnalizerDataProvider databaseProvider);
+        protected abstract SVMProblem CreateTrainProblem(List<KeyValuePair<string, double>> trainMessages);
 
         protected abstract void SerializeHelper();
         protected abstract List<List<double>> Transform(string[] wordsMartrix);

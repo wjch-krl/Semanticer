@@ -26,7 +26,7 @@ namespace Semanticer.Wcf
         public void ServiceStart(string[] args)
         {
             selfHostedService?.Close();
-            selfHostedService = new ServiceHost(typeof(SemanticProccessorService));
+            selfHostedService = new ServiceHost(typeof(SemanticProccessor));
             selfHostedService.Open();
         }
     }

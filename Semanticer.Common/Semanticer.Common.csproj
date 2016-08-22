@@ -98,74 +98,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthorCredential.cs" />
-    <Compile Include="AuthorEqualityComparer.cs" />
-    <Compile Include="BlockedAuthorEqualityComparer.cs" />
     <Compile Include="Counter.cs" />
-    <Compile Include="DataModel\BulletinBoardTopic.cs" />
-    <Compile Include="DataModel\AnalysisProfile.cs" />
     <Compile Include="DataModel\NormalizedMessage.cs" />
     <Compile Include="DataModel\NormalizedSentence.cs" />
-    <Compile Include="DataModel\SetializableTagDictionary.cs" />
-    <Compile Include="DataModel\TagDicionaryProperties.cs" />
-    <Compile Include="DataModel\TrackedPhrase.cs" />
-    <Compile Include="Enums\ForumScriptType.cs" />
-    <Compile Include="Enums\HtmlElementIdentifier.cs" />
-    <Compile Include="DataModel\TagDictionary.cs" />
-    <Compile Include="DataModel\WebsiteFragmentDescriptor.cs" />
     <Compile Include="Enums\PostMarkTypeExtensions.cs" />
-    <Compile Include="IGenderizer.cs" />
-    <Compile Include="Utils\Agregator.cs" />
     <Compile Include="Utils\Descriptive.cs" />
     <Compile Include="Utils\DictionaryItem.cs" />
     <Compile Include="Utils\DictionarySerializer.cs" />
     <Compile Include="Enums\LearnigAlghoritm.cs" />
-    <Compile Include="Utils\PostAggreagate.cs" />
-    <Compile Include="Utils\PostsAggregationsExtensions.cs" />
     <Compile Include="Utils\DescriptiveResult.cs" />
-    <Compile Include="DataModel\AuthorizedProfileData.cs" />
-    <Compile Include="DataModel\BlockedAuthor.cs" />
-    <Compile Include="ClientApiCredential.cs" />
-    <Compile Include="DataModel\BulletinBoardLink.cs" />
-    <Compile Include="DataModel\BulletinBoardNextPage.cs" />
-    <Compile Include="DataModel\BulletinBoardStructure.cs" />
-    <Compile Include="DataModel\BulletinBoardTopicWithPosts.cs" />
     <Compile Include="DataModel\LexiconWord.cs" />
-    <Compile Include="DataModel\Link.cs" />
-    <Compile Include="DataModel\LoginData.cs" />
-    <Compile Include="DataModel\ProfileUpdateFrequency.cs" />
     <Compile Include="Enums\PartOfSpeech.cs" />
     <Compile Include="Enums\SpellCheckingStatus.cs" />
-    <Compile Include="Enums\ForumStuctureElement.cs" />
     <Compile Include="Enums\PostMarkType.cs" />
     <Compile Include="Enums\LoggerEventType.cs" />
     <Compile Include="Utils\Extensions.cs" />
-    <Compile Include="IClientJob.cs" />
-    <Compile Include="LinkEqualityComparer.cs" />
-    <Compile Include="Logger\LoggableEventConverter.cs" />
-    <Compile Include="DataModel\DiagnosticLogElement.cs" />
-    <Compile Include="Logger\JobCompleteLayoutPattern.cs" />
-    <Compile Include="Utils\DateTimeRoutines.cs" />
-    <Compile Include="Utils\EmailPasswordHasher.cs" />
-    <Compile Include="Enums\EmailType.cs" />
-    <Compile Include="DataModel\Author.cs" />
-    <Compile Include="DataModel\CrawlerProfileData.cs" />
-    <Compile Include="DataModel\EmailProfileData.cs" />
-    <Compile Include="DataModel\Post.cs" />
-    <Compile Include="DataModel\Profile.cs" />
-    <Compile Include="DataModel\ProfileData.cs" />
-    <Compile Include="DataModel\Source.cs" />
-    <Compile Include="DataModel\TwitterProfileData.cs" />
-    <Compile Include="Logger\LoggProvider.cs" />
     <Compile Include="Patterns.cs" />
-    <Compile Include="PostEqualityComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Enums\SourceType.cs" />
     <Compile Include="Utils\StatisticalExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -177,12 +131,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="log4net.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

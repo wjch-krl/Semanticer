@@ -17,9 +17,5 @@ namespace Semanticer.Classifier.Svm
         public SVMParameter SvmParameter { get; private set; }
 
         public ITrainingEventReader Reader => data.Reader;
-
-        public ITextAnalizerDataProvider DatabaseProvider => data.DatabaseProvider;
-
-        public bool LoadWords => data.LoadWords;
     }
 }

@@ -37,48 +37,19 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\Semanticer.Wcf\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Service References\Semanticer.Wcf\Semanticer.Common.Enums.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Semanticer.Wcf\Semanticer.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Semanticer.Wcf\service.wsdl" />
-    <None Include="Service References\Semanticer.Wcf\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Semanticer.Wcf\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Semanticer.Wcf\Tester.Semanticer.Wcf.SemanticResult.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\Semanticer.Wcf\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Semanticer.Wcf\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Semanticer.Wcf\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Semanticer.Wcf\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <ProjectReference Include="..\Semanticer.WcfClient\Semanticer.WcfClient.csproj">
+      <Project>{2ECDADEB-626A-40F4-A90B-E7DCB4F59774}</Project>
+      <Name>Semanticer.WcfClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Semanticer\Semanticer.csproj">
+      <Project>{576D7043-AC99-4ACA-83C5-ACBCB34C5F1A}</Project>
+      <Name>Semanticer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

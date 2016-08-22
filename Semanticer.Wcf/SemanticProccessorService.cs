@@ -9,14 +9,13 @@ using System.Threading.Tasks;
 namespace Semanticer.Wcf
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "SemanticProccessorService" in both code and config file together.
-    public class SemanticProccessorService : ISemanticProccessorService
+    public class SemanticProccessorService : ISemanticProccessor
     {
         private static readonly Lazy<SemanticProccessor> ProcessorLazy;
 
         static SemanticProccessorService()
         {
-            ProcessorLazy = new Lazy<SemanticProccessor>(()=>new SemanticProccessor());
-            Task.Factory.StartNew(() => Proccessor.Process("init"));
+            ProcessorLazy = new Lazy<SemanticProccessor>(() => new SemanticProccessor());
         }
 
         internal static SemanticProccessor Proccessor => ProcessorLazy.Value;
@@ -24,5 +23,7 @@ namespace Semanticer.Wcf
         {
             return Proccessor.Process(toEvaluate);
         }
+
+        public bool IsTrained() => Proccessor.IsTrained();
     }
 }

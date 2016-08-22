@@ -34,44 +34,26 @@ using Semanticer.Common.Enums;
 
 namespace Semanticer.Classifier
 {
-	/// <summary>
-	/// Defines an interface for the classification of strings.
-	/// </summary>
-	public interface IClassifier
-	{
-		/// <summary>
-		/// Sets the cutoff below which the input is not considered a match.
-		/// </summary>
-		double MatchCutoff { get; set; }
+    /// <summary>
+    /// Defines an interface for the classification of strings.
+    /// </summary>
+    public interface IClassifier
+    {
+        /// <summary>
+        /// Sets the cutoff below which the input is not considered a match.
+        /// </summary>
+        double MatchCutoff { get; set; }
 
         /// <summary>
         /// Margin between positive and negative propabilities
         /// </summary>
         double PolarityMargin { get; set; }
 
-		/// <summary>
-		/// Determines the probability of a string matching the criteria.
-		/// </summary>
-		/// <param name="input">The string to classify.</param>
-		/// <returns>The dictionary of likelyhoods that this string is a match to category.  1 means 100% likely.</returns>
-		IDictionary<PostMarkType,double> Classify(string input);
-        
         /// <summary>
-        /// Classyfies an input string to mark type
+        /// Determines the probability of a string matching the criteria.
         /// </summary>
-        ///  <param name="input">The string to classify.</param>
-        /// <returns></returns>
-        PostMarkType Evaluate(string input);
-
-        PostMarkType[] Evaluate(string[] input);
-
-        /// <summary>
-        /// Transforms propabilities into post mark
-        /// </summary>
-        /// <param name="prediction"> Propabilites of value matchiung given type </param>
-        /// <returns>Post mark</returns>
-	    double TransformPredicion(IDictionary<PostMarkType, double> prediction);
-
-        PostMarkType[] Evaluate(NormalizedMessage[] toEvaluate);
-	}
+        /// <param name="input">The string to classify.</param>
+        /// <returns>The dictionary of likelyhoods that this string is a match to category.  1 means 100% likely.</returns>
+        IDictionary<PostMarkType, double> Classify(string input);
+    }
 }

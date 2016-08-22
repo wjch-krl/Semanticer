@@ -59,9 +59,7 @@ namespace Semanticer.Classifier.MaxEnt
         {
             var date = DateTime.Now;
             var trainer = new PivotGisTrainer(pivotWordProvider);
-            trainer.TrainModel(trainingData.LoadWords
-                ? new WordsTraingReader(trainingData.DatabaseProvider, trainingData.Reader, lang, tradeId)
-                : trainingData.Reader);
+            trainer.TrainModel(trainingData.Reader);
             model = new GisModel(trainer);
             positiveIndex = model.GetOutcomeIndex(PostMarkType.Positive.ToString());
             negativeIndex = model.GetOutcomeIndex(PostMarkType.Negative.ToString());

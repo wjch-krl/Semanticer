@@ -78,75 +78,12 @@ namespace Semanticer.TextAnalyzer.SpellChekers
             throw new FileNotFoundException("Cannot find file that matches pattern: " + pattern);
         }
 
-//        /// <summary>
-//        /// Dokonuje podziału wypowiedzi na słowa, sprawdza i poprawia pisownie
-//        /// </summary>
-//        /// <param name="post">Post dla którego tekst wiadomości ma zostać przetworzona</param>
-//        /// <param name="checSpelling">Czy sprawdzać pisownię</param>
-//        /// <param name="correctSpelling">Czy poprawiać znalezione błędy</param>
-//        /// <returns></returns>
-//        public List<string> GetWords(Post post, bool correctSpelling = false, bool checSpelling = false)
-//        {
-//            var words = new List<string>();
-//            var message = linkRegex.Replace(post.Message, string.Empty);
-//            var lang = post.Lang;
-//
-//            string[] split = wordsRegex.Split(message);
-//            if (!spellChekers.ContainsKey(lang))
-//            {
-//                return new List<string>(split);
-//            }
-//            bool foundError = false;
-//            foreach (var word in split)
-//            {
-//                var tmp = word;
-//                if (string.IsNullOrEmpty(tmp))
-//                {
-//                    continue;
-//                }
-//                var spell = spellChekers[lang];
-//                lock (spell)
-//                {
-//                    if (checSpelling && !spell.Spell(tmp))
-//                    {
-//                        foundError = true;
-//                        tmp = replicatedCharsRegex.Replace(tmp, "$1");
-//                        if (!spell.Spell(tmp))
-//                        {
-//                            if (correctSpelling)
-//                            {
-//                                tmp = spell.Suggest(tmp).FirstOrDefault();
-//                            }
-//                        }
-//                    }
-//                }
-//                words.Add(string.IsNullOrEmpty(tmp) ? word : tmp);
-//            }
-//            if (!foundError && checSpelling)
-//            {
-//                post.SpellCheckingStatus = SpellCheckingStatus.Correct;
-//            }
-//            else if (correctSpelling)
-//            {
-//                post.SpellCheckingStatus = SpellCheckingStatus.Corrected;
-//            }
-//            else if (checSpelling)
-//            {
-//                post.SpellCheckingStatus = SpellCheckingStatus.NotCorrect;
-//            }
-//            else
-//            {
-//                post.SpellCheckingStatus = SpellCheckingStatus.NotChecked;
-//            }
-//            return words;
-//        }
-
         public override bool SpellWord(string word, string lang)
         {
             return spellChekers[lang].Spell(word);
         }
 
-        protected override bool FoundError(bool correctSpelling, bool checSpelling, IEnumerable<string> split, string lang, List<string> words)
+        public override bool FoundError(bool correctSpelling, bool checSpelling, IEnumerable<string> split, string lang, List<string> words)
         {
             bool foundError = false;
             foreach (var word in split)

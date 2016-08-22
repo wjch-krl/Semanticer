@@ -69,7 +69,7 @@ namespace Semanticer.TextAnalyzer.SpellChekers
             return langDicts[lang].Spell(word);
         }
 
-        protected override bool FoundError(bool correctSpelling, bool checSpelling, IEnumerable<string> split, string lang, List<string> words)
+        public override bool FoundError(bool correctSpelling, bool checSpelling, IEnumerable<string> split, string lang, List<string> words)
         {
             bool foundError = false;
             foreach (var word in split)

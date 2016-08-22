@@ -139,10 +139,6 @@ namespace Semanticer.Classifier.Bayesian
         {
             var sw = Stopwatch.StartNew();
             wordsOccurances = new Dictionary<string, WordOccurance>();
-            if (trainingData.LoadWords)
-            {
-                LoadWords(trainingData);
-            }
             LoadSentences(trainingData.Reader);
             sw.Stop();
             Serialize();
@@ -194,16 +190,6 @@ namespace Semanticer.Classifier.Bayesian
             }
             return multiper;
         }
-
-        private void LoadWords(ITrainingData trainingData)
-        {
-			var words = trainingData.DatabaseProvider.AllWords(trainingData.DatabaseProvider.LangId (lang),tradeId).Where(x=> Math.Abs(x.WordMark) > 1.5 );
-            foreach (var lexiconWord in words)
-            {
-                TeachWord(lexiconWord.Word,1,lexiconWord.MarkType);
-            }
-        }
-
 
         public class WordOccurance
         {

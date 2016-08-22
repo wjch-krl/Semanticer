@@ -210,20 +210,10 @@
   <ItemGroup>
     <Compile Include="Bayesian\InMemoryBayes.cs" />
     <Compile Include="Common\ClassifiationMatrix.cs" />
-    <Compile Include="Common\DatabaseTrainingData.cs" />
     <Compile Include="Common\FileTrainingData.cs" />
     <Compile Include="ClassifierBase.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Doc2Vec\ClassifiableSentence.cs" />
-    <Compile Include="Doc2Vec\ClassificatorData.cs" />
-    <Compile Include="Doc2Vec\ClassifiedSentence.cs" />
-    <Compile Include="Doc2Vec\Doc2VecPostTransformer.cs" />
-    <Compile Include="Doc2Vec\IPostClassyfier.cs" />
-    <Compile Include="Doc2Vec\IPostTransformer.cs" />
-    <Compile Include="Doc2Vec\KnnPostsclassifer.cs" />
-    <Compile Include="Doc2Vec\SvmPostClassyfier.cs" />
-    <Compile Include="Doc2Vec\MarkTypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -295,12 +285,9 @@
     <Compile Include="ITrainableClassifier.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Common\DatabaseTrainReader.cs" />
     <Compile Include="Common\FileTrainReader.cs" />
     <Compile Include="MaxEnt\MaxEntClassifier.cs" />
     <Compile Include="MaxEnt\PivotGisTrainer.cs" />
-    <Compile Include="Common\WordsTraingReader.cs" />
-    <Compile Include="Neural\NeuralStatisticalClassifier.cs" />
     <Compile Include="PorterStemmer.cs">
       <SubType>Code</SubType>
     </Compile>

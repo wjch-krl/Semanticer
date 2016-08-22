@@ -39,13 +39,8 @@ namespace Semanticer.Classifier.Svm
             Classifier = SVM.LoadModel(ModelPath);
         }
 
-        protected void CreateTrainFile(List<KeyValuePair<string, double>> trainMessages, string path,
-            bool loadWords, ITextAnalizerDataProvider databaseProvider)
+        private void CreateTrainFile(List<KeyValuePair<string, double>> trainMessages, string path)
         {
-            if (loadWords)
-            {
-                LoadWords(trainMessages, databaseProvider);
-            }
             var wordsMartrix = trainMessages.Select(x => x.Key)
                 .ToArray();
             WriteTrainFile(trainMessages, wordsMartrix, path);
@@ -74,25 +69,8 @@ namespace Semanticer.Classifier.Svm
             }
         }
 
-        private static void LoadWords(List<KeyValuePair<string, double>> trainMessages,
-            ITextAnalizerDataProvider databaseProvider)
+        protected override SVMProblem CreateTrainProblem(List<KeyValuePair<string, double>> trainMessages)
         {
-            var positiveWords = databaseProvider.PositiveWords();
-            var negativeWords = databaseProvider.NegativeWords();
-            var emoticons = databaseProvider.Emoticons();
-
-            trainMessages.AddRange(
-                positiveWords.Concat(negativeWords).Select(x => new KeyValuePair<string, double>(x.Word, x.WordMark)));
-            trainMessages.AddRange(emoticons.Select(x => new KeyValuePair<string, double>(x.Word, x.WordMark)));
-        }
-
-        protected override SVMProblem CreateTrainProblem(List<KeyValuePair<string, double>> trainMessages,
-            bool loadWords, ITextAnalizerDataProvider databaseProvider)
-        {
-            if (loadWords)
-            {
-                LoadWords(trainMessages, databaseProvider);
-            }
             var wordsMartrix = trainMessages.Select(x => x.Key)
                 .ToArray();
             int index = 1;
@@ -107,7 +85,7 @@ namespace Semanticer.Classifier.Svm
                 var nodes = transformed[i].Select(x => new SVMNode(x.Key, x.Value));
                 problem.Add(nodes.ToArray(), element.Value);
             }
-            CreateTrainFile(trainMessages, TrainFilePath, false, databaseProvider);
+            CreateTrainFile(trainMessages, TrainFilePath);
             return problem;
         }
 

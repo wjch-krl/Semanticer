@@ -144,10 +144,8 @@
     <Compile Include="ITokenizerFactory.cs" />
     <Compile Include="SimplePivotWordProviderFactory.cs" />
     <Compile Include="SpellChekers\AbstractDictionary.cs" />
-    <Compile Include="SpellChekers\DatabaseNormalizer.cs" />
     <Compile Include="SpellChekers\INormalizer.cs" />
     <Compile Include="SpellChekers\LemmaNormalizer.cs" />
-    <Compile Include="TrainSetGenerator.cs" />
     <Compile Include="UnigramTokenizerFactory.cs" />
     <Compile Include="Utilities\BigramPostTokenizer.cs" />
     <Compile Include="Utilities\DoubleMetaphone.cs" />
@@ -157,12 +155,10 @@
     <Compile Include="SpellChekers\DictionaryNode.cs" />
     <Compile Include="SpellChekers\DictionaryTree.cs" />
     <Compile Include="IPostSematicEvaluator.cs" />
-    <Compile Include="SpellChekers\LettersFixer.cs" />
     <Compile Include="SpellChekers\NetSpellChecker.cs" />
     <Compile Include="Utilities\PatternBuilder.cs" />
     <Compile Include="Utilities\PgsqlConncetionManager.cs" />
     <Compile Include="Utilities\PgsqlWordsDataSource.cs" />
-    <Compile Include="PostIndexer.cs" />
     <Compile Include="Utilities\Soundex.cs" />
     <Compile Include="Utilities\WordsHelper.cs" />
     <Compile Include="TrainablePostSematicEvaluator.cs" />

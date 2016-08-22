@@ -31,50 +31,6 @@ namespace Semanticer.TextAnalyzer.SpellChekers
             spell.IgnoreHtml = true;
         }
          
-        public List<string> GetWords(Post post, bool correctSpelling = false, bool checSpelling = false)
-        {
-            var words = new List<string>();
-            //List<string> suggestions;
-            // string temp;
-            var message = linkRegex.Replace(post.Message, string.Empty);
-            string[] split = wordsRegex.Split(message);
-            bool foundError = false;
-
-            if (checSpelling)
-            {
-                foundError = spell.SpellCheck(post.Message);
-            }
-            foreach (var word in split.Where(x => !string.IsNullOrWhiteSpace(x)))
-            {
-                var tmp = word;
-                if (foundError && correctSpelling && spell.SpellCheck(tmp))
-                {
-                    spell.Suggest();
-                    tmp = spell.Suggestions.Count > 0 ? spell.Suggestions[0].ToString() : tmp;
-                }
-                if (string.IsNullOrEmpty(tmp)) continue;
-                words.Add(tmp);
-            }
-            if (!foundError)
-            {
-                post.SpellCheckingStatus = SpellCheckingStatus.Correct;
-            }
-            else if (correctSpelling)
-            {
-                post.SpellCheckingStatus = SpellCheckingStatus.Corrected;
-            }
-            else
-            {
-                post.SpellCheckingStatus = SpellCheckingStatus.NotCorrect;
-            }
-            return words;
-        }
-
-        public NormalizedMessage GetWords(Post post, HashSet<string> emoticonSet, bool correctSpelling = false, bool checSpelling = false)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool SpellWord(string word, string lang)
         {
             return spell.SpellCheck(word);
