@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Semanticer.Classifier;
 using Semanticer.Classifier.Common;
 using Semanticer.Classifier.Numeric.kNN;
 using Semanticer.Classifier.Numeric.Svm;
@@ -67,7 +68,7 @@ namespace Semanticer.TextAnalyzer
                     classifer = new MaxEntClassifier(tokenizer, pivotFactory.Resolve(lang), lang, forceLoad);
                     break;
                 case LearnigAlghoritm.Svm:
-                    classifer = new SvmClassifier(tokenizer, lang);
+                    classifer = new Svm (new BagOfWordsTransformer (tokenizer, pivot));
                     break;
                 case LearnigAlghoritm.Knn:
                     classifer = new KnnClassifer(new BagOfWordsTransformer(tokenizer, pivot));

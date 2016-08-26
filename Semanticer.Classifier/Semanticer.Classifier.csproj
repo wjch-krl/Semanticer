@@ -213,10 +213,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Extension.cs" />
-    <Compile Include="Numeric\kNN\ClassifiableSentence.cs" />
-    <Compile Include="Numeric\kNN\ClassifiedSentence.cs" />
     <Compile Include="Numeric\kNN\KnnClassifer.cs" />
-    <Compile Include="Numeric\kNN\NumericClassiferBase.cs" />
     <Compile Include="Textual\Bayesian\InMemoryBayes.cs" />
     <Compile Include="Common\ClassifiationMatrix.cs" />
     <Compile Include="Common\ClassifierBase.cs">
@@ -307,6 +304,10 @@
     <EmbeddedResource Include="doc2Vec.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Compile Include="Numeric\Svm\Svm.cs" />
+    <Compile Include="Numeric\ClassifiableSentence.cs" />
+    <Compile Include="Numeric\ClassifiedSentence.cs" />
+    <Compile Include="Numeric\NumericClassiferBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

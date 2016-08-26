@@ -19,7 +19,7 @@ namespace Semanticer
 
         private void CreateEvaluator()
         {
-            evaluator = new TrainablePostSematicEvaluator(LearnigAlghoritm.Knn, "en-US");
+			evaluator = new TrainablePostSematicEvaluator(LearnigAlghoritm.Svm, "en-US");
             isTrained = true;
         }
 
