@@ -1,5 +1,4 @@
 ﻿using System;
-using Semanticer;
 using Semanticer.WcfClient;
 
 namespace Tester
@@ -8,15 +7,14 @@ namespace Tester
     {
         public static void Main(string[] args)
         {
-            var semanticProccessor = ServiceResolver.GetSemanticProcessor();
-            var processorHelper = new SemanticerServiceHelper(semanticProccessor);
+            var semanticProccessor = ServiceResolver.GetTrainedSemanticProccessor();
             Console.WriteLine("Enter text to calculate Semantics:");
             do
             {
                 var text = Console.ReadLine();
                 try
                 {
-                    var result = processorHelper.Proccessor.Process(text);
+                    var result = semanticProccessor.Process(text);
                     Console.WriteLine(result);
                 }
                 catch (Exception e)

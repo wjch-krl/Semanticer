@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.IO;
-using Semanticer.Classifier;
+using Semanticer.Classifier.Common;
 using SharpEntropy;
 using Semanticer.Common.Enums;
 
@@ -10,12 +8,11 @@ namespace Semanticer.TextAnalyzer
 {
 	class ImdbFileEventReader : ITrainingEventReader
 	{
-		string path;
-		ITokenizer tokenizer;
+	    readonly ITokenizer tokenizer;
 		bool hasNext;
-		string [] posFiles;
-		string [] negFiles;
-		string [] neutFiles;
+	    readonly string [] posFiles;
+	    readonly string [] negFiles;
+	    readonly string [] neutFiles;
 		int idx;
 
 		public ImdbFileEventReader (string path, ITokenizer tokenizer)

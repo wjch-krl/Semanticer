@@ -1,16 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ServiceModel;
+using Semanticer.Common;
 
 namespace Semanticer.WcfClient
 {
     public static class ServiceResolver
     {
-        public static ISemanticProccessor GetSemanticProcessor()
+        private static ISemanticProccessor GetSemanticProcessor()
         {
-            throw new NotImplementedException();
+            return GetService<ISemanticProccessor>();
+        }
+
+        public static ISemanticProccessor GetTrainedSemanticProccessor()
+        {
+            var processor = GetSemanticProcessor();
+            var helper = new SemanticerServiceHelper(processor);
+            return helper.Proccessor;
+        }
+
+        private static T GetService<T>()
+        {
+            var type = typeof(T);
+            Uri baseAddress = new Uri($"{Constans.ServiceBaseUrl}/{type.Name}/");
+            ChannelFactory<T> pipeFactory = new ChannelFactory<T>(new NetNamedPipeBinding() { MaxReceivedMessageSize = int.MaxValue }, new EndpointAddress(baseAddress));
+            return pipeFactory.CreateChannel();
         }
     }
 }

@@ -1,10 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 using Semanticer.Common;
-using Semanticer.Common.DataModel;
 using Semanticer.Common.Enums;
-using Semanticer.Common.Utils;
 
 namespace Semanticer.TextAnalyzer.SpellChekers
 {

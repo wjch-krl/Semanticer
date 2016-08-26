@@ -1,15 +1,11 @@
-using System;
-using Semanticer.Classifier;
-using Semanticer.TextAnalyzer.Utilities;
-using Semanticer.TextAnalyzer.SpellChekers;
-using Semanticer.Common.Utils;
+using Semanticer.Classifier.Common;
 
 namespace Semanticer.TextAnalyzer
 {
 
 	public class BigramTokenizerNormalizerFactory : ITokenizerFactory
 	{
-		private string lang;
+		private readonly string lang;
 
 		public BigramTokenizerNormalizerFactory (string lang)
 		{
@@ -18,7 +14,7 @@ namespace Semanticer.TextAnalyzer
 
 		public ITokenizer Create ()
 		{
-			IStopWordProvider stopWordProvider = new DefaultStopWordProvider ();
+			IStopWordProvider stopWordProvider = new CustomizableStopWordProvider ();
 			return new BigramTokenizerNormalizer 
 			{
 				Lang = lang,

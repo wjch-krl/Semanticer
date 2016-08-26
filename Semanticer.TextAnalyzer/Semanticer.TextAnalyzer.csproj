@@ -148,7 +148,7 @@
     <Compile Include="SpellChekers\LemmaNormalizer.cs" />
     <Compile Include="UnigramTokenizerFactory.cs" />
     <Compile Include="Utilities\BigramPostTokenizer.cs" />
-    <Compile Include="Utilities\DoubleMetaphone.cs" />
+    <Compile Include="Utilities\DoubleMetaphoneStringExtension.cs" />
     <Compile Include="SpellChekers\ICharacterFixer.cs" />
     <Compile Include="SpellChekers\ISpellChecker.cs" />
     <Compile Include="SpellChekers\TreeDictionary.cs" />

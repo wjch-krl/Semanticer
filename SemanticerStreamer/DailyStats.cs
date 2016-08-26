@@ -1,4 +1,5 @@
 ﻿using System;
+using Semanticer.Common;
 
 namespace Semanticer.Streamer
 {

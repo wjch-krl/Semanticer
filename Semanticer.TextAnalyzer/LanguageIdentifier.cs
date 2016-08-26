@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Linq;
 using NTextCat;
-using Semanticer.Common.DataModel;
 
 namespace Semanticer.TextAnalyzer
 {
     public class LanguageIdentifier
     {
-        private RankedLanguageIdentifier identifier;
-        private ILookup<string, CultureInfo> cultures; 
+        private readonly RankedLanguageIdentifier identifier;
+        private readonly ILookup<string, CultureInfo> cultures; 
         public LanguageIdentifier()
         {
             var factory = new RankedLanguageIdentifierFactory();

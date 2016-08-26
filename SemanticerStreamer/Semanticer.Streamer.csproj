@@ -68,6 +68,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.ServiceModel" />
     <Reference Include="Tweetinvi">
       <HintPath>..\packages\TweetinviAPI.1.0\lib\net45\Tweetinvi.dll</HintPath>
     </Reference>
@@ -75,7 +76,8 @@
   <ItemGroup>
     <Compile Include="DailyStats.cs" />
     <Compile Include="HourStats.cs" />
-    <Compile Include="StreamDownloader.cs" />
+    <Compile Include="ITweeterStreamDownloader.cs" />
+    <Compile Include="TweeterStreamDownloader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TweetWithSemantic.cs" />
   </ItemGroup>
@@ -86,6 +88,10 @@
     <ProjectReference Include="..\Semanticer.Common\Semanticer.Common.csproj">
       <Project>{1D5FEDEB-B064-4E02-BFDA-44511C9BCE36}</Project>
       <Name>Semanticer.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Semanticer.WcfClient\Semanticer.WcfClient.csproj">
+      <Project>{2ecdadeb-626a-40f4-a90b-e7dcb4f59774}</Project>
+      <Name>Semanticer.WcfClient</Name>
     </ProjectReference>
     <ProjectReference Include="..\Semanticer\Semanticer.csproj">
       <Project>{576d7043-ac99-4aca-83c5-acbcb34c5f1a}</Project>

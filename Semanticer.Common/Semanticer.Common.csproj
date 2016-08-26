@@ -92,13 +92,17 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Counter.cs" />
+    <Compile Include="Constans.cs" />
+    <Compile Include="ISemanticProccessor.cs" />
+    <Compile Include="SemanticResult.cs" />
+    <Compile Include="Utils\Counter.cs" />
     <Compile Include="DataModel\NormalizedMessage.cs" />
     <Compile Include="DataModel\NormalizedSentence.cs" />
     <Compile Include="Enums\PostMarkTypeExtensions.cs" />
@@ -111,7 +115,6 @@
     <Compile Include="Enums\PartOfSpeech.cs" />
     <Compile Include="Enums\SpellCheckingStatus.cs" />
     <Compile Include="Enums\PostMarkType.cs" />
-    <Compile Include="Enums\LoggerEventType.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Patterns.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

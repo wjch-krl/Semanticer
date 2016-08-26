@@ -1,5 +1,8 @@
+using System;
 using System.ServiceModel;
+using System.ServiceModel.Description;
 using System.ServiceProcess;
+using Semanticer.Common;
 
 namespace Semanticer.Wcf
 {
@@ -9,7 +12,7 @@ namespace Semanticer.Wcf
 
         protected override void OnStart(string[] args)
         {
-            ServiceStart(args);
+            ServiceStart();
         }
 
         protected override void OnStop()
@@ -23,11 +26,21 @@ namespace Semanticer.Wcf
             selfHostedService = null;
         }
 
-        public void ServiceStart(string[] args)
+        public void ServiceStart()
         {
             selfHostedService?.Close();
-            selfHostedService = new ServiceHost(typeof(SemanticProccessor));
-            selfHostedService.Open();
+            selfHostedService = StartServiceHost(typeof(SemanticProccessor), typeof(ISemanticProccessor));
+        }
+
+
+        private ServiceHost StartServiceHost(Type implementationType, Type contracType)
+        {
+            var service = new ServiceHost(implementationType, new Uri(Constans.ServiceBaseUrl));
+            service.Description.Behaviors.Remove(typeof(ServiceDebugBehavior));
+            service.Description.Behaviors.Add(new ServiceDebugBehavior { IncludeExceptionDetailInFaults = true });
+            service.AddServiceEndpoint(contracType, new NetNamedPipeBinding(), contracType.Name);
+            service.Open();
+            return service;
         }
     }
 }

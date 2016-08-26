@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Semanticer.Common.DataModel;
+using Semanticer.Common.Enums;
 
 namespace Semanticer.Common.Utils
 {
@@ -104,7 +104,7 @@ namespace Semanticer.Common.Utils
                 i++;
             }
 
-            return string.Format("{0:n1} {1}", dValue, SizeSuffixes[i]);
+            return $"{dValue:n1} {SizeSuffixes[i]}";
         }
 
         public static string[] SplitByWhitespaces(this string msg)

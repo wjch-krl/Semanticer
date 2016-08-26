@@ -1,6 +1,6 @@
 ﻿using System.Data;
 using Npgsql;
-using Semanticer.Classifier.Bayesian;
+using Semanticer.Classifier.Textual.Bayesian;
 
 namespace Semanticer.TextAnalyzer.Utilities
 {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ServiceProcess;
-using System.Threading.Tasks;
 
 namespace Semanticer.Wcf
 {
@@ -10,17 +9,27 @@ namespace Semanticer.Wcf
         {
             AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionsHandler;
             var service = new SemanticerService();
-            if (!Environment.UserInteractive)
+            if (Environment.UserInteractive)
             {
-                ServiceBase.Run(service);
+                RunApp(args, service);
             }
             else
             {
-                AppDomain.CurrentDomain.ProcessExit += (o, s) => service.Stop();
-                service.ServiceStart(args);
-                Console.WriteLine("Press any key to stop...");
-                Console.ReadKey(true);
+                RunService(service);
             }
+        }
+
+        private static void RunApp(string[] args, SemanticerService service)
+        {
+            AppDomain.CurrentDomain.ProcessExit += (o, s) => service.Stop();
+            service.ServiceStart();
+            Console.WriteLine("Press any key to stop...");
+            Console.ReadKey(true);
+        }
+
+        private static void RunService(SemanticerService service)
+        {
+            ServiceBase.Run(service);
         }
 
         private static void UnhandledExceptionsHandler(object sender, UnhandledExceptionEventArgs args)

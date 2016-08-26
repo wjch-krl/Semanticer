@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Globalization;
 using LemmaSharp;
 
 namespace Semanticer.TextAnalyzer.SpellChekers

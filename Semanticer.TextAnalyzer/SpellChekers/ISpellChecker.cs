@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using Semanticer.Common.DataModel;
-
-namespace Semanticer.TextAnalyzer.SpellChekers
+﻿namespace Semanticer.TextAnalyzer.SpellChekers
 {
     public interface ISpellChecker
     {

@@ -1,4 +1,4 @@
-using Semanticer.Classifier;
+using Semanticer.Classifier.Common;
 using Semanticer.TextAnalyzer.Utilities;
 
 namespace Semanticer.TextAnalyzer

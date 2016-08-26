@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Semanticer.Classifier.Common;
-using Semanticer.Common.DataModel;
 using Semanticer.Common.Enums;
 
 namespace Semanticer.TextAnalyzer

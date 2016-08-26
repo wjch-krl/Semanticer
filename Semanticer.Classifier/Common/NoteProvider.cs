@@ -8,9 +8,9 @@ namespace Semanticer.Classifier.Common
 {
     public class NoteProvider
     {
-        private IPivotWordProviderFactory pivotsFactory;
-        private Dictionary<string, IDictionary<string, double>> langWordDictionary;
-        private Dictionary<string, IDictionary<string, double>> langPhrasesDictionary;
+        private readonly IPivotWordProviderFactory pivotsFactory;
+        private readonly Dictionary<string, IDictionary<string, double>> langWordDictionary;
+        private readonly Dictionary<string, IDictionary<string, double>> langPhrasesDictionary;
         private Dictionary<string, double> emoticons;
         private const int DefaultTrade = 1;
 

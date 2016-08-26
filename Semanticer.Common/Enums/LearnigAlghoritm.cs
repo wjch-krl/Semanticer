@@ -8,7 +8,7 @@ namespace Semanticer.Common.Enums
         SvmStats= 3,
         Svm = 4,
         Vector = 5,
-        Ann = 6,
+        Knn = 6,
         None = 7,
     }
 }

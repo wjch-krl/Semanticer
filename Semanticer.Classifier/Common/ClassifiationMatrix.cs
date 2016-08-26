@@ -64,8 +64,8 @@ namespace Semanticer.Classifier.Common
 
         public override string ToString()
         {
-            var rows = matrix.Select(x => string.Format("{{{0}}}",string.Join(",", x)));
-            return string.Format("{{{0}}}", string.Join(",", rows));
+            var rows = matrix.Select(x => $"{{{string.Join(",", x)}}}");
+            return $"{{{string.Join(",", rows)}}}";
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using Semanticer.Classifier;
-using Semanticer.Classifier.Common;
+﻿using Semanticer.Classifier.Common;
 using SharpEntropy;
 
 namespace Semanticer.TextAnalyzer

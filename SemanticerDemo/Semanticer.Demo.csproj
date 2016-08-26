@@ -143,16 +143,12 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Semanticer.Common\Semanticer.Common.csproj">
-      <Project>{1d5fedeb-b064-4e02-bfda-44511c9bce36}</Project>
+      <Project>{1D5FEDEB-B064-4E02-BFDA-44511C9BCE36}</Project>
       <Name>Semanticer.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Semanticer.WcfClient\Semanticer.WcfClient.csproj">
       <Project>{2ecdadeb-626a-40f4-a90b-e7dcb4f59774}</Project>
       <Name>Semanticer.WcfClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Semanticer\Semanticer.csproj">
-      <Project>{576D7043-AC99-4ACA-83C5-ACBCB34C5F1A}</Project>
-      <Name>Semanticer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

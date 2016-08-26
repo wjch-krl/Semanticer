@@ -51,6 +51,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,17 +60,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SemanticerServiceHelper.cs" />
     <Compile Include="ServiceResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Semanticer.Wcf\Semanticer.Wcf.csproj">
-      <Project>{e092acd1-025a-4ab3-a4c8-0dc29b75aaa2}</Project>
-      <Name>Semanticer.Wcf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Semanticer\Semanticer.csproj">
-      <Project>{576d7043-ac99-4aca-83c5-acbcb34c5f1a}</Project>
-      <Name>Semanticer</Name>
+    <ProjectReference Include="..\Semanticer.Common\Semanticer.Common.csproj">
+      <Project>{1d5fedeb-b064-4e02-bfda-44511c9bce36}</Project>
+      <Name>Semanticer.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

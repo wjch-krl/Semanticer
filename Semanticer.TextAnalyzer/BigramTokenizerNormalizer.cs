@@ -1,5 +1,4 @@
-using System;
-using Semanticer.Classifier;
+using Semanticer.Classifier.Common;
 using Semanticer.TextAnalyzer.Utilities;
 using Semanticer.TextAnalyzer.SpellChekers;
 using Semanticer.Common.Utils;
@@ -11,7 +10,7 @@ namespace Semanticer.TextAnalyzer
 	{
 		internal string Lang { get; set; }
 		internal IStopWordProvider StopWordProvider { get; set; }
-		INormalizer checker;
+	    readonly INormalizer checker;
 
 		public BigramTokenizerNormalizer ()
 		{

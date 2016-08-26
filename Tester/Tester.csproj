@@ -42,6 +42,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Semanticer.Common\Semanticer.Common.csproj">
+      <Project>{1D5FEDEB-B064-4E02-BFDA-44511C9BCE36}</Project>
+      <Name>Semanticer.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Semanticer.WcfClient\Semanticer.WcfClient.csproj">
       <Project>{2ECDADEB-626A-40F4-A90B-E7DCB4F59774}</Project>
       <Name>Semanticer.WcfClient</Name>

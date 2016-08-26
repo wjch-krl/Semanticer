@@ -1,5 +1,5 @@
 ﻿using System;
-using Semanticer.Classifier;
+using Semanticer.Classifier.Common;
 
 namespace Semanticer.TextAnalyzer.Utilities
 {

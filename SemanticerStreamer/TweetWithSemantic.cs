@@ -1,3 +1,4 @@
+using Semanticer.Common;
 using Tweetinvi.Models;
 
 namespace Semanticer.Streamer

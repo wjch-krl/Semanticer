@@ -1,9 +1,8 @@
 ﻿using Semanticer.TextAnalyzer;
 using Semanticer.Common.Enums;
-using System.Linq;
 using System.Collections.Generic;
-using System;
 using System.Threading.Tasks;
+using Semanticer.Common;
 
 namespace Semanticer
 {
@@ -20,7 +19,7 @@ namespace Semanticer
 
         private void CreateEvaluator()
         {
-            evaluator = new TrainablePostSematicEvaluator(LearnigAlghoritm.NaiveBayes, "en-US");
+            evaluator = new TrainablePostSematicEvaluator(LearnigAlghoritm.Knn, "en-US");
             isTrained = true;
         }
 

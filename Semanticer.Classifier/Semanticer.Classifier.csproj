@@ -192,6 +192,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Python.Runtime">
+      <HintPath>..\..\..\..\..\..\Python27\Lib\site-packages\Python.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="SharpEntropy, Version=1.0.5629.13534, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpEntropy.1.0.0\lib\SharpEntropy.dll</HintPath>
       <Private>True</Private>
@@ -208,114 +211,97 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bayesian\InMemoryBayes.cs" />
+    <Compile Include="Common\Extension.cs" />
+    <Compile Include="Numeric\kNN\ClassifiableSentence.cs" />
+    <Compile Include="Numeric\kNN\ClassifiedSentence.cs" />
+    <Compile Include="Numeric\kNN\KnnClassifer.cs" />
+    <Compile Include="Numeric\kNN\NumericClassiferBase.cs" />
+    <Compile Include="Textual\Bayesian\InMemoryBayes.cs" />
     <Compile Include="Common\ClassifiationMatrix.cs" />
-    <Compile Include="Common\FileTrainingData.cs" />
-    <Compile Include="ClassifierBase.cs">
+    <Compile Include="Common\ClassifierBase.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Bayesian\BayesianClassifier.cs">
+    <Compile Include="Textual\Bayesian\ICategorizedWordsDataSource.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Bayesian\ICategorizedWordsDataSource.cs">
+    <Compile Include="Textual\Bayesian\IDbConnectionManager.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Bayesian\IDbConnectionManager.cs">
+    <Compile Include="Textual\Bayesian\IWordsDataSource.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Bayesian\IWordsDataSource.cs">
+    <Compile Include="Textual\Bayesian\OdbcConnectionManager.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Bayesian\OdbcConnectionManager.cs">
+    <Compile Include="Textual\Bayesian\OdbcWordsDataSource.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Bayesian\OdbcWordsDataSource.cs">
+    <Compile Include="Textual\Bayesian\SimpleWordsDataSource.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Bayesian\SimpleWordsDataSource.cs">
+    <Compile Include="Textual\Bayesian\WordProbability.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Bayesian\WordProbability.cs">
+    <Compile Include="Textual\Bayesian\WordsDataSourceException.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Bayesian\WordsDataSourceException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ClassifierException.cs">
+    <Compile Include="Common\ClassifierException.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Common\IPivotWordProviderFactory.cs" />
     <Compile Include="Common\ITrainingData.cs" />
     <Compile Include="Common\NoteProvider.cs" />
     <Compile Include="Common\TfIdf.cs" />
-    <Compile Include="CustomizableStopWordProvider.cs">
+    <Compile Include="Common\CustomizableStopWordProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DefaultStopWordProvider.cs">
+    <Compile Include="Common\DefaultTokenizer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DefaultTokenizer.cs">
+    <Compile Include="Common\ICategorizedClassifier.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ICategorizedClassifier.cs">
+    <Compile Include="Common\CategorizedClassifierConstants.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ICategorizedClassifierConstants.cs">
+    <Compile Include="Common\IClassifier.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IClassifier.cs">
+    <Compile Include="Common\ClassifierConstants.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IClassifierConstants.cs">
+    <Compile Include="Common\IPivotWordProvider.cs" />
+    <Compile Include="Common\IStopWordProvider.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IPivotWordProvider.cs" />
-    <Compile Include="IStopWordProvider.cs">
+    <Compile Include="Common\ITokenizer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ITokenizer.cs">
+    <Compile Include="Common\ITrainable.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ITrainable.cs">
+    <Compile Include="Textual\MaxEnt\MaxEntClassifier.cs" />
+    <Compile Include="Textual\MaxEnt\PivotGisTrainer.cs" />
+    <Compile Include="Common\PorterStemmer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ITrainableClassifier.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Common\FileTrainReader.cs" />
-    <Compile Include="MaxEnt\MaxEntClassifier.cs" />
-    <Compile Include="MaxEnt\PivotGisTrainer.cs" />
-    <Compile Include="PorterStemmer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="SimpleHtmlTokenizer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="PolishPivotWordProvider.cs" />
-    <Compile Include="Summarizer\ISummarizer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Summarizer\SimpleSummarizer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Svm\SvmClassifier.cs" />
-    <Compile Include="Svm\SvmClassifierBase.cs" />
-    <Compile Include="Svm\SvmStatistical.cs" />
-    <Compile Include="Svm\SvmTrainigData.cs" />
-    <Compile Include="Svm\UsedStatDictItem.cs" />
-    <Compile Include="Svm\UsedStats.cs" />
-    <Compile Include="Utilities.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Vector\DictionaryTermVectorStorage.cs" />
-    <Compile Include="Vector\TermVector.cs" />
-    <Compile Include="Vector\TermVectorStorage.cs" />
-    <Compile Include="Vector\VectorClassifier.cs" />
-    <Compile Include="Vector\VectorUtils.cs" />
-    <Content Include="DefaultStopWords.txt" />
+    <Compile Include="Common\PolishPivotWordProvider.cs" />
+    <Compile Include="Numeric\Svm\SvmClassifier.cs" />
+    <Compile Include="Numeric\Svm\SvmClassifierBase.cs" />
+    <Compile Include="Numeric\Svm\SvmStatisticalClassifier.cs" />
+    <Compile Include="Numeric\Svm\SvmTrainigData.cs" />
+    <Compile Include="Numeric\Svm\UsedStatDictItem.cs" />
+    <Compile Include="Numeric\Svm\UsedStats.cs" />
+    <Compile Include="Transformers\BagOfWordsTransformer.cs" />
+    <Compile Include="Transformers\ITextTransformer.cs" />
+    <Compile Include="Transformers\SparseNumericFeature.cs" />
+    <Compile Include="Transformers\TextTransformer.cs" />
+    <Content Include="DefaultStopWords.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="libsvm.dll" />
     <EmbeddedResource Include="doc2Vec.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -350,6 +336,9 @@
     <None Include="Properties\app.config" />
     <None Include="Properties\LIBSVM_COPYRIGHT" />
     <None Include="Properties\packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Transformers\Doc2Vec\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

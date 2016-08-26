@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Semanticer.Common.DataModel;
 using Semanticer.Common.Enums;
 
 namespace Semanticer.TextAnalyzer

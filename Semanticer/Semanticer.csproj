@@ -60,11 +60,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ISemanticProccessor.cs" />
     <Compile Include="SemanticerServiceHelper.cs" />
     <Compile Include="SemanticProccessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SemanticResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Semanticer.Classifier\Semanticer.Classifier.csproj">

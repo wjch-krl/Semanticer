@@ -2,8 +2,8 @@
 using System.Data;
 using System.Diagnostics;
 using Npgsql;
-using Semanticer.Classifier;
-using Semanticer.Classifier.Bayesian;
+using Semanticer.Classifier.Common;
+using Semanticer.Classifier.Textual.Bayesian;
 
 namespace Semanticer.TextAnalyzer.Utilities
 {
@@ -39,7 +39,7 @@ namespace Semanticer.TextAnalyzer.Utilities
 
         public PgsqlWordsDataSource(IDbConnectionManager conMgr,string lang) 
         {
-            tableName = string.Format("{0}_{1}",tableName, lang.Replace("-", ""));
+            tableName = $"{tableName}_{lang.Replace("-", "")}";
             connectionManager = conMgr;
             CreateTable();
         }
@@ -55,7 +55,8 @@ namespace Semanticer.TextAnalyzer.Utilities
 			try
 			{
 				connection = (NpgsqlConnection)connectionManager.GetConnection();
-                IDbCommand command = new NpgsqlCommand(string.Format("SELECT {0}, {1} FROM {2} WHERE {3} = @Word AND {4} = @Category", matchCountColumn, nonMatchCountColumn, tableName, wordColumn, categoryColumn), connection);
+                IDbCommand command = new NpgsqlCommand(
+                    $"SELECT {matchCountColumn}, {nonMatchCountColumn} FROM {tableName} WHERE {wordColumn} = @Word AND {categoryColumn} = @Category", connection);
                 command.Parameters.Add(new NpgsqlParameter("Word",word));
 			    command.Parameters.Add(new NpgsqlParameter("Category", category));
                 IDataReader reader = command.ExecuteReader();
@@ -109,7 +110,8 @@ namespace Semanticer.TextAnalyzer.Utilities
 				IDataReader reader = null;
 
 				// see if the word exists in the table
-                command = new NpgsqlCommand(string.Format("SELECT * FROM {0} WHERE {1} = @Word AND {2} = @Category", tableName, wordColumn, categoryColumn), connection);
+                command = new NpgsqlCommand(
+                    $"SELECT * FROM {tableName} WHERE {wordColumn} = @Word AND {categoryColumn} = @Category", connection);
 				command.Parameters.Add(new NpgsqlParameter("Word", word));
 				command.Parameters.Add(new NpgsqlParameter("Category",category));
 				reader = command.ExecuteReader(CommandBehavior.SingleResult);
@@ -117,7 +119,8 @@ namespace Semanticer.TextAnalyzer.Utilities
 				if (!reader.Read()) // word is not in table, so insert the word
 				{
 					reader.Close();
-                    command = new NpgsqlCommand(string.Format("INSERT INTO {0} ({1}, {2}) VALUES (@Word, @Category)", tableName, wordColumn, categoryColumn), connection);
+                    command = new NpgsqlCommand(
+                        $"INSERT INTO {tableName} ({wordColumn}, {categoryColumn}) VALUES (@Word, @Category)", connection);
                     command.Parameters.Add(new NpgsqlParameter("Word", word));
 					command.Parameters.Add(new NpgsqlParameter("Category", category));
 					command.ExecuteNonQuery();
@@ -178,7 +181,7 @@ namespace Semanticer.TextAnalyzer.Utilities
             try
             {
                 connection = (NpgsqlConnection) connectionManager.GetConnection();
-                NpgsqlCommand command = new NpgsqlCommand(string.Format("delete from {0};", tableName), connection);
+                NpgsqlCommand command = new NpgsqlCommand($"delete from {tableName};", connection);
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -203,7 +206,8 @@ namespace Semanticer.TextAnalyzer.Utilities
 			try
 			{
 				connection = (NpgsqlConnection)connectionManager.GetConnection();
-                NpgsqlCommand command = new NpgsqlCommand(string.Format("select 1 from pg_tables where schemaname='public' and tablename = '{0}';", tableName.ToLower()), connection);
+                NpgsqlCommand command = new NpgsqlCommand(
+                    $"select 1 from pg_tables where schemaname='public' and tablename = '{tableName.ToLower()}';", connection);
 			    var ifExists = command.ExecuteScalar();
 				if (ifExists == null)
 				{
