@@ -192,8 +192,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Python.Runtime">
-      <HintPath>..\..\..\..\..\..\Python27\Lib\site-packages\Python.Runtime.dll</HintPath>
+    <Reference Include="Python.Runtime, Version=4.0.0.1, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Anaconda2\Lib\site-packages\Python.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="SharpEntropy, Version=1.0.5629.13534, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpEntropy.1.0.0\lib\SharpEntropy.dll</HintPath>

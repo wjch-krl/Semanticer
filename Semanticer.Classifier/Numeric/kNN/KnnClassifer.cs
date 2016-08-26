@@ -20,6 +20,8 @@ namespace Semanticer.Classifier.Numeric.kNN
         {
         }
 
+        public long FeatureCount { get; private set; }
+
         public string GetNearestNeighbors(string input)
         {
             throw new NotImplementedException();
@@ -44,6 +46,7 @@ namespace Semanticer.Classifier.Numeric.kNN
         {
             var dateStart = DateTime.UtcNow;
             var trainEvents = ExtranctEnumerableTrainEvents(data).ToArray();
+            this.FeatureCount = trainEvents.LongLength;
             var words = GetWords(trainEvents);
             Transformer.AddAllWords(words);
             var trainSet = ProccesTrainingData(trainEvents);
@@ -53,12 +56,12 @@ namespace Semanticer.Classifier.Numeric.kNN
             return DateTime.UtcNow - dateStart;
         }
 
+
         private double Distance(ClassifiableSentence x, ClassifiableSentence y)
         {
-            int commonFeaturesCount = 0;
-            var commonFeaturesDist = x.Features.Join(y.Features, xVal => xVal.FeatureId, yVal => yVal.FeatureId, TwoFeaturesDistance);
-            double sum = commonFeaturesDist.Sum();
-            sum += AlienFeatureDistance(x, y, commonFeaturesCount);
+            int commonFeaturesCount = x.Features.Join(y.Features, xVal => xVal.FeatureId, yVal => yVal.FeatureId, (a, b) => a).Count();
+            //double sum = commonFeaturesDist.Sum();
+            double sum = FeatureCount - commonFeaturesCount;
             return Math.Sqrt(sum);
         }
 
