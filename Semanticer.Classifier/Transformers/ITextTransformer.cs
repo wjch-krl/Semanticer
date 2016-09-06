@@ -6,6 +6,5 @@ namespace Semanticer.Classifier.Transformers
     {
         IEnumerable<SparseNumericFeature> Transform(string[] words);
         IEnumerable<SparseNumericFeature> Transform(string sentence);
-        void AddAllWords(IEnumerable<string> words);
     }
 }

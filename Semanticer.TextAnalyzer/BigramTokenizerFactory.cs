@@ -7,7 +7,7 @@ namespace Semanticer.TextAnalyzer
 	{
 		public ITokenizer Create ()
 		{
-			return new BigramPostTokenizer ();
+			return new NgramPostTokenizer ();
 		}
 	}
 }

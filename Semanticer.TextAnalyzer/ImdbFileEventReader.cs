@@ -2,55 +2,55 @@
 using System.IO;
 using Semanticer.Classifier.Common;
 using SharpEntropy;
-using Semanticer.Common.Enums;
 
 namespace Semanticer.TextAnalyzer
 {
-	class ImdbFileEventReader : ITrainingEventReader
-	{
-	    readonly ITokenizer tokenizer;
-		bool hasNext;
-	    readonly string [] posFiles;
-	    readonly string [] negFiles;
-	    readonly string [] neutFiles;
-		int idx;
+    class ImdbFileEventReader : ITrainingEventReader
+    {
+        readonly ITokenizer tokenizer;
+        bool hasNext;
+        readonly string[] files;
+        int idx;
 
-		public ImdbFileEventReader (string path, ITokenizer tokenizer)
-		{
-			var trainPath = Path.Combine (path, "train");
-			posFiles = Directory.GetFiles (Path.Combine (trainPath, "pos"), "*.txt", SearchOption.TopDirectoryOnly);
-			negFiles = Directory.GetFiles (Path.Combine (trainPath, "neg"), "*.txt", SearchOption.TopDirectoryOnly);
-			neutFiles = Directory.GetFiles (Path.Combine (trainPath, "unsup"), "*.txt", SearchOption.TopDirectoryOnly);
-			hasNext = posFiles.Any () || negFiles.Any () || neutFiles.Any ();
-			this.tokenizer = tokenizer;
-		}
+        public ImdbFileEventReader(string path, ITokenizer tokenizer)
+        {
+            var trainPath = Path.Combine(path, "train");
+            files = Directory.GetFiles(trainPath);
+            hasNext = files.Any();
+            this.tokenizer = tokenizer;
+        }
 
-		public bool HasNext ()
-		{
-			return hasNext;
-		}
+        public bool HasNext()
+        {
+            return hasNext;
+        }
 
-		public TrainingEvent ReadNextEvent ()
-		{
-			this.idx++;
-			hasNext = this.idx < posFiles.Length + negFiles.Length + neutFiles.Length - 1;
-			var idx = this.idx;
-			if (idx < posFiles.Length) 
-			{
-				return new TrainingEvent (PostMarkType.Positive.ToString (), tokenizer.Tokenize (ReadFile (posFiles [idx])));
-			}
-			var tmpIdx = idx - posFiles.Length;
-			if (tmpIdx < negFiles.Length)
-			{
-				return new TrainingEvent (PostMarkType.Negative.ToString (), tokenizer.Tokenize (ReadFile (negFiles [tmpIdx])));
-			}
-			tmpIdx = tmpIdx - negFiles.Length;
-			return new TrainingEvent (PostMarkType.Neutral.ToString (), tokenizer.Tokenize (ReadFile (neutFiles [tmpIdx])));
-		}
+        public TrainingEvent ReadNextEvent()
+        {
+            string fileName = files[idx];
+            var imdbInfo = new ImdbFileInfo(fileName);
+            var tokenized = tokenizer.Tokenize(ReadFile(fileName));
+            string outCome  = imdbInfo.ToPostMarkType().ToString();
+            idx++;
+            hasNext = idx < files.Length;
+            return new TrainingEvent(outCome, tokenized); ;
+        }
 
-		string ReadFile (string path)
-		{
-			return File.ReadAllText (path);
-		}
-	}
+        string ReadFile(string path)
+        {
+            var file = File.ReadAllText(path);
+            var cleared = ClearText(file);
+            return cleared;
+        }
+
+        internal static string ClearText(string file)
+        {
+            var message = file.Replace("<br />", string.Empty);
+            message = message.Replace("<b>", string.Empty);
+            message = message.Replace("</b>", string.Empty);
+            message = message.Replace("</i>", string.Empty);
+            message = message.Replace("<i>", string.Empty);
+            return message;
+        }
+    }
 }

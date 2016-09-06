@@ -294,13 +294,16 @@
     <Compile Include="Numeric\Svm\UsedStatDictItem.cs" />
     <Compile Include="Numeric\Svm\UsedStats.cs" />
     <Compile Include="Transformers\BagOfWordsTransformer.cs" />
+    <Compile Include="Transformers\Doc2Vec\Doc2VecTransformer.cs" />
     <Compile Include="Transformers\ITextTransformer.cs" />
     <Compile Include="Transformers\SparseNumericFeature.cs" />
     <Compile Include="Transformers\TextTransformer.cs" />
     <Content Include="DefaultStopWords.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="libsvm.dll" />
+    <EmbeddedResource Include="libsvm.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="doc2Vec.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -331,6 +334,10 @@
       <Project>{1D5FEDEB-B064-4E02-BFDA-44511C9BCE36}</Project>
       <Name>Semanticer.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Semanticer.Doc2VecWrapper\Semanticer.Doc2VecWrapper.vcxproj">
+      <Project>{705499c9-95b5-4077-9bcf-d7dba7893976}</Project>
+      <Name>Semanticer.Doc2VecWrapper</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="LIBSVM_COPYRIGHT" />
@@ -339,9 +346,7 @@
     <None Include="Properties\LIBSVM_COPYRIGHT" />
     <None Include="Properties\packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Transformers\Doc2Vec\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent />

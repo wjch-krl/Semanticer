@@ -1,6 +1,6 @@
 using Semanticer.Classifier.Transformers;
 
-namespace Semanticer.Classifier.Numeric.kNN
+namespace Semanticer.Classifier.Numeric
 {
     public class ClassifiableSentence
     {

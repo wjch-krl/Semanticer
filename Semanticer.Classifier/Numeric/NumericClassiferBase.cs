@@ -5,7 +5,7 @@ using Semanticer.Classifier.Common;
 using Semanticer.Classifier.Transformers;
 using SharpEntropy;
 
-namespace Semanticer.Classifier.Numeric.kNN
+namespace Semanticer.Classifier.Numeric
 {
     public abstract class NumericClassiferBase : ClassifierBase
     {

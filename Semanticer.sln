@@ -33,6 +33,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Semanticer.WcfClient", "Sem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Debugger", "Debugger\Debugger.csproj", "{DCC4E9FD-9132-4CF4-8338-9F5C593BCC76}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Semanticer.Doc2VecWrapper", "Semanticer.Doc2VecWrapper\Semanticer.Doc2VecWrapper.vcxproj", "{705499C9-95B5-4077-9BCF-D7DBA7893976}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Semanticer.Doc2Vec.Native", "Semanticer.Doc2Vec.Native\Semanticer.Doc2Vec.Native.vcxproj", "{AA99E154-E9F2-44C0-AF97-58B788CCBB2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -169,6 +173,26 @@ Global
 		{DCC4E9FD-9132-4CF4-8338-9F5C593BCC76}.Release|x64.Build.0 = Release|Any CPU
 		{DCC4E9FD-9132-4CF4-8338-9F5C593BCC76}.Release|x86.ActiveCfg = Release|Any CPU
 		{DCC4E9FD-9132-4CF4-8338-9F5C593BCC76}.Release|x86.Build.0 = Release|Any CPU
+		{705499C9-95B5-4077-9BCF-D7DBA7893976}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{705499C9-95B5-4077-9BCF-D7DBA7893976}.Debug|x64.ActiveCfg = Debug|x64
+		{705499C9-95B5-4077-9BCF-D7DBA7893976}.Debug|x64.Build.0 = Debug|x64
+		{705499C9-95B5-4077-9BCF-D7DBA7893976}.Debug|x86.ActiveCfg = Debug|Win32
+		{705499C9-95B5-4077-9BCF-D7DBA7893976}.Debug|x86.Build.0 = Debug|Win32
+		{705499C9-95B5-4077-9BCF-D7DBA7893976}.Release|Any CPU.ActiveCfg = Release|Win32
+		{705499C9-95B5-4077-9BCF-D7DBA7893976}.Release|x64.ActiveCfg = Release|x64
+		{705499C9-95B5-4077-9BCF-D7DBA7893976}.Release|x64.Build.0 = Release|x64
+		{705499C9-95B5-4077-9BCF-D7DBA7893976}.Release|x86.ActiveCfg = Release|Win32
+		{705499C9-95B5-4077-9BCF-D7DBA7893976}.Release|x86.Build.0 = Release|Win32
+		{AA99E154-E9F2-44C0-AF97-58B788CCBB2A}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{AA99E154-E9F2-44C0-AF97-58B788CCBB2A}.Debug|x64.ActiveCfg = Debug|x64
+		{AA99E154-E9F2-44C0-AF97-58B788CCBB2A}.Debug|x64.Build.0 = Debug|x64
+		{AA99E154-E9F2-44C0-AF97-58B788CCBB2A}.Debug|x86.ActiveCfg = Debug|Win32
+		{AA99E154-E9F2-44C0-AF97-58B788CCBB2A}.Debug|x86.Build.0 = Debug|Win32
+		{AA99E154-E9F2-44C0-AF97-58B788CCBB2A}.Release|Any CPU.ActiveCfg = Release|Win32
+		{AA99E154-E9F2-44C0-AF97-58B788CCBB2A}.Release|x64.ActiveCfg = Release|x64
+		{AA99E154-E9F2-44C0-AF97-58B788CCBB2A}.Release|x64.Build.0 = Release|x64
+		{AA99E154-E9F2-44C0-AF97-58B788CCBB2A}.Release|x86.ActiveCfg = Release|Win32
+		{AA99E154-E9F2-44C0-AF97-58B788CCBB2A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -138,6 +138,8 @@
   <ItemGroup>
     <Compile Include="BigramTokenizerFactory.cs" />
     <Compile Include="CombinedNormalizer.cs" />
+    <Compile Include="ImdbFileInfo.cs" />
+    <Compile Include="ImdbFileMerger.cs" />
     <Compile Include="LanguageIdentifier.cs" />
     <Compile Include="EmptyPivotWordProvider.cs" />
     <Compile Include="EnglishPivotWordProvider.cs" />
@@ -147,7 +149,7 @@
     <Compile Include="SpellChekers\INormalizer.cs" />
     <Compile Include="SpellChekers\LemmaNormalizer.cs" />
     <Compile Include="UnigramTokenizerFactory.cs" />
-    <Compile Include="Utilities\BigramPostTokenizer.cs" />
+    <Compile Include="Utilities\NgramPostTokenizer.cs" />
     <Compile Include="Utilities\DoubleMetaphoneStringExtension.cs" />
     <Compile Include="SpellChekers\ICharacterFixer.cs" />
     <Compile Include="SpellChekers\ISpellChecker.cs" />
@@ -172,8 +174,8 @@
     </Compile>
     <Compile Include="SpellChekers\NHunspellChecker.cs" />
     <Compile Include="SimplePostSemanticEvaluator.cs" />
-    <Compile Include="BigramTokenizerNormalizerFactory.cs" />
-    <Compile Include="BigramTokenizerNormalizer.cs" />
+    <Compile Include="NgramTokenizerNormalizerFactory.cs" />
+    <Compile Include="NgramTokenizerNormalizer.cs" />
     <Compile Include="ImdbFileTrainData.cs" />
     <Compile Include="ImdbFileEventReader.cs" />
   </ItemGroup>

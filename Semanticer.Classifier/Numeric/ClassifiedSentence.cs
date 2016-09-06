@@ -1,6 +1,6 @@
 using Semanticer.Common.Enums;
 
-namespace Semanticer.Classifier.Numeric.kNN
+namespace Semanticer.Classifier.Numeric
 {
     public class ClassifiedSentence : ClassifiableSentence
     {

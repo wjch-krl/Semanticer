@@ -37,18 +37,20 @@ namespace Semanticer.Classifier.Numeric.kNN
 
         private static Dictionary<PostMarkType, double> TransformPrediction(int[] labels)
         {
-            return labels.Select(x => (PostMarkType) x)
+            var dictionary = labels.Select(x => (PostMarkType) x)
                 .GroupBy(x => x)
                 .ToDictionary(x => x.Key, y => (double) y.Count()/NeighborCount);
+            if (!dictionary.ContainsKey(PostMarkType.Negative)) { dictionary.Add(PostMarkType.Negative, 0);}
+            if (!dictionary.ContainsKey(PostMarkType.Positive)) { dictionary.Add(PostMarkType.Positive, 0);}
+            if (!dictionary.ContainsKey(PostMarkType.Neutral)) { dictionary.Add(PostMarkType.Neutral, 0);}
+            return dictionary;
         }
 
         public TimeSpan ReTrain(ITrainingData data)
         {
             var dateStart = DateTime.UtcNow;
             var trainEvents = ExtranctEnumerableTrainEvents(data).ToArray();
-            this.FeatureCount = trainEvents.LongLength;
-            var words = GetWords(trainEvents);
-            Transformer.AddAllWords(words);
+            FeatureCount = trainEvents.LongLength;
             var trainSet = ProccesTrainingData(trainEvents);
             var outcomes = trainSet.Select(x => (int) x.Label).ToArray();
             var toTrain = trainSet.Cast<ClassifiableSentence>().ToArray();
@@ -59,10 +61,10 @@ namespace Semanticer.Classifier.Numeric.kNN
 
         private double Distance(ClassifiableSentence x, ClassifiableSentence y)
         {
-            int commonFeaturesCount = x.Features.Join(y.Features, xVal => xVal.FeatureId, yVal => yVal.FeatureId, (a, b) => a).Count();
+            double commonFeaturesCount = x.Features.Join(y.Features, xVal => xVal.FeatureId, yVal => yVal.FeatureId, TwoFeaturesDistance).Sum();
             //double sum = commonFeaturesDist.Sum();
-            double sum = FeatureCount - commonFeaturesCount;
-            return Math.Sqrt(sum);
+           // double sum = FeatureCount - commonFeaturesCount;
+            return Math.Sqrt(commonFeaturesCount);
         }
 
         private static double AlienFeatureDistance(ClassifiableSentence x, ClassifiableSentence y, int commonFeaturesCount)

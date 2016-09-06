@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Doc2Vec.cpp" />
+    <ClCompile Include="NN.cpp" />
+    <ClCompile Include="TaggedBrownCorpus.cpp" />
+    <ClCompile Include="TrainModelThread.cpp" />
+    <ClCompile Include="Vocab.cpp" />
+    <ClCompile Include="WMD.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="headers\common_define.h" />
+    <ClInclude Include="headers\Doc2Vec.h" />
+    <ClInclude Include="headers\NN.h" />
+    <ClInclude Include="headers\TaggedBrownCorpus.h" />
+    <ClInclude Include="headers\TrainModelThread.h" />
+    <ClInclude Include="headers\Vocab.h" />
+    <ClInclude Include="headers\WMD.h" />
+  </ItemGroup>
+</Project>

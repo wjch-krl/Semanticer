@@ -6,7 +6,7 @@
     <ProjectGuid>f3c39b9d-20e7-4024-b22e-583d89e41b9b</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>nbsvm.py</StartupFile>
+    <StartupFile>doc2Vec.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -17,7 +17,7 @@
     <SccProvider>SAK</SccProvider>
     <SccAuxPath>SAK</SccAuxPath>
     <SccLocalPath>SAK</SccLocalPath>
-    <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
+    <InterpreterId>{9a7a9026-48c1-4688-9d5d-e5699d47d074}</InterpreterId>
     <InterpreterVersion>2.7</InterpreterVersion>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <CommandLineArguments>
@@ -44,10 +44,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\2.7" />
+    <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="requirements.txt" />
+    <InterpreterReference Include="{9a7a9026-48c1-4688-9d5d-e5699d47d074}\2.7" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

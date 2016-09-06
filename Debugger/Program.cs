@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Semanticer;
+using Semanticer.Classifier.Transformers.Doc2Vec;
 using Semanticer.Common;
+using Semanticer.TextAnalyzer;
 
 namespace Debugger
 {
@@ -12,6 +14,9 @@ namespace Debugger
     {
         static void Main(string[] args)
         {
+//            var merger = new ImdbFileMerger("C:\\Users\\wk\\Documents\\mgr\\Semanticer\\aclImdb\\train\\train",
+//                "C:\\Users\\wk\\Documents\\mgr\\Semanticer\\aclImdb\\train\\unsup");
+//            merger.MergeInto(Doc2VecTransformer.FileName);
             ISemanticProccessor processor = new SemanticProccessor();
             while (!processor.IsTrained())
             {

@@ -7,6 +7,7 @@ using Semanticer.Classifier.Numeric.Svm;
 using Semanticer.Classifier.Textual.Bayesian;
 using Semanticer.Classifier.Textual.MaxEnt;
 using Semanticer.Classifier.Transformers;
+using Semanticer.Classifier.Transformers.Doc2Vec;
 using Semanticer.Common.Enums;
 
 namespace Semanticer.TextAnalyzer
@@ -27,7 +28,7 @@ namespace Semanticer.TextAnalyzer
             this.lang = lang;
             this.alghoritm = alghoritm;
             pivotFactory = new SimplePivotWordProviderFactory();
-            tokenizerFactory = new BigramTokenizerNormalizerFactory(lang);
+            tokenizerFactory = new NgramTokenizerNormalizerFactory(lang,1);
             classifiers = new Dictionary<string, IClassifier>();
             var toTrain = TrainNewClassifier();
             classifiers.Add(lang, toTrain);
@@ -68,10 +69,10 @@ namespace Semanticer.TextAnalyzer
                     classifer = new MaxEntClassifier(tokenizer, pivotFactory.Resolve(lang), lang, forceLoad);
                     break;
                 case LearnigAlghoritm.Svm:
-                    classifer = new Svm (new BagOfWordsTransformer (tokenizer, pivot));
+                    classifer = new Svm (new Doc2VecTransformer(new Doc2VecArgs()));
                     break;
                 case LearnigAlghoritm.Knn:
-                    classifer = new KnnClassifer(new BagOfWordsTransformer(tokenizer, pivot));
+                    classifer = new KnnClassifer(new Doc2VecTransformer(new Doc2VecArgs()));
                     break;
                 default:
                     classifer = new InMemoryBayes(pivotFactory.Resolve(lang), tokenizer, lang, forceLoad);

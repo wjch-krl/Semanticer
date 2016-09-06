@@ -20,10 +20,6 @@ namespace Semanticer.Classifier.Transformers
             return Transform(splited);
         }
 
-        public virtual void AddAllWords(IEnumerable<string> words)
-        {
-        }
-
         public abstract IEnumerable<SparseNumericFeature> Transform(string[] words);
     }
 }

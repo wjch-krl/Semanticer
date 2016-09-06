@@ -72,7 +72,7 @@ namespace Semanticer.Classifier.Common
 
         public bool IsStopWord(string word)
         {
-            return word.Contains(word);
+            return words.Contains(word);
         }
     }
 }
