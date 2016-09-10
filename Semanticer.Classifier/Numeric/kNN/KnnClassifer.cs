@@ -22,29 +22,29 @@ namespace Semanticer.Classifier.Numeric.kNN
         public string[] GetNearestNeighbors(string input)
         {
             int[] labels;
-            var post = SentenceFromString(input);
-            var neighbours = knn.GetNearestNeighbors(post, out labels);
+            var sentence = SentenceFromString(input);
+            var neighbours = knn.GetNearestNeighbors(sentence, out labels);
             return neighbours.Cast<ClassifiedSentence>()
                 .Select(x => string.Join(" ", x.Words))
                 .ToArray();
         }
 
-        public override IDictionary<PostMarkType, double> Classify(string input)
+        public override IDictionary<MarkType, double> Classify(string input)
         {
-            var post = SentenceFromString(input);
+            var sentence = SentenceFromString(input);
             int[] labels;
-            var neighbours = knn.GetNearestNeighbors(post, out labels);
+            var neighbours = knn.GetNearestNeighbors(sentence, out labels);
             return TransformPrediction(labels);
         }
 
-        private static Dictionary<PostMarkType, double> TransformPrediction(int[] labels)
+        private static Dictionary<MarkType, double> TransformPrediction(int[] labels)
         {
-            var dictionary = labels.Select(x => (PostMarkType) x)
+            var dictionary = labels.Select(x => (MarkType) x)
                 .GroupBy(x => x)
                 .ToDictionary(x => x.Key, y => (double) y.Count()/NeighborCount);
-            if (!dictionary.ContainsKey(PostMarkType.Negative)) { dictionary.Add(PostMarkType.Negative, 0);}
-            if (!dictionary.ContainsKey(PostMarkType.Positive)) { dictionary.Add(PostMarkType.Positive, 0);}
-            if (!dictionary.ContainsKey(PostMarkType.Neutral)) { dictionary.Add(PostMarkType.Neutral, 0);}
+            if (!dictionary.ContainsKey(MarkType.Negative)) { dictionary.Add(MarkType.Negative, 0);}
+            if (!dictionary.ContainsKey(MarkType.Positive)) { dictionary.Add(MarkType.Positive, 0);}
+            if (!dictionary.ContainsKey(MarkType.Neutral)) { dictionary.Add(MarkType.Neutral, 0);}
             return dictionary;
         }
 

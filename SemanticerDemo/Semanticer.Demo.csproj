@@ -107,15 +107,6 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
-    <None Include="scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="scripts\jquery-1.10.2.js" />
-    <Content Include="scripts\jquery-1.10.2.min.js" />
-    <Content Include="scripts\jquery-1.10.2.min.map" />
-    <None Include="scripts\jquery-3.1.0.intellisense.js" />
-    <Content Include="scripts\jquery-3.1.0.js" />
-    <Content Include="scripts\jquery-3.1.0.min.js" />
-    <Content Include="scripts\jquery-3.1.0.slim.js" />
-    <Content Include="scripts\jquery-3.1.0.slim.min.js" />
     <Content Include="scripts\main.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config">
@@ -137,8 +128,6 @@
     </Content>
     <Content Include="packages.config" />
     <Content Include="Views\Semantic\Index.cshtml" />
-    <Content Include="scripts\jquery-3.1.0.slim.min.map" />
-    <Content Include="scripts\jquery-3.1.0.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Views\Semantic\Twitter.cshtml" />

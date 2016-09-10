@@ -11,11 +11,11 @@ namespace Semanticer.WcfClient
         {
             return new[]
             {
-                new TweetWithSemantic {Semantics = new SemanticResult {Propability = 1.0, Result = PostMarkType.Negative,Text = "dupkso"} },
-                new TweetWithSemantic {Semantics = new SemanticResult {Propability = 1.0, Result = PostMarkType.Positive,Text = "Kupsko"} },
-                new TweetWithSemantic {Semantics = new SemanticResult {Propability = 1.0, Result = PostMarkType.Neutral,Text = "dupkso"} },
-                new TweetWithSemantic {Semantics = new SemanticResult {Propability = 1.0, Result = PostMarkType.Neutral,Text = "dupkso1"} },
-                new TweetWithSemantic {Semantics = new SemanticResult {Propability = 1.0, Result = PostMarkType.Neutral,Text = "duasdasdasdas asd aa pkso1"} },
+                new TweetWithSemantic {Semantics = new SemanticResult {Propability = 1.0, Result = MarkType.Negative,Text = "dupkso"} },
+                new TweetWithSemantic {Semantics = new SemanticResult {Propability = 1.0, Result = MarkType.Positive,Text = "Kupsko"} },
+                new TweetWithSemantic {Semantics = new SemanticResult {Propability = 1.0, Result = MarkType.Neutral,Text = "dupkso"} },
+                new TweetWithSemantic {Semantics = new SemanticResult {Propability = 1.0, Result = MarkType.Neutral,Text = "dupkso1"} },
+                new TweetWithSemantic {Semantics = new SemanticResult {Propability = 1.0, Result = MarkType.Neutral,Text = "duasdasdasdas asd aa pkso1"} },
             };
         }
 
@@ -29,7 +29,7 @@ namespace Semanticer.WcfClient
                 stats.Add(date,new SemanticResult
                 {
                     Propability = random.NextDouble(),
-                    Result = (PostMarkType)random.Next(4),
+                    Result = (MarkType)random.Next(4),
                     Text = "TEST",
                 });
             }

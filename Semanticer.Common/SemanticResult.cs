@@ -6,7 +6,7 @@ namespace Semanticer.Common
     [Serializable]
     public class SemanticResult
     {
-		public PostMarkType Result { get; set; }
+		public MarkType Result { get; set; }
         public double Propability { get; set; }
         public string Text { get; set; }
 

@@ -6,10 +6,10 @@ namespace Semanticer.Classifier.Common
 {
     public static class Extension
     {
-        public static PostMarkType GetMarkType(this TrainingEvent trainingEvent)
+        public static MarkType GetMarkType(this TrainingEvent trainingEvent)
         {
-           var parsed = Enum.Parse(typeof(PostMarkType), trainingEvent.Outcome);
-            return (PostMarkType) parsed;
+           var parsed = Enum.Parse(typeof(MarkType), trainingEvent.Outcome);
+            return (MarkType) parsed;
         }
 
     }

@@ -9,13 +9,13 @@ using Semanticer.Common.Enums;
 
 namespace Semanticer.TextAnalyzer
 {
-    public class TrainablePostSematicEvaluator : IPostSematicEvaluator
+    public class TrainableSematicEvaluator : ISematicEvaluator
     {
         private readonly string lang;
         private readonly LearnigAlghoritm alghoritm;
         private readonly IPivotWordProviderFactory pivotFactory;
         private readonly ITokenizerFactory tokenizerFactory;
-        private readonly Dictionary<string, IClassifier> classifiers;
+        private readonly IClassifier classifier;
         private TextTransformerFactory textTransformer;
         private double PolarityMargin { get; set; }
         private double CutOff { get; set; }
@@ -26,7 +26,7 @@ namespace Semanticer.TextAnalyzer
 
         public string Lang => lang;
 
-        public TrainablePostSematicEvaluator(LearnigAlghoritm alghoritm, string lang, TextTransformerFactory textTransformer)
+        public TrainableSematicEvaluator(LearnigAlghoritm alghoritm, string lang, TextTransformerFactory textTransformer)
         {
             this.lang = lang;
             this.textTransformer = textTransformer;
@@ -36,9 +36,8 @@ namespace Semanticer.TextAnalyzer
             textTransformer.Lang = lang;
             textTransformer.PivotFactory = pivotFactory;
             textTransformer.TokenizerFactory = tokenizerFactory;
-            classifiers = new Dictionary<string, IClassifier>();
             var toTrain = TrainNewClassifier();
-            classifiers.Add(lang, toTrain);
+            classifier = toTrain;
         }
 
         IClassifier TrainNewClassifier()
@@ -54,17 +53,12 @@ namespace Semanticer.TextAnalyzer
             return clasifier;
         }
 
-        public IDictionary<PostMarkType, double> Evaluate(string msg, string lang = null)
+        public IDictionary<MarkType, double> Evaluate(string msg)
         {
-            lang = lang ?? this.lang;
-            if (!classifiers.ContainsKey(lang))
-            {
-                throw new InvalidOperationException("Classifier is not train for specified language");
-            }
-            return classifiers[lang].Classify(msg);
+            return classifier.Classify(msg);
         }
 
-        private IClassifier CreateClassifier(bool forceLoad = false)
+        private IClassifier CreateClassifier()
         {
             var tokenizer = tokenizerFactory.Create();
             var pivot = pivotFactory.Resolve(lang);
@@ -73,7 +67,7 @@ namespace Semanticer.TextAnalyzer
             switch (alghoritm)
             {
                 case LearnigAlghoritm.MaxEnt:
-                    classifer = new MaxEntClassifier(tokenizer, pivotFactory.Resolve(lang), lang, forceLoad);
+                    classifer = new MaxEntClassifier(tokenizer, pivot, lang);
                     break;
                 case LearnigAlghoritm.Svm:
                     classifer = new Svm (transformer);
@@ -82,7 +76,7 @@ namespace Semanticer.TextAnalyzer
                     classifer = new KnnClassifer(transformer);
                     break;
                 default:
-                    classifer = new InMemoryBayes(pivotFactory.Resolve(lang), tokenizer, lang, forceLoad);
+                    classifer = new InMemoryBayes(pivot, tokenizer, lang);
                     break;
             }
             classifer.MatchCutoff = CutOff;

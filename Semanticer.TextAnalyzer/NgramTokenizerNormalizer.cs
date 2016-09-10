@@ -7,7 +7,7 @@ using Semanticer.Common.Utils;
 namespace Semanticer.TextAnalyzer
 {
 
-	class NgramTokenizerNormalizer : NgramPostTokenizer
+	class NgramTokenizerNormalizer : NgramTokenizer
 	{
 	    internal string Lang { get; set; }
 		internal IStopWordProvider StopWordProvider { get; set; }

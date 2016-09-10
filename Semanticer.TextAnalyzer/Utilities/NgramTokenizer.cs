@@ -5,11 +5,11 @@ using Semanticer.Classifier.Common;
 
 namespace Semanticer.TextAnalyzer.Utilities
 {
-    public class NgramPostTokenizer : ITokenizer
+    public class NgramTokenizer : ITokenizer
     {
         private readonly int ngramCount;
 
-        public NgramPostTokenizer(int ngramCount = 2)
+        public NgramTokenizer(int ngramCount = 2)
         {
             this.ngramCount = ngramCount;
         }

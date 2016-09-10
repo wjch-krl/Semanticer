@@ -4,28 +4,25 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Semanticer.Classifier.Common;
+using Semanticer.Classifier.Numeric.Svm;
 using Semanticer.Common.Enums;
 using Semanticer.Common.Utils;
 using SharpEntropy;
 
 namespace Semanticer.Classifier.Textual.Bayesian
 {
-    public class InMemoryBayes :ClassifierBase, ITrainable
+    public class InMemoryBayes :ClassifierBase, ITrainable, ISerializableClassifier
     {
         private IDictionary<string, WordOccurance> wordsOccurances;
         private readonly IPivotWordProvider pivotWordProvider;
 		private readonly string lang;
 		readonly ITokenizer tokenizer;
 
-		public InMemoryBayes(IPivotWordProvider pivotWordProvider, ITokenizer tokenizer, string rename, bool forceLoad)
+		public InMemoryBayes(IPivotWordProvider pivotWordProvider, ITokenizer tokenizer, string rename)
         {
 			this.tokenizer = tokenizer;
 			this.pivotWordProvider = pivotWordProvider;
             this.lang = rename;
-            if (!LoadFromFile() && forceLoad)
-            {
-                throw new FileNotFoundException("Cant find model file");
-            }
         }
 
         public void Serialize()
@@ -50,7 +47,7 @@ namespace Semanticer.Classifier.Textual.Bayesian
             return false;
         }
 
-        public override IDictionary<PostMarkType, double> Classify(string input)
+        public override IDictionary<MarkType, double> Classify(string input)
         {
             var dict = CreatePropabilityDict();
             var pivorRange = 0;
@@ -67,14 +64,14 @@ namespace Semanticer.Classifier.Textual.Bayesian
                 {
                     multiper = 1.0;
                 }
-                dict[PostMarkType.Positive].Add(GetWordProbality(word, PostMarkType.Positive, multiper));
-                dict[PostMarkType.Negative].Add(GetWordProbality(word, PostMarkType.Negative, multiper));
-                dict[PostMarkType.Neutral].Add(GetWordProbality(word, PostMarkType.Neutral, multiper));
+                dict[MarkType.Positive].Add(GetWordProbality(word, MarkType.Positive, multiper));
+                dict[MarkType.Negative].Add(GetWordProbality(word, MarkType.Negative, multiper));
+                dict[MarkType.Neutral].Add(GetWordProbality(word, MarkType.Neutral, multiper));
             }
             return CalculateOverallProbabilities(dict);
         }
 
-        private IDictionary<PostMarkType, double> CalculateOverallProbabilities(Dictionary<PostMarkType, List<double>> dict)
+        private IDictionary<MarkType, double> CalculateOverallProbabilities(Dictionary<MarkType, List<double>> dict)
         {
             return dict.ToDictionary(x => x.Key, y => CalculateOverallProbability(y.Value));
         }
@@ -100,13 +97,13 @@ namespace Semanticer.Classifier.Textual.Bayesian
             return numerator / denominator;
         }
 
-        private double GetWordProbality(string word, PostMarkType mark, double multiper)
+        private double GetWordProbality(string word, MarkType mark, double multiper)
         {
             var result = CalculateWordPropability(word, mark)*multiper;
             return NormalizeSignificance(result);
         }
 
-        private double CalculateWordPropability(string word, PostMarkType mark)
+        private double CalculateWordPropability(string word, MarkType mark)
         {
             var wordOccurance = wordsOccurances[word];
             double result;
@@ -123,13 +120,13 @@ namespace Semanticer.Classifier.Textual.Bayesian
             return result;
         }
 
-        private static Dictionary<PostMarkType, List<double>> CreatePropabilityDict()
+        private static Dictionary<MarkType, List<double>> CreatePropabilityDict()
         {
-            return new Dictionary<PostMarkType, List<double>>
+            return new Dictionary<MarkType, List<double>>
             {
-                {PostMarkType.Positive, new List<double>()},
-                {PostMarkType.Negative, new List<double>()},
-                {PostMarkType.Neutral, new List<double>()},
+                {MarkType.Positive, new List<double>()},
+                {MarkType.Negative, new List<double>()},
+                {MarkType.Neutral, new List<double>()},
             };
         }
 
@@ -139,7 +136,6 @@ namespace Semanticer.Classifier.Textual.Bayesian
             wordsOccurances = new Dictionary<string, WordOccurance>();
             LoadSentences(trainingData.Reader);
             sw.Stop();
-            Serialize();
             return sw.Elapsed;
         }
 
@@ -149,7 +145,7 @@ namespace Semanticer.Classifier.Textual.Bayesian
             {
                 var pivorRange = 0;
                 TrainingEvent trainSentence = reader.ReadNextEvent();
-                PostMarkType mark = (PostMarkType) Enum.Parse(typeof (PostMarkType), trainSentence.Outcome);
+                MarkType mark = (MarkType) Enum.Parse(typeof (MarkType), trainSentence.Outcome);
                 foreach (var word in trainSentence.GetContext())
                 {
                     var multiper = Multiper(word,  ref pivorRange);
@@ -158,7 +154,7 @@ namespace Semanticer.Classifier.Textual.Bayesian
             }
         }
 
-        private void TeachWord(string word, double multiper, PostMarkType mark)
+        private void TeachWord(string word, double multiper, MarkType mark)
         {
             if (!wordsOccurances.ContainsKey(word))
             {
@@ -195,57 +191,57 @@ namespace Semanticer.Classifier.Textual.Bayesian
             public int NegativeCount { get; set; }
             public int NeutralCount { get; set; }
 
-            public int this[PostMarkType postMarkType]
+            public int this[MarkType MarkType]
             {
                 get
                 {
-                    return MatchCount(postMarkType);
+                    return MatchCount(MarkType);
                 }
                 set
                 {
-                    if (postMarkType == PostMarkType.Positive)
+                    if (MarkType == MarkType.Positive)
                     {
                         PositiveCount = value;
                     }
-                    if (postMarkType == PostMarkType.Negative)
+                    if (MarkType == MarkType.Negative)
                     {
                          NegativeCount = value; 
                     }
-                    if (postMarkType == PostMarkType.Neutral)
+                    if (MarkType == MarkType.Neutral)
                     {
                         NeutralCount = value; 
                     }
                 }
             }
 
-            public int MatchCount(PostMarkType postMarkType)
+            public int MatchCount(MarkType MarkType)
             {
-                if (postMarkType == PostMarkType.Positive)
+                if (MarkType == MarkType.Positive)
                 {
                     return PositiveCount;
                 }
-                if (postMarkType == PostMarkType.Negative)
+                if (MarkType == MarkType.Negative)
                 {
                     return NegativeCount;
                 }
-                if (postMarkType == PostMarkType.Neutral)
+                if (MarkType == MarkType.Neutral)
                 {
                     return NeutralCount;
                 }
                 throw new KeyNotFoundException("Invalid marktype");
             }
 
-            public int NonMatchCount(PostMarkType postMarkType)
+            public int NonMatchCount(MarkType MarkType)
             {
-                if (postMarkType == PostMarkType.Positive)
+                if (MarkType == MarkType.Positive)
                 {
                     return NegativeCount;
                 }
-                if (postMarkType == PostMarkType.Negative)
+                if (MarkType == MarkType.Negative)
                 {
                     return PositiveCount;
                 }
-                if (postMarkType == PostMarkType.Neutral)
+                if (MarkType == MarkType.Neutral)
                 {
                     return NegativeCount + PositiveCount;
                 }

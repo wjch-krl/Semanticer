@@ -53,6 +53,6 @@ namespace Semanticer.Classifier.Common
         /// </summary>
         /// <param name="input">The string to classify.</param>
         /// <returns>The dictionary of likelyhoods that this string is a match to category.  1 means 100% likely.</returns>
-        IDictionary<PostMarkType, double> Classify(string input);
+        IDictionary<MarkType, double> Classify(string input);
     }
 }

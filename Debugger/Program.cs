@@ -22,10 +22,10 @@ namespace Debugger
             var reader = new ImdbFileEventReader(ClassifierConstants.ImdbTestDatasetPath,
                 new SimpleTokenizer());
             var evaluators = processor.Evaluators;
-            List<PostMarkType>[] markTypes = new List<PostMarkType>[evaluators.Count +1];
+            List<MarkType>[] markTypes = new List<MarkType>[evaluators.Count +1];
             for (int i = 0; i < markTypes.Length; i++)
             {
-                markTypes[i] = new List<PostMarkType>();
+                markTypes[i] = new List<MarkType>();
             }
 
             do

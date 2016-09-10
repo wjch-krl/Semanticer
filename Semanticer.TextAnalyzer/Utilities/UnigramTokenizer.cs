@@ -3,7 +3,7 @@ using Semanticer.Classifier.Common;
 
 namespace Semanticer.TextAnalyzer.Utilities
 {
-    public class UnigramPostTokenizer : ITokenizer
+    public class UnigramTokenizer : ITokenizer
     {
         public string[] Tokenize(string input)
         {

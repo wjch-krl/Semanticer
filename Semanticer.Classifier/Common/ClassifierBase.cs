@@ -61,23 +61,23 @@ namespace Semanticer.Classifier.Common
 
         public double PolarityMargin { get; set; }
 
-        public abstract IDictionary<PostMarkType, double> Classify(string input);
+        public abstract IDictionary<MarkType, double> Classify(string input);
 
-        public virtual PostMarkType Evaluate(string input)
+        public virtual MarkType Evaluate(string input)
         {
-            return TransformPredicion(Classify(input)).ToPostMarkType();
+            return TransformPredicion(Classify(input)).ToMarkType();
         }
 
-        public virtual PostMarkType[] Evaluate(string[] input)
+        public virtual MarkType[] Evaluate(string[] input)
         {
             return input.Select(Evaluate).ToArray();
         }
 
-        public double TransformPredicion(IDictionary<PostMarkType, double> prediction)
+        public double TransformPredicion(IDictionary<MarkType, double> prediction)
         {
-            var positiveProp = prediction[PostMarkType.Positive];
-            var negativeProp = prediction[PostMarkType.Negative];
-            var neutralProp = prediction[PostMarkType.Neutral];
+            var positiveProp = prediction[MarkType.Positive];
+            var negativeProp = prediction[MarkType.Negative];
+            var neutralProp = prediction[MarkType.Neutral];
 
             if (neutralProp > negativeProp && neutralProp > positiveProp)
             {

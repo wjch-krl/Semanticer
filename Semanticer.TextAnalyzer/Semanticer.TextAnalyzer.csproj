@@ -152,14 +152,14 @@
     <Compile Include="SpellChekers\LemmaNormalizer.cs" />
     <Compile Include="TextTransformerFactory.cs" />
     <Compile Include="UnigramTokenizerFactory.cs" />
-    <Compile Include="Utilities\NgramPostTokenizer.cs" />
+    <Compile Include="Utilities\NgramTokenizer.cs" />
     <Compile Include="Utilities\DoubleMetaphoneStringExtension.cs" />
     <Compile Include="SpellChekers\ICharacterFixer.cs" />
     <Compile Include="SpellChekers\ISpellChecker.cs" />
     <Compile Include="SpellChekers\TreeDictionary.cs" />
     <Compile Include="SpellChekers\DictionaryNode.cs" />
     <Compile Include="SpellChekers\DictionaryTree.cs" />
-    <Compile Include="IPostSematicEvaluator.cs" />
+    <Compile Include="ISematicEvaluator.cs" />
     <Compile Include="SpellChekers\NetSpellChecker.cs" />
     <Compile Include="Utilities\PatternBuilder.cs" />
     <Compile Include="Utilities\PgsqlConncetionManager.cs" />
@@ -167,8 +167,7 @@
     <Compile Include="Utilities\Soundex.cs" />
     <Compile Include="Utilities\WordsHelper.cs" />
     <Compile Include="TrainablePostSematicEvaluator.cs" />
-    <Compile Include="PostStopWordsProvider.cs" />
-    <Compile Include="Utilities\UnigramPostTokenizer.cs" />
+    <Compile Include="Utilities\UnigramTokenizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -176,7 +175,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SpellChekers\NHunspellChecker.cs" />
-    <Compile Include="SimplePostSemanticEvaluator.cs" />
     <Compile Include="NgramTokenizerNormalizerFactory.cs" />
     <Compile Include="NgramTokenizerNormalizer.cs" />
     <Compile Include="ImdbFileTrainData.cs" />

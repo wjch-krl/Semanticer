@@ -10,7 +10,7 @@ namespace Semanticer.Classifier.Common
     {
         private readonly int[][] matrix;
 
-        public ClassifiationMatrix(IList<PostMarkType> predictions, IList<PostMarkType> values)
+        public ClassifiationMatrix(IList<MarkType> predictions, IList<MarkType> values)
         {
             if (predictions.Count != values.Count)
             {
@@ -36,7 +36,7 @@ namespace Semanticer.Classifier.Common
             return diagonalSum/matrix.Sum(x => x.Sum());
         }
 
-        public double Precision(PostMarkType mark)
+        public double Precision(MarkType mark)
         {
             int index = (int) mark - 1;
             return (double) matrix[index][index]/(matrix[0][index]+matrix[1][index]+matrix[2][index]);
@@ -58,8 +58,8 @@ namespace Semanticer.Classifier.Common
             }
             builder.AppendFormat("Precision: {0}%\tPositive precision: {1}%\tNeutral precision: {2}%\tNegative precision:" +
                                  " {3}%\tVery bad: {4}%\n",
-                OverallPrecision() * 100, Precision(PostMarkType.Positive) * 100, Precision(PostMarkType.Neutral) * 100, 
-                Precision(PostMarkType.Negative) * 100, VeryBadPrecent() * 100);
+                OverallPrecision() * 100, Precision(MarkType.Positive) * 100, Precision(MarkType.Neutral) * 100, 
+                Precision(MarkType.Negative) * 100, VeryBadPrecent() * 100);
             return builder.ToString();
         }
 

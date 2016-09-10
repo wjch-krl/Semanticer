@@ -1,6 +1,6 @@
 ﻿namespace Semanticer.Common.Enums
 {
-    public enum PostMarkType
+    public enum MarkType
     {
         NonCaluculated = 0,
         Positive = 1,

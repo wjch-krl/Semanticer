@@ -19,17 +19,17 @@ namespace Semanticer.TextAnalyzer
 
         public int Id { get; private set; }
 
-        public PostMarkType ToPostMarkType()
+        public MarkType ToMarkType()
         {
             if (Note > 6)
             {
-                return PostMarkType.Positive;
+                return MarkType.Positive;
             }
             if (Note < 4)
             {
-                return PostMarkType.Negative;
+                return MarkType.Negative;
             }
-            return PostMarkType.Neutral;
+            return MarkType.Neutral;
         }
     }
 }

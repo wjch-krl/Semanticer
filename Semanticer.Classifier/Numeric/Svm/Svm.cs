@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using LibSVMsharp;
 using LibSVMsharp.Extensions;
@@ -11,7 +12,7 @@ using SharpEntropy;
 
 namespace Semanticer.Classifier.Numeric.Svm
 {
-    public class Svm : NumericClassiferBase, ITrainable
+    public class Svm : NumericClassiferBase, ITrainable, ISerializableClassifier
     {
         private double[,] Scale;
         private SVMModel svMachine;
@@ -20,14 +21,14 @@ namespace Semanticer.Classifier.Numeric.Svm
         {
         }
 
-        public override IDictionary<PostMarkType, double> Classify(string input)
+        public override IDictionary<MarkType, double> Classify(string input)
         {
             var porob = Transformer.Transform(input);
             var problem = SvmProblem(porob);
             ScaleProblem(problem);
             var x = problem.X[0];
             var prediction = svMachine.Predict(x);
-            return new Dictionary<PostMarkType, double> {{(PostMarkType) (int) prediction, 1}};
+            return new Dictionary<MarkType, double> {{(MarkType) (int) prediction, 1}};
         }
 
         public TimeSpan ReTrain(ITrainingData data)
@@ -36,9 +37,7 @@ namespace Semanticer.Classifier.Numeric.Svm
             var starTime = DateTime.Now;
             var events = ExtranctEnumerableTrainEvents(data);
             var problem = CreateTrainProblem(events);
-            problem.Save("svm.svm");
             ScaleNewProblem(problem);
-
             svMachine = problem.Train(parameter);
             return DateTime.Now - starTime;
         }
@@ -58,6 +57,23 @@ namespace Semanticer.Classifier.Numeric.Svm
                 Shrinking = true,
                 Probability = false
             };
+        }
+
+        public void Serialize()
+        {
+            svMachine.SaveModel(SerializationPath);
+        }
+
+        private const string SerializationPath =  "SVM.svm";
+
+        public bool LoadFromFile()
+        {
+            if (File.Exists(SerializationPath))
+            {
+                svMachine = SVM.LoadModel(SerializationPath);
+                return svMachine != null;
+            }
+            return false;
         }
 
         private SVMProblem SvmProblem(IEnumerable<SparseNumericFeature> numericFeatures)

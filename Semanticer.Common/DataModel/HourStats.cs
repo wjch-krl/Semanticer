@@ -7,11 +7,11 @@ namespace Semanticer.Common.DataModel
 {
     public class HourStats
     {
-        private readonly Dictionary<PostMarkType, long> statsDictionary;
+        private readonly Dictionary<MarkType, long> statsDictionary;
 
         public HourStats()
         {
-            var enumValues = (IEnumerable<PostMarkType>) Enum.GetValues(typeof(PostMarkType));
+            var enumValues = (IEnumerable<MarkType>) Enum.GetValues(typeof(MarkType));
             this.statsDictionary = enumValues.ToDictionary(x => x, x => 0L);
         }
 
@@ -20,6 +20,6 @@ namespace Semanticer.Common.DataModel
             statsDictionary[semantics.Result]++;
         }
 
-        public long this[PostMarkType key] => statsDictionary[key];
+        public long this[MarkType key] => statsDictionary[key];
     }
 }

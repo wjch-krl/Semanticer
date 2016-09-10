@@ -1,18 +1,18 @@
 namespace Semanticer.Common.Enums
 {
-    public static class PostMarkTypeExtensions
+    public static class MarkTypeExtensions
     {
-        public static PostMarkType ToPostMarkType(this double value)
+        public static MarkType ToMarkType(this double value)
         {
             if (value < 2.0 && value > -1.2)
             {
-                return PostMarkType.Neutral;
+                return MarkType.Neutral;
             }
             if (value < 0)
             {
-                return PostMarkType.Negative;
+                return MarkType.Negative;
             }
-            return PostMarkType.Positive;
+            return MarkType.Positive;
         }
     }
 }

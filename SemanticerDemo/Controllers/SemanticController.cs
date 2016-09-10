@@ -19,7 +19,6 @@ namespace SemanticerDemo.Controllers
             twitterClient = new Lazy<ITweeterStreamDownloader>(ServiceResolver.GetStartedTweeterStreamDownloader);
         }
 
-        // GET: Semantic
         public ActionResult Index()
         {
             return View();
@@ -27,7 +26,7 @@ namespace SemanticerDemo.Controllers
 
         [HttpPost]
         [ActionName("Index")]
-        public ActionResult IndexPost(string toEvaluate)
+        public ActionResult Index(string toEvaluate)
         {
             var view = View();
             var result = serviceClient.Value.Process(toEvaluate);
@@ -43,7 +42,7 @@ namespace SemanticerDemo.Controllers
 
         class ItemPerDay
         {
-            public PostMarkType Mark { get; set; }
+            public MarkType Mark { get; set; }
             public ItemPerHour[] Items { get; set; }
         }
 
@@ -57,14 +56,14 @@ namespace SemanticerDemo.Controllers
         {
             var stats = twitterClient.Value.DailyStat();
             var today = DateTime.Today;
-            var enumValues = (IEnumerable<PostMarkType>) Enum.GetValues(typeof(PostMarkType));
-            return enumValues.Select(postMarkType => new
+            var enumValues = (IEnumerable<MarkType>) Enum.GetValues(typeof(MarkType));
+            return enumValues.Select(MarkType => new
             {
-                Mark = postMarkType.ToString(),
+                Mark = MarkType.ToString(),
                 Items = stats.HourStats.Select((x, i) => new
                 {
                     Time = $"{i}.00",
-                    Count = (int) x[postMarkType]
+                    Count = (int) x[MarkType]
                 }).ToArray()
             }).ToArray();
         }

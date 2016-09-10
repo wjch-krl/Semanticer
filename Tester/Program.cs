@@ -1,4 +1,5 @@
 ﻿using System;
+using Semanticer.Streamer;
 using Semanticer.WcfClient;
 
 namespace Tester

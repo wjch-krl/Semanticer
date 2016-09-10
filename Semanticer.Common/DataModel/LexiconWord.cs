@@ -12,7 +12,7 @@ namespace Semanticer.Common.DataModel
             set
             {
                 wordMark = value;
-                MarkType = value.ToPostMarkType();                
+                MarkType = value.ToMarkType();                
             }
         }
 
@@ -22,6 +22,6 @@ namespace Semanticer.Common.DataModel
         public PartOfSpeech PartOfSpeech { get; set; }
         public int Id { get; set; }
 
-        public PostMarkType MarkType { get; private set; }
+        public MarkType MarkType { get; private set; }
     }
 }

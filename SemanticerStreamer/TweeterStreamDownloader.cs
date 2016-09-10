@@ -23,7 +23,7 @@ namespace Semanticer.Streamer
             this.tweets = new TweetWithSemantic[Constans.MaxOldTweets];
             this.idx = new Counter(Constans.MaxOldTweets);
             this.stats = new DailyStats();
-            //service = new SemanticProccessor();
+            service = new SemanticProccessor();
         }
 
         public TweetWithSemantic[] Tweets() => tweets;
@@ -34,12 +34,12 @@ namespace Semanticer.Streamer
         {
             Validate();
             var stream = PrepareStream();
-            stream.StartStreamAsync();
+            stream.StartStream();
         }
 
         private void Validate()
         {
-            lock (service)
+            lock (idx)
             {
                 if (running)
                 {
@@ -51,12 +51,21 @@ namespace Semanticer.Streamer
 
         private ISampleStream PrepareStream()
         {
-            var userTimelineStream = Stream.CreateSampleStream();
-            userTimelineStream.TweetReceived += UserTimelineStreamOnTweetReceived;
-            return userTimelineStream;
+            var stream = Stream.CreateSampleStream(Credentials());
+            stream.TweetReceived += StreamOnTweetReceived;
+            return stream;
         }
 
-        private void UserTimelineStreamOnTweetReceived(object sender, TweetReceivedEventArgs tweetReceivedEventArgs)
+        private static TwitterCredentials Credentials()
+        {
+            return new TwitterCredentials(
+                "zEBnXsdy8jqN8n6BuWi7h70ay",
+                "aH87R2oW65QRtcdjdVquJPcwRPb7Rgd44azuaIRFFPcPscAhqu",
+                "388464418-Mb5lSMPHsmLX7ykljkJIf7Z1ouxbXOC2TsY75B1P",
+                "dxl5IeTMahrknEOGRWsA6IeexVfCpxbO2OZ8LBgnN6MDP");
+        }
+
+        private void StreamOnTweetReceived(object sender, TweetReceivedEventArgs tweetReceivedEventArgs)
         {
             var tweet = tweetReceivedEventArgs.Tweet;
             if (tweet.Language == Language.English)

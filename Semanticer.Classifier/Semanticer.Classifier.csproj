@@ -214,6 +214,7 @@
   <ItemGroup>
     <Compile Include="Common\Extension.cs" />
     <Compile Include="Numeric\kNN\KnnClassifer.cs" />
+    <Compile Include="Numeric\Svm\ISerializableClassifier.cs" />
     <Compile Include="Textual\Bayesian\InMemoryBayes.cs" />
     <Compile Include="Common\ClassifiationMatrix.cs" />
     <Compile Include="Common\ClassifierBase.cs">
@@ -251,7 +252,6 @@
     </Compile>
     <Compile Include="Common\IPivotWordProviderFactory.cs" />
     <Compile Include="Common\ITrainingData.cs" />
-    <Compile Include="Common\NoteProvider.cs" />
     <Compile Include="Common\TfIdf.cs" />
     <Compile Include="Common\CustomizableStopWordProvider.cs">
       <SubType>Code</SubType>
@@ -287,9 +287,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Common\PolishPivotWordProvider.cs" />
-    <Compile Include="Numeric\Svm\SvmClassifier.cs" />
-    <Compile Include="Numeric\Svm\SvmClassifierBase.cs" />
-    <Compile Include="Numeric\Svm\SvmStatisticalClassifier.cs" />
     <Compile Include="Numeric\Svm\SvmTrainigData.cs" />
     <Compile Include="Numeric\Svm\UsedStatDictItem.cs" />
     <Compile Include="Numeric\Svm\UsedStats.cs" />
