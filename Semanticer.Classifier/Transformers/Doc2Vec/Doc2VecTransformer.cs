@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Semanticer.Common.Utils;
 using SemanticerDoc2VecWrapper;
 
@@ -13,7 +10,7 @@ namespace Semanticer.Classifier.Transformers.Doc2Vec
     {
         private readonly int skipCount;
         readonly Doc2VecWrapper doc2VecWrapper;
-        public const string CorpaFileName = "C:\\Users\\wk\\Documents\\mgr\\Semanticer\\aclImdb\\train\\doc2vec.train.corpa.txt";
+        public const string CorpaFileName = "C:\\mgr\\Semanticer\\aclImdb\\train\\doc2vec.train.corpa.txt";
         private const string FileName = "model.doc2vec";
 
         public Doc2VecTransformer(Doc2VecArgs args, int skipCount = -1)
@@ -45,34 +42,6 @@ namespace Semanticer.Classifier.Transformers.Doc2Vec
         public IEnumerable<SparseNumericFeature> Transform(string sentence)
         {
             return Transform(sentence.SplitByWhitespaces());
-        }
-    }
-
-    public class Doc2VecArgs
-    {
-        public int Dimmensions { get; set; }
-        public int CBow { get; set; }
-        public int Hs { get; set; }
-        public int Negative { get; set; }
-        public int Iterations { get; set; }
-        public int Window { get; set; }
-        public float Alpha { get; set; }
-        public float Sample { get; set; }
-        public int MinCount { get; set; }
-        public int ThreadCount { get; set; }
-
-        public Doc2VecArgs()
-        {
-            Dimmensions = 20;
-            CBow = 0;
-            Hs = 1;
-            Negative = 0;
-            Iterations = 15;
-            Window = 10;
-            Alpha = 0.025f;
-            Sample = 0.0001f;
-            MinCount = 3;
-            ThreadCount = Environment.ProcessorCount;
         }
     }
 }

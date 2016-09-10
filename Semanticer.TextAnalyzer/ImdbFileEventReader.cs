@@ -5,7 +5,7 @@ using SharpEntropy;
 
 namespace Semanticer.TextAnalyzer
 {
-    class ImdbFileEventReader : ITrainingEventReader
+    public class ImdbFileEventReader : ITrainingEventReader
     {
         readonly ITokenizer tokenizer;
         bool hasNext;
@@ -14,8 +14,7 @@ namespace Semanticer.TextAnalyzer
 
         public ImdbFileEventReader(string path, ITokenizer tokenizer)
         {
-            var trainPath = Path.Combine(path, "train");
-            files = Directory.GetFiles(trainPath);
+            files = Directory.GetFiles(path);
             hasNext = files.Any();
             this.tokenizer = tokenizer;
         }

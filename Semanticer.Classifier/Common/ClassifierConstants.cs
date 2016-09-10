@@ -54,6 +54,7 @@ namespace Semanticer.Classifier.Common
 		/// </summary>
 		public static double DefaultCutoff = .9d;
 
-		public const string ImdbDatasetPath = @"C:\Users\wk\Documents\mgr\Semanticer\aclImdb\train\";
+		public const string ImdbTrainDatasetPath = @"C:\mgr\Semanticer\aclImdb\train\train";
+		public const string ImdbTestDatasetPath = @"C:\mgr\Semanticer\aclImdb\test\test";
 	}
 }

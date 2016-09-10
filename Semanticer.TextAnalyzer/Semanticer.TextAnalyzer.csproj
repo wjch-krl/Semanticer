@@ -136,8 +136,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BagOfWordsTransformerFactory.cs" />
     <Compile Include="BigramTokenizerFactory.cs" />
     <Compile Include="CombinedNormalizer.cs" />
+    <Compile Include="Doc2VecTransformerFactory.cs" />
     <Compile Include="ImdbFileInfo.cs" />
     <Compile Include="ImdbFileMerger.cs" />
     <Compile Include="LanguageIdentifier.cs" />
@@ -148,6 +150,7 @@
     <Compile Include="SpellChekers\AbstractDictionary.cs" />
     <Compile Include="SpellChekers\INormalizer.cs" />
     <Compile Include="SpellChekers\LemmaNormalizer.cs" />
+    <Compile Include="TextTransformerFactory.cs" />
     <Compile Include="UnigramTokenizerFactory.cs" />
     <Compile Include="Utilities\NgramPostTokenizer.cs" />
     <Compile Include="Utilities\DoubleMetaphoneStringExtension.cs" />
@@ -190,21 +193,33 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Language Pack\en-US.aff">
+    <Content Include="Language Pack\en-US.aff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Language Pack\hyph_pl-PL.dic" />
-    <None Include="Language Pack\hyph_en-US.dic" />
-    <None Include="Language Pack\pl-PL.aff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <EmbeddedResource Include="Language Pack\pl-PL.dic">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <None Include="Language Pack\th_en-US.dat" />
-    <None Include="Language Pack\th_en-US.idx" />
-    <None Include="Language Pack\th_pl-PL.dat" />
-    <None Include="Language Pack\th_pl-PL.idx" />
+    </Content>
+    <Content Include="Language Pack\hyph_pl-PL.dic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Language Pack\hyph_en-US.dic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Language Pack\pl-PL.aff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Language Pack\pl-PL.dic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Language Pack\th_en-US.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Language Pack\th_en-US.idx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Language Pack\th_pl-PL.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Language Pack\th_pl-PL.idx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <EmbeddedResource Include="SVM.R">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -220,9 +235,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Language Pack\en-US.dic">
+    <Content Include="Language Pack\en-US.dic">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="postgresql-9.4-1201.jdbc41.jar">
@@ -230,12 +245,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="LanguageModels\Wiki280.profile.xml">
+    <Content Include="LanguageModels\Wiki280.profile.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LanguageModels\Wiki82.profile.xml">
+    </Content>
+    <Content Include="LanguageModels\Wiki82.profile.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

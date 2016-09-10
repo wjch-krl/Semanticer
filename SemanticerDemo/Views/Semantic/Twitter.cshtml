@@ -1,0 +1,47 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Twitter Demo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Semanticer", "Index", new { area = "" }, new { @class = "navbar-brand " })
+            @Html.ActionLink("Twitter", "Twitter", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+    </div>
+</nav>
+
+<div class="container fill">
+    <h1>Last 24h on Twitter</h1>
+    <div>
+        <canvas id="canvas"></canvas>
+    </div>
+    <table id="example" class="display">
+        <thead>
+            <tr>
+                <th>Tweet</th>
+                <th>Result</th>
+                <th>Propability</th>
+                <th>Text</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Tweet</th>
+                <th>Result</th>
+                <th>Propability</th>
+                <th>Text</th>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>

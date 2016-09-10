@@ -1,11 +1,12 @@
 ﻿using System;
 using Semanticer.Common;
+using Semanticer.Common.DataModel;
 using Semanticer.Common.Utils;
-using Semanticer.WcfClient;
 using Tweetinvi.Models;
 using Tweetinvi.Streaming;
 using Tweetinvi;
 using Tweetinvi.Events;
+using Semanticer;
 
 namespace Semanticer.Streamer
 {
@@ -14,20 +15,20 @@ namespace Semanticer.Streamer
         private readonly TweetWithSemantic[] tweets;
         private Counter idx;
         private readonly DailyStats stats;
-        private readonly ISemanticProccessor service;
         private bool running;
-        public TweeterStreamDownloader(int maxOldTweets)
+        private readonly ISemanticProccessor service;
+
+        public TweeterStreamDownloader()
         {
-            this.tweets = new TweetWithSemantic[maxOldTweets];
-            this.idx = new Counter(maxOldTweets);
+            this.tweets = new TweetWithSemantic[Constans.MaxOldTweets];
+            this.idx = new Counter(Constans.MaxOldTweets);
             this.stats = new DailyStats();
-            service = ServiceResolver.GetTrainedSemanticProccessor();
-            Start();
+            //service = new SemanticProccessor();
         }
 
         public TweetWithSemantic[] Tweets() => tweets;
 
-        public DailyStats DailyStats() => stats;
+        public DailyStats DailyStat() => stats;
 
         public void Start()
         {

@@ -14,6 +14,7 @@ namespace SemanticerDemo
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Semantic", action = "Index", id = UrlParameter.Optional }
             );
+
         }
     }
 }

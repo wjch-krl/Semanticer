@@ -1,7 +1,7 @@
 ﻿using System;
-using Semanticer.Common;
+using System.Linq;
 
-namespace Semanticer.Streamer
+namespace Semanticer.Common.DataModel
 {
     public class DailyStats
     {
@@ -9,7 +9,7 @@ namespace Semanticer.Streamer
 
         public DailyStats()
         {
-            stats = new HourStats[24];
+            stats = Enumerable.Range(0,24).Select(x=>new HourStats()).ToArray();
         }
 
         public HourStats[] HourStats => stats;

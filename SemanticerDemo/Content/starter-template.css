@@ -1,5 +1,5 @@
 ﻿.fill {
-    min-height: 100%;
+    min-height: 100vh;
     height: 100%;
     padding: 85px 15px;
 }
@@ -14,4 +14,12 @@
 
 .Neutral {
     color: #0000FF
+}
+
+.item-right {
+    float: right
+}
+
+.selected-meneu-item {
+    color: whitesmoke;
 }

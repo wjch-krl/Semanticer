@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Accord.MachineLearning;
 using Semanticer.Classifier.Common;
 using Semanticer.Classifier.Transformers;
@@ -14,7 +12,6 @@ namespace Semanticer.Classifier.Numeric.kNN
     {
         private KNearestNeighbors<ClassifiableSentence> knn;
         private const int NeighborCount = 5;
-        private const double MaxDistance = 1.0;
 
         public KnnClassifer(ITextTransformer transformer) : base(transformer)
         {
@@ -22,9 +19,14 @@ namespace Semanticer.Classifier.Numeric.kNN
 
         public long FeatureCount { get; private set; }
 
-        public string GetNearestNeighbors(string input)
+        public string[] GetNearestNeighbors(string input)
         {
-            throw new NotImplementedException();
+            int[] labels;
+            var post = SentenceFromString(input);
+            var neighbours = knn.GetNearestNeighbors(post, out labels);
+            return neighbours.Cast<ClassifiedSentence>()
+                .Select(x => string.Join(" ", x.Words))
+                .ToArray();
         }
 
         public override IDictionary<PostMarkType, double> Classify(string input)
@@ -61,15 +63,13 @@ namespace Semanticer.Classifier.Numeric.kNN
 
         private double Distance(ClassifiableSentence x, ClassifiableSentence y)
         {
-            double commonFeaturesCount = x.Features.Join(y.Features, xVal => xVal.FeatureId, yVal => yVal.FeatureId, TwoFeaturesDistance).Sum();
-            //double sum = commonFeaturesDist.Sum();
-           // double sum = FeatureCount - commonFeaturesCount;
-            return Math.Sqrt(commonFeaturesCount);
-        }
-
-        private static double AlienFeatureDistance(ClassifiableSentence x, ClassifiableSentence y, int commonFeaturesCount)
-        {
-            return (x.Features.Length + y.Features.Length - 2*commonFeaturesCount)*MaxDistance;
+            var commonFeatures = x.Features.Join(y.Features,
+                xVal => xVal.FeatureId,
+                yVal => yVal.FeatureId,
+                TwoFeaturesDistance).ToArray();
+            double sum = commonFeatures.Sum();
+            sum += (FeatureCount - commonFeatures.Length)*FeatureCount;
+            return Math.Sqrt(sum);
         }
 
         private double TwoFeaturesDistance(SparseNumericFeature f1, SparseNumericFeature f2)

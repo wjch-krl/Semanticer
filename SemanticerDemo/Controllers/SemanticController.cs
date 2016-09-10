@@ -1,17 +1,22 @@
-﻿using System.Web.Mvc;
-using Semanticer;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using Semanticer.Common;
+using Semanticer.Common.Enums;
 using Semanticer.WcfClient;
 
 namespace SemanticerDemo.Controllers
 {
     public class SemanticController : Controller
     {
-        private readonly ISemanticProccessor serviceClient;
+        private readonly Lazy<ISemanticProccessor> serviceClient;
+        private readonly Lazy<ITweeterStreamDownloader> twitterClient;
 
         public SemanticController()
         {
-            serviceClient = ServiceResolver.GetTrainedSemanticProccessor();
+            serviceClient = new Lazy<ISemanticProccessor>(ServiceResolver.GetTrainedSemanticProccessor);
+            twitterClient = new Lazy<ITweeterStreamDownloader>(ServiceResolver.GetStartedTweeterStreamDownloader);
         }
 
         // GET: Semantic
@@ -25,9 +30,53 @@ namespace SemanticerDemo.Controllers
         public ActionResult IndexPost(string toEvaluate)
         {
             var view = View();
-            var result = serviceClient.Process(toEvaluate);
+            var result = serviceClient.Value.Process(toEvaluate);
             view.ViewData.Add("result", result);
             return view;
+        }
+
+        public ActionResult Twitter()
+        {
+            return View("Twitter");
+        }
+
+
+        class ItemPerDay
+        {
+            public PostMarkType Mark { get; set; }
+            public ItemPerHour[] Items { get; set; }
+        }
+
+        class ItemPerHour
+        {
+            public int Count { get; set; }
+            public DateTime Time { get; set; }
+        }
+
+        private object ProcessMesssages()
+        {
+            var stats = twitterClient.Value.DailyStat();
+            var today = DateTime.Today;
+            var enumValues = (IEnumerable<PostMarkType>) Enum.GetValues(typeof(PostMarkType));
+            return enumValues.Select(postMarkType => new
+            {
+                Mark = postMarkType.ToString(),
+                Items = stats.HourStats.Select((x, i) => new
+                {
+                    Time = $"{i}.00",
+                    Count = (int) x[postMarkType]
+                }).ToArray()
+            }).ToArray();
+        }
+
+        public JsonResult GetStats()
+        {
+            return Json(ProcessMesssages(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetTweets()
+        {
+            return Json(twitterClient.Value.Tweets(), JsonRequestBehavior.AllowGet);
         }
     }
 

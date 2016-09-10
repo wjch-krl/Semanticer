@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using Semanticer;
-using Semanticer.Classifier.Transformers.Doc2Vec;
+using Semanticer.Classifier.Common;
 using Semanticer.Common;
+using Semanticer.Common.Enums;
 using Semanticer.TextAnalyzer;
 
 namespace Debugger
@@ -14,18 +14,38 @@ namespace Debugger
     {
         static void Main(string[] args)
         {
-//            var merger = new ImdbFileMerger("C:\\Users\\wk\\Documents\\mgr\\Semanticer\\aclImdb\\train\\train",
-//                "C:\\Users\\wk\\Documents\\mgr\\Semanticer\\aclImdb\\train\\unsup");
-//            merger.MergeInto(Doc2VecTransformer.FileName);
-            ISemanticProccessor processor = new SemanticProccessor();
+            SemanticProccessor processor = new SemanticProccessor();
             while (!processor.IsTrained())
             {
                 Task.Delay(1000).Wait();
             }
+            var reader = new ImdbFileEventReader(ClassifierConstants.ImdbTestDatasetPath,
+                new SimpleTokenizer());
+            var evaluators = processor.Evaluators;
+            List<PostMarkType>[] markTypes = new List<PostMarkType>[evaluators.Count +1];
+            for (int i = 0; i < markTypes.Length; i++)
+            {
+                markTypes[i] = new List<PostMarkType>();
+            }
+
             do
             {
-                EvaluateFromConsole(processor);
-            } while (true);
+                var testMsg = reader.ReadNextEvent();
+                markTypes[0].Add(testMsg.GetMarkType());
+                for (int i = 0; i < evaluators.Count; i++)
+                {
+                    markTypes[i].Add(SemanticProccessor.SelectBestMark(evaluators[i].Evaluate(testMsg.GetContext()[0])).Result);
+                }
+
+            } while (reader.HasNext());
+            for (int i = 1; i < markTypes.Length; i++)
+            {
+                var matrix = new ClassifiationMatrix(markTypes[0], markTypes[i]);
+                using (var output = new StreamWriter("result"))
+                {
+                    output.WriteLine(matrix.Summarry());
+                }
+            }
         }
 
         private static void EvaluateFromConsole(ISemanticProccessor processor)
@@ -40,6 +60,14 @@ namespace Debugger
             {
                 Console.WriteLine(e);
             }
+        }
+    }
+
+    internal class SimpleTokenizer : ITokenizer
+    {
+        public string[] Tokenize(string input)
+        {
+            return new[] {input};
         }
     }
 }

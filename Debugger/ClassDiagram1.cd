@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Class Name="Semanticer.WcfClient.SemanticerServiceHelper" Collapsed="true">
+    <Position X="4" Y="16.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.BigramTokenizerFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.EmptyPivotWordProvider" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.ImdbFileMerger" Collapsed="true">
+    <Position X="0.5" Y="14.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.LanguageIdentifier" Collapsed="true">
+    <Position X="2.25" Y="14.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.SimplePivotWordProviderFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="17.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.SimplePostSemanticEvaluator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="17.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.UnigramTokenizerFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="18.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.SpellChekers.AbstractDictionary" Collapsed="true">
+    <Position X="7" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.SpellChekers.LemmaNormalizer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="14.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.SpellChekers.NHunspellChecker" Collapsed="true">
+    <Position X="5.75" Y="7" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.SpellChekers.TreeDictionary" Collapsed="true">
+    <Position X="8" Y="7" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.Utilities.DoubleMetaphoneStringExtension" Collapsed="true">
+    <Position X="5.75" Y="13.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.Utilities.PatternBuilder" Collapsed="true">
+    <Position X="7.5" Y="15.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.Utilities.UnigramPostTokenizer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="18.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SemanticerDemo.RouteConfig" Collapsed="true">
+    <Position X="0.5" Y="16.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="SemanticerDemo.MvcApplication" Collapsed="true">
+    <Position X="7.5" Y="14.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="SemanticerDemo.Controllers.SemanticController" Collapsed="true">
+    <Position X="2.25" Y="16.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Common.TweetWithSemantic" Collapsed="true">
+    <Position X="0.5" Y="18.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Common.DataModel.DailyStats" Collapsed="true">
+    <Position X="2.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Common.DataModel.NormalizedSentence" Collapsed="true">
+    <Position X="0.5" Y="15.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Common.DataModel.LexiconWord" Collapsed="true">
+    <Position X="5.75" Y="14.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Common.Utils.Descriptive" Collapsed="true">
+    <Position X="5.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Common.Utils.DescriptiveResult" Collapsed="true">
+    <Position X="7.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Common.Utils.StatisticalExtensions" Collapsed="true">
+    <Position X="7.5" Y="17.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Common.ClassifiationMatrix" Collapsed="true">
+    <Position X="4" Y="11.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Common.ClassifierBase" Collapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Semanticer.Classifier.Common.ClassifierException" Collapsed="true">
+    <Position X="7.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Common.NoteProvider" Collapsed="true">
+    <Position X="2.25" Y="15.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Common.CustomizableStopWordProvider" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.Classifier.Common.DefaultTokenizer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="12.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.Classifier.Common.CategorizedClassifierConstants" Collapsed="true">
+    <Position X="2.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Common.ClassifierConstants" Collapsed="true">
+    <Position X="5.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Numeric.ClassifiableSentence" Collapsed="true">
+    <Position X="8.25" Y="8.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Numeric.ClassifiedSentence" Collapsed="true">
+    <Position X="8.25" Y="10" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Numeric.NumericClassiferBase" Collapsed="true">
+    <Position X="2.75" Y="3" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Numeric.kNN.KnnClassifer" Collapsed="true">
+    <Position X="1.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Semanticer.Classifier.Numeric.Svm.SvmClassifier" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Numeric.Svm.SvmClassifierBase" Collapsed="true">
+    <Position X="7.25" Y="3" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Semanticer.Classifier.Numeric.Svm.SvmStatisticalClassifier" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Numeric.Svm.UsedStatDictItem" Collapsed="true">
+    <Position X="5.75" Y="18.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Numeric.Svm.UsedStats" Collapsed="true">
+    <Position X="7.5" Y="18.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Numeric.Svm.Svm" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Semanticer.Classifier.Textual.Bayesian.InMemoryBayes" Collapsed="true">
+    <Position X="5.25" Y="3" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Semanticer.Classifier.Textual.Bayesian.OdbcConnectionManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="15.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.Classifier.Textual.Bayesian.OdbcWordsDataSource" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="15.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.Classifier.Textual.Bayesian.SimpleWordsDataSource" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="17.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.Classifier.Textual.MaxEnt.MaxEntClassifier" Collapsed="true">
+    <Position X="9.25" Y="3" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Semanticer.Classifier.Transformers.BagOfWordsTransformer" Collapsed="true">
+    <Position X="1.25" Y="10" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Transformers.SparseNumericFeature" Collapsed="true">
+    <Position X="5.75" Y="17.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Transformers.TextTransformer" Collapsed="true">
+    <Position X="1.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Semanticer.Classifier.Transformers.Doc2Vec.Doc2VecTransformer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.Classifier.Transformers.Doc2Vec.Doc2VecArgs" Collapsed="true">
+    <Position X="0.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.SemanticerServiceHelper" Collapsed="true">
+    <Position X="5.75" Y="16.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.SemanticProccessor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="16.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.WcfClient.ServiceResolver" Collapsed="true">
+    <Position X="4" Y="24.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Wcf.SemanticProccessorService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="24.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.Wcf.ControlService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="19.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.CombinedNormalizer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="19.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.EnglishPivotWordProvider" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="21.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.NgramTokenizerNormalizerFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="22.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.TrainablePostSematicEvaluator" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="25.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.SpellChekers.DictionaryNode" Collapsed="true">
+    <Position X="2.25" Y="20.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.SpellChekers.DictionaryTree" Collapsed="true">
+    <Position X="5.75" Y="20.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.SpellChekers.NetSpellChecker" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="22.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.Utilities.NgramPostTokenizer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="22.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.TextAnalyzer.Utilities.WordsHelper" Collapsed="true">
+    <Position X="7.5" Y="21.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Streamer.TweeterStreamDownloader" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="25.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.Common.Constans" Collapsed="true">
+    <Position X="2.25" Y="19.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Common.SemanticResult" Collapsed="true">
+    <Position X="2.25" Y="24.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Common.Patterns" Collapsed="true">
+    <Position X="0.5" Y="23.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Common.DataModel.HourStats" Collapsed="true">
+    <Position X="5.75" Y="21.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Common.DataModel.NormalizedMessage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="22.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.Common.Enums.PostMarkTypeExtensions" Collapsed="true">
+    <Position X="5.75" Y="23.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Common.Utils.Counter" Collapsed="true">
+    <Position X="5.75" Y="19.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Common.Utils.DictionaryItem&lt;TKey, TValue&gt;" Collapsed="true">
+    <Position X="0.5" Y="20.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Common.Utils.DictionarySerializer" Collapsed="true">
+    <Position X="4" Y="20.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Common.Utils.Extensions" Collapsed="true">
+    <Position X="4" Y="21.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Common.Extension" Collapsed="true">
+    <Position X="2.25" Y="21.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Common.TfIdf" Collapsed="true">
+    <Position X="2.25" Y="25.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Common.PorterStemmer" Collapsed="true">
+    <Position X="4" Y="23.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Semanticer.Classifier.Common.PolishPivotWordProvider" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="23.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.Classifier.Numeric.Svm.SvmTrainigData" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="25.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.Classifier.Textual.Bayesian.WordProbability" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="19.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semanticer.Classifier.Textual.Bayesian.WordsDataSourceException" Collapsed="true">
+    <Position X="7.5" Y="20.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="SemanticerDoc2VecWrapper.SimmilarItem" Collapsed="true">
+    <Position X="5.75" Y="24.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="SemanticerDoc2VecWrapper.Doc2VecWrapper" Collapsed="true">
+    <Position X="4" Y="13.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="Semanticer.TextAnalyzer.IPostSematicEvaluator" Collapsed="true">
+    <Position X="5.75" Y="32.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.TextAnalyzer.ITokenizerFactory" Collapsed="true">
+    <Position X="5.75" Y="33.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.TextAnalyzer.SpellChekers.ICharacterFixer" Collapsed="true">
+    <Position X="0.5" Y="33" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.TextAnalyzer.SpellChekers.INormalizer" Collapsed="true">
+    <Position X="5.75" Y="33" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.TextAnalyzer.SpellChekers.ISpellChecker" Collapsed="true">
+    <Position X="0.5" Y="32.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.Common.IControlService" Collapsed="true">
+    <Position X="2.25" Y="33" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.Common.ISemanticProccessor" Collapsed="true">
+    <Position X="4" Y="32.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.Common.ITweeterStreamDownloader" Collapsed="true">
+    <Position X="2.25" Y="32.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.Classifier.Common.IPivotWordProviderFactory" Collapsed="true">
+    <Position X="7.5" Y="32.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.Classifier.Common.ITrainingData" Collapsed="true">
+    <Position X="7.5" Y="33.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.Classifier.Common.ICategorizedClassifier" Collapsed="true">
+    <Position X="1.25" Y="7" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.Classifier.Common.IClassifier" Collapsed="true">
+    <Position X="2.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.Classifier.Common.IPivotWordProvider" Collapsed="true">
+    <Position X="7.5" Y="33" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.Classifier.Common.IStopWordProvider" Collapsed="true">
+    <Position X="0.5" Y="33.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.Classifier.Common.ITokenizer" Collapsed="true">
+    <Position X="4" Y="33.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.Classifier.Common.ITrainable" Collapsed="true">
+    <Position X="3.75" Y="7" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.Classifier.Textual.Bayesian.ICategorizedWordsDataSource" Collapsed="true">
+    <Position X="4.25" Y="10" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.Classifier.Textual.Bayesian.IDbConnectionManager" Collapsed="true">
+    <Position X="4" Y="33" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.Classifier.Textual.Bayesian.IWordsDataSource" Collapsed="true">
+    <Position X="4.5" Y="8.75" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Semanticer.Classifier.Transformers.ITextTransformer" Collapsed="true">
+    <Position X="2.25" Y="33.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Enum Name="Semanticer.Common.Enums.LearnigAlghoritm" Collapsed="true">
+    <Position X="0.5" Y="34.75" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="Semanticer.Common.Enums.PartOfSpeech" Collapsed="true">
+    <Position X="2.25" Y="34.75" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="Semanticer.Common.Enums.SpellCheckingStatus" Collapsed="true">
+    <Position X="5.75" Y="34.75" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="Semanticer.Common.Enums.PostMarkType" Collapsed="true">
+    <Position X="4" Y="34.75" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

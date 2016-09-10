@@ -294,6 +294,7 @@
     <Compile Include="Numeric\Svm\UsedStatDictItem.cs" />
     <Compile Include="Numeric\Svm\UsedStats.cs" />
     <Compile Include="Transformers\BagOfWordsTransformer.cs" />
+    <Compile Include="Transformers\Doc2Vec\Doc2VecArgs.cs" />
     <Compile Include="Transformers\Doc2Vec\Doc2VecTransformer.cs" />
     <Compile Include="Transformers\ITextTransformer.cs" />
     <Compile Include="Transformers\SparseNumericFeature.cs" />

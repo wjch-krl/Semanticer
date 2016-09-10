@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Semanticer.Common;
 using Semanticer.Common.Enums;
 
-namespace Semanticer.Streamer
+namespace Semanticer.Common.DataModel
 {
     public class HourStats
     {
@@ -20,5 +19,7 @@ namespace Semanticer.Streamer
         {
             statsDictionary[semantics.Result]++;
         }
+
+        public long this[PostMarkType key] => statsDictionary[key];
     }
 }

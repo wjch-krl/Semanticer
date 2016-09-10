@@ -1,7 +1,6 @@
-using Semanticer.Common;
 using Tweetinvi.Models;
 
-namespace Semanticer.Streamer
+namespace Semanticer.Common
 {
     public class TweetWithSemantic
     {

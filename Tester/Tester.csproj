@@ -50,10 +50,6 @@
       <Project>{2ECDADEB-626A-40F4-A90B-E7DCB4F59774}</Project>
       <Name>Semanticer.WcfClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Semanticer\Semanticer.csproj">
-      <Project>{576D7043-AC99-4ACA-83C5-ACBCB34C5F1A}</Project>
-      <Name>Semanticer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

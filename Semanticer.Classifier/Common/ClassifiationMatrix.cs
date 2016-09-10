@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Semanticer.Common.Enums;
@@ -9,9 +10,9 @@ namespace Semanticer.Classifier.Common
     {
         private readonly int[][] matrix;
 
-        public ClassifiationMatrix(PostMarkType[] predictions, PostMarkType[] values)
+        public ClassifiationMatrix(IList<PostMarkType> predictions, IList<PostMarkType> values)
         {
-            if (predictions.LongLength != values.LongLength)
+            if (predictions.Count != values.Count)
             {
                 throw new ArgumentException("Arrays must be same size");
             }
@@ -20,7 +21,7 @@ namespace Semanticer.Classifier.Common
             {
                 matrix[index] = new int[3];
             }
-            for (int i = 0; i < predictions.Length; i++)
+            for (int i = 0; i < predictions.Count; i++)
             {
                 int predIndex = (int) (predictions[i]) - 1;
                 int valueIndex = (int) (values[i]) - 1;

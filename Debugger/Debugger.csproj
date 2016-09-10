@@ -54,6 +54,10 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SharpEntropy, Version=1.0.5629.13534, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpEntropy.1.0.0\lib\SharpEntropy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -69,6 +73,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Semanticer.Classifier\Semanticer.Classifier.csproj">
@@ -79,6 +85,10 @@
       <Project>{1d5fedeb-b064-4e02-bfda-44511c9bce36}</Project>
       <Name>Semanticer.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Semanticer.Doc2VecWrapper\Semanticer.Doc2VecWrapper.vcxproj">
+      <Project>{705499c9-95b5-4077-9bcf-d7dba7893976}</Project>
+      <Name>Semanticer.Doc2VecWrapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Semanticer.TextAnalyzer\Semanticer.TextAnalyzer.csproj">
       <Project>{b4797b6d-c1c8-4676-921d-677e33a4d941}</Project>
       <Name>Semanticer.TextAnalyzer</Name>
@@ -87,6 +97,14 @@
       <Project>{2ecdadeb-626a-40f4-a90b-e7dcb4f59774}</Project>
       <Name>Semanticer.WcfClient</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Semanticer.Wcf\Semanticer.Wcf.csproj">
+      <Project>{e092acd1-025a-4ab3-a4c8-0dc29b75aaa2}</Project>
+      <Name>Semanticer.Wcf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SemanticerDemo\Semanticer.Demo.csproj">
+      <Project>{ab1a885f-5d0e-401f-9f8e-538f98881c41}</Project>
+      <Name>Semanticer.Demo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SemanticerStreamer\Semanticer.Streamer.csproj">
       <Project>{b70a3cd9-2611-4174-a8c2-55c4192d7578}</Project>
       <Name>Semanticer.Streamer</Name>
@@ -94,6 +112,10 @@
     <ProjectReference Include="..\Semanticer\Semanticer.csproj">
       <Project>{576d7043-ac99-4aca-83c5-acbcb34c5f1a}</Project>
       <Name>Semanticer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tester\Tester.csproj">
+      <Project>{c26de45d-e9ad-4248-ae8e-af537ff972e4}</Project>
+      <Name>Tester</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

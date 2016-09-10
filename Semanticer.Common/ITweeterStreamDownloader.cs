@@ -1,6 +1,7 @@
 ﻿using System.ServiceModel;
+using Semanticer.Common.DataModel;
 
-namespace Semanticer.Streamer
+namespace Semanticer.Common
 {
     [ServiceContract]
     public interface ITweeterStreamDownloader
@@ -9,9 +10,11 @@ namespace Semanticer.Streamer
         TweetWithSemantic[] Tweets();
 
         [OperationContract]
-        DailyStats DailyStats();
+        DailyStats DailyStat();
 
         [OperationContract]
         void Start();
+
+
     }
 }
