@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Semanticer.Common;
 using Semanticer.Common.DataModel;
 using Semanticer.Common.Utils;
@@ -7,6 +8,7 @@ using Tweetinvi.Streaming;
 using Tweetinvi;
 using Tweetinvi.Events;
 using Semanticer;
+using Semanticer.Common.Enums;
 
 namespace Semanticer.Streamer
 {
@@ -34,7 +36,7 @@ namespace Semanticer.Streamer
         {
             Validate();
             var stream = PrepareStream();
-            stream.StartStream();
+            stream.StartStreamAsync();
         }
 
         private void Validate()
@@ -72,16 +74,41 @@ namespace Semanticer.Streamer
             {
                 AddTweet(tweet);
             }
+            else
+            {
+                AddTweetWithUnknownLanguage(tweet);
+            }
         }
 
+        private void AddTweetWithUnknownLanguage(ITweet tweet)
+        {
+            var semantics = new SemanticResult
+            {
+                Propability = 1,
+                Result = MarkType.NonSupportedLanguage,
+                Text = tweet.Text,
+            };
+            AddTweetCore(tweet,semantics);
+        }
+
+        //Random ran = new Random();
         private void AddTweet(ITweet tweet)
         {
-            var semantics = service.Process(tweet.Text);
-            tweets[idx++.Value] = new TweetWithSemantic
-            {
-                Semantics = semantics,
-                Tweet = tweet,
-            };
+            var semantics = 
+//                new SemanticResult
+//            {
+//                Propability = ran.NextDouble(),
+//                Result = (MarkType) ran.Next(3) + 1,
+//                Text = tweet.Text,
+//            }; 
+            service.Process(tweet.Text);
+            AddTweetCore(tweet, semantics);
+        }
+
+        private void AddTweetCore(ITweet tweet, SemanticResult semantics)
+        {
+            tweets[idx.Value] = new TweetWithSemantic(tweet,semantics);
+            idx++;
             stats.Add(DateTime.UtcNow, semantics);
         }
     }

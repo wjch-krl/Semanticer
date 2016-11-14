@@ -2,7 +2,9 @@
 {
     public static class Constans
     {
-        public const string ServiceBaseUrl = "net.pipe://localhost/ISemanticProccessor";
-        public const int MaxOldTweets = 10000;
+        public static bool UsePipe = true;
+        public const string ServiceBasePipeUrl = "net.pipe://localhost/Semanticer";
+        public const string ServiceBaseHttpUrl = "http://localhost:23456";
+        public const int MaxOldTweets = 100;
     }
 }

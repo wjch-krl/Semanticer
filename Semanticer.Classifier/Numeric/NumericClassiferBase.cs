@@ -38,14 +38,19 @@ namespace Semanticer.Classifier.Numeric
             return trainEvents.SelectMany(x => x.GetContext());
         }
 
-        protected IEnumerable<TrainingEvent> ExtranctEnumerableTrainEvents(ITrainingData data)
+        protected IEnumerable<TrainingEvent> ExtranctEnumerableTrainEvents(ITrainingEventReader reader)
         {
-            var reader = data.Reader;
             while (reader.HasNext())
             {
                 var sentene = reader.ReadNextEvent();
                 yield return sentene;
             }
+        }
+
+        protected IEnumerable<TrainingEvent> ExtranctEnumerableTrainEvents(ITrainingData data)
+        {
+            var reader = data.Reader;
+            return ExtranctEnumerableTrainEvents(reader);
         }
 
         protected ClassifiedSentence[] ProccesTrainingData(IEnumerable<TrainingEvent> items)

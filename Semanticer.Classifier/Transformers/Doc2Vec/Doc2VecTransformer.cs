@@ -10,8 +10,8 @@ namespace Semanticer.Classifier.Transformers.Doc2Vec
     {
         private readonly int skipCount;
         readonly Doc2VecWrapper doc2VecWrapper;
-        public const string CorpaFileName = "C:\\mgr\\Semanticer\\aclImdb\\train\\doc2vec.train.corpa.txt";
-        private const string FileName = "model.doc2vec";
+        public const string CorpaFileName = "C:\\mgr\\Semanticer\\aclImdb\\tweeter_corpa.txt";
+        private const string FileName = "model_tweeter.doc2vec";
 
         public Doc2VecTransformer(Doc2VecArgs args, int skipCount = -1)
         {
@@ -25,6 +25,7 @@ namespace Semanticer.Classifier.Transformers.Doc2Vec
             {
                 doc2VecWrapper.Train(CorpaFileName, args.CBow, args.Hs, args.Negative, args.Iterations,
                     args.Window, args.Alpha, args.Sample, args.MinCount, args.ThreadCount);
+                doc2VecWrapper.Save(FileName);
             }
         }
 

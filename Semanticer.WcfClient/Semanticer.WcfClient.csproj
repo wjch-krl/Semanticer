@@ -60,10 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SemanticerServiceHelper.cs" />
     <Compile Include="ServiceResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TweeterStreamDownloaderStub.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Semanticer.Common\Semanticer.Common.csproj">

@@ -16,15 +16,15 @@ namespace Semanticer.Classifier.Common
             {
                 throw new ArgumentException("Arrays must be same size");
             }
-            matrix = new int[3][];
+            matrix = new int[4][];
             for (int index = 0; index < matrix.Length; index++)
             {
-                matrix[index] = new int[3];
+                matrix[index] = new int[4];
             }
             for (int i = 0; i < predictions.Count; i++)
             {
-                int predIndex = (int) (predictions[i]) - 1;
-                int valueIndex = (int) (values[i]) - 1;
+                int predIndex = (int) (predictions[i]);
+                int valueIndex = (int) (values[i]);
                 if (predIndex >= 0)
                     matrix[predIndex][valueIndex]++;
             }

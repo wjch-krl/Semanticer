@@ -1,5 +1,6 @@
 using System;
 using Semanticer.Common.Enums;
+using Tweetinvi.Core.Events;
 
 namespace Semanticer.Common
 {
@@ -13,6 +14,11 @@ namespace Semanticer.Common
         public override string ToString()
         {
             return $"{Text} is {Result} (With propability: {Propability})";
+        }
+
+        public string ToHtmlPrint()
+        {
+            return $"<span class=\"{Result}\">{Result} (p={Propability:0.##})</span>";
         }
     }
 }

@@ -10,13 +10,13 @@ namespace SemanticerDemo.Controllers
 {
     public class SemanticController : Controller
     {
-        private readonly Lazy<ISemanticProccessor> serviceClient;
-        private readonly Lazy<ITweeterStreamDownloader> twitterClient;
+        private static readonly Lazy<ISemanticProccessor> _serviceClient;
+        private static readonly Lazy<ITweeterStreamDownloader> _twitterClient;
 
-        public SemanticController()
+        static SemanticController()
         {
-            serviceClient = new Lazy<ISemanticProccessor>(ServiceResolver.GetTrainedSemanticProccessor);
-            twitterClient = new Lazy<ITweeterStreamDownloader>(ServiceResolver.GetStartedTweeterStreamDownloader);
+            _serviceClient = new Lazy<ISemanticProccessor>(ServiceResolver.GetTrainedSemanticProccessor);
+            _twitterClient = new Lazy<ITweeterStreamDownloader>(ServiceResolver.GetStartedTweeterStreamDownloader);
         }
 
         public ActionResult Index()
@@ -29,7 +29,7 @@ namespace SemanticerDemo.Controllers
         public ActionResult Index(string toEvaluate)
         {
             var view = View();
-            var result = serviceClient.Value.Process(toEvaluate);
+            var result = _serviceClient.Value.Process(toEvaluate);
             view.ViewData.Add("result", result);
             return view;
         }
@@ -38,24 +38,10 @@ namespace SemanticerDemo.Controllers
         {
             return View("Twitter");
         }
-
-
-        class ItemPerDay
-        {
-            public MarkType Mark { get; set; }
-            public ItemPerHour[] Items { get; set; }
-        }
-
-        class ItemPerHour
-        {
-            public int Count { get; set; }
-            public DateTime Time { get; set; }
-        }
-
+        
         private object ProcessMesssages()
         {
-            var stats = twitterClient.Value.DailyStat();
-            var today = DateTime.Today;
+            var stats = _twitterClient.Value.DailyStat();
             var enumValues = (IEnumerable<MarkType>) Enum.GetValues(typeof(MarkType));
             return enumValues.Select(MarkType => new
             {
@@ -75,7 +61,18 @@ namespace SemanticerDemo.Controllers
 
         public JsonResult GetTweets()
         {
-            return Json(twitterClient.Value.Tweets(), JsonRequestBehavior.AllowGet);
+            var tweets = _twitterClient.Value.
+                Tweets().
+                Where(x => x != null).
+                Select(x => new object[]
+                {
+                    x.Semantics.Text,
+                    x.Semantics.ToHtmlPrint(),
+                    x.TweetLocalCreationDate.TimeOfDay.ToString("hh\\:mm\\:ss"),
+                    x.Language,
+                    x.CreatedBy
+                }).ToArray();
+            return Json(tweets, JsonRequestBehavior.AllowGet);
         }
     }
 

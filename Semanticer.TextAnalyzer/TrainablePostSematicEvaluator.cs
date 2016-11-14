@@ -15,7 +15,7 @@ namespace Semanticer.TextAnalyzer
         private readonly LearnigAlghoritm alghoritm;
         private readonly IPivotWordProviderFactory pivotFactory;
         private readonly ITokenizerFactory tokenizerFactory;
-        private readonly IClassifier classifier;
+        public readonly IClassifier classifier;
         private TextTransformerFactory textTransformer;
         private double PolarityMargin { get; set; }
         private double CutOff { get; set; }

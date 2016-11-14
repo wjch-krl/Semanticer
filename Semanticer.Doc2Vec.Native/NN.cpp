@@ -26,6 +26,7 @@ NN::NN(long long vocab_size, long long corpus_size, long long dim,
 		printf("Memory allocation failed\n");
 		exit(1);
 	}
+	aligment = (size_t)m_corpus_size * m_dim * sizeof(real);
 	m_dsyn0 = new real[aligment];
 	if (m_dsyn0 == NULL)
 	{
@@ -33,18 +34,22 @@ NN::NN(long long vocab_size, long long corpus_size, long long dim,
 		exit(1);
 	}
 	for (a = 0; a < m_vocab_size; a++)
+	{
 		for (b = 0; b < m_dim; b++)
 		{
 			next_random = next_random * (unsigned long long)25214903917 + 11;
 			m_syn0[a * m_dim + b] = (((next_random & 0xFFFF) / (real)65536) - 0.5) / m_dim;
 		}
+	}
 	for (a = 0; a < m_corpus_size; a++)
+	{
 		for (b = 0; b < m_dim; b++)
 		{
 			next_random = next_random * (unsigned long long)25214903917 + 11;
 			m_dsyn0[a * m_dim + b] = (((next_random & 0xFFFF) / (real)65536) - 0.5) / m_dim;
 		}
-
+	}
+	aligment = (size_t)m_vocab_size * m_dim * sizeof(real);
 	if (m_hs)
 	{
 		m_syn1 = new real[aligment];
@@ -107,7 +112,7 @@ void NN::load(FILE* fin)
 	}
 	fread(m_syn0, sizeof(real), m_vocab_size * m_dim, fin);
 
-	m_dsyn0 = new real[aligment];
+	m_dsyn0 = new real[(size_t)m_corpus_size * m_dim * sizeof(real)];
 	if (m_dsyn0 == NULL)
 	{
 		printf("Memory allocation failed\n");
@@ -148,6 +153,7 @@ void NN::norm()
 		printf("Memory allocation failed\n");
 		exit(1);
 	}
+	aligment = (size_t)m_corpus_size * m_dim * sizeof(real);
 	m_dsyn0norm = new real[aligment];
 	if (m_dsyn0norm == NULL)
 	{

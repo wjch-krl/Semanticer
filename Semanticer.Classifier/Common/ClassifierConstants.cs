@@ -56,5 +56,7 @@ namespace Semanticer.Classifier.Common
 
 		public const string ImdbTrainDatasetPath = @"C:\mgr\Semanticer\aclImdb\train\train";
 		public const string ImdbTestDatasetPath = @"C:\mgr\Semanticer\aclImdb\test\test";
+		public const string TnTwitterTestDatasetPath = @"C:\mgr\Semanticer\aclImdb\tweets_test.csv";
+		public const string TnTwitterTrainDatasetPath = @"C:\mgr\Semanticer\aclImdb\tweets_train.csv";
 	}
 }

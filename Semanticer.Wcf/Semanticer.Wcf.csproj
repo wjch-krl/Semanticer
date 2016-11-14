@@ -75,9 +75,12 @@
     <Compile Include="SemanticerService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SemanticProccessorService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Semanticer.Classifier\Semanticer.Classifier.csproj">
+      <Project>{688701f9-7d95-435d-941f-54a4f3437205}</Project>
+      <Name>Semanticer.Classifier</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Semanticer.Common\Semanticer.Common.csproj">
       <Project>{1d5fedeb-b064-4e02-bfda-44511c9bce36}</Project>
       <Name>Semanticer.Common</Name>

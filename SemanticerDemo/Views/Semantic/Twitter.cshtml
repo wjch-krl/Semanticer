@@ -1,4 +1,5 @@
-﻿@model dynamic
+﻿@using Semanticer.Common
+@model dynamic
 
 @{
     ViewBag.Title = "Twitter Demo";
@@ -14,34 +15,52 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("Semanticer", "Index", new { area = "" }, new { @class = "navbar-brand " })
-            @Html.ActionLink("Twitter", "Twitter", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Semanticer", "Index", new {area = ""}, new {@class = "navbar-brand ", style = "color: whitesmoke"})
+            @Html.ActionLink("Twitter", "Twitter", new {area = ""}, new {@class = "navbar-brand"})
+        </div>
+        <div id="navbar" class="collapse navbar-collapse item-right">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#stats">Statistics</a>
+                </li>
+                <li>
+                    <a href="#tweets">Tweets</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
 
 <div class="container fill">
-    <h1>Last 24h on Twitter</h1>
+    <h1 id="stats">Last 24h on Twitter</h1>
     <div>
         <canvas id="canvas"></canvas>
     </div>
-    <table id="example" class="display">
+    <br/>
+    <h3 id="tweets">Last @Constans.MaxOldTweets Tweets</h3><br />
+    <table id="twitterTable" class="display">
         <thead>
-            <tr>
-                <th>Tweet</th>
-                <th>Result</th>
-                <th>Propability</th>
-                <th>Text</th>
-            </tr>
+        <tr>
+            <th>Message</th>
+            <th>Mark</th>
+            <th>Creation Time</th>
+            <th>Language</th>
+            <th>Author Name</th>
+        </tr>
         </thead>
         <tfoot>
-            <tr>
-                <th>Tweet</th>
-                <th>Result</th>
-                <th>Propability</th>
-                <th>Text</th>
-            </tr>
+        <tr>
+            <th>Message</th>
+            <th>Mark Propabily</th>
+            <th>Creation Time</th>
+            <th>Language</th>
+            <th>Author Name</th>
+        </tr>
         </tfoot>
     </table>
 
 </div>
+
+@section Scripts {
+    <script src="../../scripts/twitter.js"></script>
+}

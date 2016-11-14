@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Semanticer.Classifier\Semanticer.Classifier.csproj">
-      <Project>{688701f9-7d95-435d-941f-54a4f3437205}</Project>
+      <Project>{688701F9-7D95-435D-941F-54A4F3437205}</Project>
       <Name>Semanticer.Classifier</Name>
     </ProjectReference>
     <ProjectReference Include="..\Semanticer.Common\Semanticer.Common.csproj">

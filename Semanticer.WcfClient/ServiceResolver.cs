@@ -15,19 +15,20 @@ namespace Semanticer.WcfClient
 
         public static ISemanticProccessor GetTrainedSemanticProccessor()
         {
-            return IsServiceAviable ? GetTrainedSemanticProccessorCore() : null; //new SemanticProccessor();
+            //return IsServiceAviable ? GetTrainedSemanticProccessorCore() : new SemanticProccessor();
+            return GetTrainedSemanticProccessorCore();
         }
 
         private static ISemanticProccessor GetTrainedSemanticProccessorCore()
         {
             var processor = GetService<ISemanticProccessor>();
-            var helper = new SemanticerServiceHelper(processor);
-            return helper.Proccessor;
+            return processor;
         }
 
         public static ITweeterStreamDownloader GetStartedTweeterStreamDownloader()
         {
-            var stream = IsServiceAviable ? GetTweeterStreamDownloaderCore() : new TweeterStreamDownloaderStub();
+           // var stream = IsServiceAviable ? GetTweeterStreamDownloaderCore() : new TweeterStreamDownloader();
+            var stream = GetTweeterStreamDownloaderCore();
             stream.Start();
             return stream;
         }
@@ -42,10 +43,28 @@ namespace Semanticer.WcfClient
 
         private static T GetService<T>()
         {
+            var factory = Constans.UsePipe ? CreatePipeChannelFactory<T>() : CreateHtttpChannelFactory<T>();
+            return factory.CreateChannel();
+        }
+
+        private static ChannelFactory<T> CreatePipeChannelFactory<T>( )
+        {
             var type = typeof(T);
-            Uri address = new Uri($"{Constans.ServiceBaseUrl}/{type.Name}/");
-            ChannelFactory<T> pipeFactory = new ChannelFactory<T>(new NetNamedPipeBinding() { MaxReceivedMessageSize = int.MaxValue }, new EndpointAddress(address));
-            return pipeFactory.CreateChannel();
+            Uri address = new Uri($"{Constans.ServiceBasePipeUrl}/{type.Name}/");
+            ChannelFactory<T> pipeFactory =
+                new ChannelFactory<T>(new NetNamedPipeBinding() {MaxReceivedMessageSize = int.MaxValue},
+                    new EndpointAddress(address));
+            return pipeFactory;
+        }
+
+        private static ChannelFactory<T> CreateHtttpChannelFactory<T>()
+        {
+            var type = typeof(T);
+            Uri address = new Uri($"{Constans.ServiceBaseHttpUrl}/{type.Name}/{type.Name}/");
+            ChannelFactory<T> pipeFactory =
+                new ChannelFactory<T>(new NetHttpBinding() {MaxReceivedMessageSize = int.MaxValue},
+                    new EndpointAddress(address));
+            return pipeFactory;
         }
 
         private static bool CheckServiceSatatus()

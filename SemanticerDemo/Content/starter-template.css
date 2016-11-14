@@ -1,25 +1,21 @@
 ﻿.fill {
-    min-height: 100vh;
     height: 100%;
+    min-height: 100vh;
     padding: 85px 15px;
 }
 
-.Positive {
-    color: #009900
-}
+.Positive { color: #009900 }
 
-.Negative {
-    color: #FF3300
-}
+.Negative { color: #FF3300 }
 
-.Neutral {
-    color: #0000FF
-}
+.Neutral { color: #0000FF }
 
-.item-right {
-    float: right
-}
+.item-right { float: right }
 
-.selected-meneu-item {
-    color: whitesmoke;
+.selected-meneu-item { color: whitesmoke; }
+
+canvas {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
 }

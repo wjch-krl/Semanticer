@@ -15,7 +15,7 @@ namespace Semanticer.Common.Utils
         public static Counter operator ++(Counter counter)
         {
             Interlocked.Increment(ref counter.value);
-            if (counter.value > counter.maxValue)
+            if (counter.value >= counter.maxValue)
             {
                 Interlocked.Exchange(ref counter.value, 0);
             }

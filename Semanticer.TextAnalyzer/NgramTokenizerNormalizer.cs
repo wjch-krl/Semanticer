@@ -26,7 +26,7 @@ namespace Semanticer.TextAnalyzer
 
 		string [] NormalizeWords (string input)
 		{
-			var words = input.SplitByWhitespaces ();
+			var words = Clear(input).SplitByWhitespaces ();
             List<string> normalized = new List<string>();
 			foreach (string word in words)
 			{
@@ -41,5 +41,13 @@ namespace Semanticer.TextAnalyzer
 			}
 			return normalized.ToArray();
 		}
+
+	    private string Clear(string input)
+	    {
+	        var cleared = input.Replace(':', ' ');
+	        cleared = cleared.Replace(',', ' ');
+	        cleared = cleared.Replace('.', ' ');
+	        return cleared;
+	    }
 	}
 }

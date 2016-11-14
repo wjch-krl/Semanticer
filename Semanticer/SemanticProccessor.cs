@@ -10,43 +10,23 @@ namespace Semanticer
 {
     public class SemanticProccessor : ISemanticProccessor
     {
-        private volatile bool isTrained;
-        private ISematicEvaluator bestEvaluator;
-        private IList<TrainableSematicEvaluator> evaluators;
-        public IList<TrainableSematicEvaluator> Evaluators => evaluators;
-
-        public SemanticProccessor()
+        private static readonly Lazy<ISematicEvaluator> _bestEvaluator;
+        static SemanticProccessor()
         {
-            isTrained = false;
-            Task.Factory.StartNew(CreateEvaluator);
+            _bestEvaluator = new Lazy<ISematicEvaluator>(CreateEvaluator);
         }
 
-        private void CreateEvaluator()
-        {
-            var d2vFactory = new Doc2VecTransformerFactory();
+        private static TrainableSematicEvaluator CreateEvaluator()
+        { 
             var bowFactory = new BagOfWordsTransformerFactory();
-            evaluators = new[]
-            {
-                new TrainableSematicEvaluator(LearnigAlghoritm.Knn, "en-US", d2vFactory),
-                new TrainableSematicEvaluator(LearnigAlghoritm.Knn, "en-US", bowFactory),
-         //       new TrainableSematicEvaluator(LearnigAlghoritm.Svm, "en-US", bowFactory),
-                new TrainableSematicEvaluator(LearnigAlghoritm.Svm, "en-US", d2vFactory),
-                new TrainableSematicEvaluator(LearnigAlghoritm.NaiveBayes, "en-US", bowFactory),
-                new TrainableSematicEvaluator(LearnigAlghoritm.MaxEnt, "en-US", bowFactory)
-            };
-            bestEvaluator = evaluators.First();
-            isTrained = true;
+            var bestEvaluator = new TrainableSematicEvaluator(LearnigAlghoritm.NaiveBayes, "en-US", bowFactory);
 			Console.WriteLine("Trained");
+            return bestEvaluator;
         }
 
         public SemanticResult Process(string toEvaluate)
         {
-            return Process(toEvaluate, bestEvaluator);
-        }
-
-        public SemanticResult Process(string toEvaluate, ISematicEvaluator evaluator)
-        {
-            var evaluated = evaluator.Evaluate(toEvaluate);
+            var evaluated = _bestEvaluator.Value.Evaluate(toEvaluate);
             var mark = SelectBestMark(evaluated);
             mark.Text = toEvaluate;
             return mark;
@@ -93,9 +73,6 @@ namespace Semanticer
             return evaluated.ContainsKey(mark) ? evaluated[mark] : 0.0;
         }
 
-        public bool IsTrained()
-        {
-            return isTrained;
-        }
+        public bool IsTrained() => _bestEvaluator.IsValueCreated;
     }
 }

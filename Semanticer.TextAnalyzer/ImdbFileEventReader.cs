@@ -29,10 +29,11 @@ namespace Semanticer.TextAnalyzer
             string fileName = files[idx];
             var imdbInfo = new ImdbFileInfo(fileName);
             var tokenized = tokenizer.Tokenize(ReadFile(fileName));
-            string outCome  = imdbInfo.ToMarkType().ToString();
+            string outCome = imdbInfo.ToMarkType().ToString();
             idx++;
             hasNext = idx < files.Length;
-            return new TrainingEvent(outCome, tokenized); ;
+            return new TrainingEvent(outCome, tokenized);
+            ;
         }
 
         string ReadFile(string path)

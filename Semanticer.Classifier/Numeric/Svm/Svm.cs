@@ -37,10 +37,19 @@ namespace Semanticer.Classifier.Numeric.Svm
             var starTime = DateTime.Now;
             var events = ExtranctEnumerableTrainEvents(data);
             var problem = CreateTrainProblem(events);
+            problem.Save("train.feat");
             ScaleNewProblem(problem);
-            svMachine = problem.Train(parameter);
+            //svMachine = problem.Train(parameter);
             return DateTime.Now - starTime;
         }
+
+        public void CerateTestProblem(ITrainingEventReader reader)
+        {
+            var events = ExtranctEnumerableTrainEvents(reader);
+            var problem = CreateTrainProblem(events);
+            problem.Save("test.feat");
+        }
+
 
         private static SVMParameter CreateSvmParameter()
         {
